@@ -35,7 +35,7 @@ const ArenaPage = () => {
 
   const clickMax = useCallback(() => {
     if (!gameActive) return;
-    const newOpacity = Math.min(maxOpacity + 0.1, 1.0);
+    const newOpacity = Math.min(maxOpacity + 0.05, 1.0); // Slower increment
     setMaxOpacity(newOpacity);
     
     if (newOpacity >= 1.0) {
@@ -75,14 +75,14 @@ const ArenaPage = () => {
     
     const interval = setInterval(() => {
       setTanukiOpacity(prev => {
-        const newOpacity = Math.min(prev + 0.1, 1.0);
+        const newOpacity = Math.min(prev + 0.03, 1.0); // Much slower increment
         if (newOpacity >= 1.0) {
           setWinner('tanuki');
           setGameActive(false);
         }
         return newOpacity;
       });
-    }, 500);
+    }, 800); // Slower interval
 
     return () => clearInterval(interval);
   }, [gameActive]);
@@ -171,7 +171,7 @@ const ArenaPage = () => {
                 <Button 
                   onClick={clickMax}
                   disabled={!gameActive}
-                  className={`mt-2 ${gameActive && !winner ? 'animate-pulse bg-primary hover:bg-primary/90' : ''}`}
+                  className={`mt-2 ${gameActive && !winner ? 'fast-pulse bg-primary hover:bg-primary/90' : ''}`}
                   size="lg"
                 >
                   🚀 Boost Max!
