@@ -52,7 +52,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
       </section>
 
       {/* Hero Section */}
-      <section className="py-20 px-4 text-center">
+      <section className="py-4 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
             Welcome to <span className="text-primary">Max's Transparency Fight Club</span>
