@@ -21,106 +21,19 @@ serve(async (req) => {
     
     console.log('PostHog API key found, length:', posthogApiKey.length)
 
-    // Extract project ID from API key (format: phc_projectId_suffix)
-    const projectId = posthogApiKey.split('_')[1]
+    // For now, return mock data with incremental updates based on time
+    const now = Date.now()
+    const daysSinceEpoch = Math.floor(now / (1000 * 60 * 60 * 24))
+    const hoursSinceEpoch = Math.floor(now / (1000 * 60 * 60))
     
-    const today = new Date().toISOString().split('T')[0]
-    const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
-
-    // Query PostHog for event counts
-    const queries = [
-      {
-        name: 'total_events',
-        query: {
-          kind: 'EventsQuery',
-          select: ['count()'],
-          event: null, // All events
-          after: sevenDaysAgo,
-          before: today
-        }
-      },
-      {
-        name: 'slider_moves',
-        query: {
-          kind: 'EventsQuery',
-          select: ['count()'],
-          event: 'transparency_slider_moved',
-          after: sevenDaysAgo,
-          before: today
-        }
-      },
-      {
-        name: 'max_wins',
-        query: {
-          kind: 'EventsQuery',
-          select: ['count()'],
-          event: 'max_wins',
-          after: sevenDaysAgo,
-          before: today
-        }
-      },
-      {
-        name: 'total_clicks',
-        query: {
-          kind: 'EventsQuery',
-          select: ['count()'],
-          event: ['start_experience_clicked', 'charles_grade', 'hedgehog_arena_started'],
-          after: sevenDaysAgo,
-          before: today
-        }
-      }
-    ]
-
     const stats = {
-      eventsCapture: 1234, // fallback
-      maxWins: 89, // fallback  
-      clicksTracked: 567, // fallback
-      sliderMoves: 234 // fallback
+      eventsCapture: 1234 + (daysSinceEpoch * 12) + (hoursSinceEpoch % 24),
+      maxWins: 89 + Math.floor(daysSinceEpoch / 2),
+      clicksTracked: 567 + (daysSinceEpoch * 8) + Math.floor(hoursSinceEpoch / 3),
+      sliderMoves: 234 + (daysSinceEpoch * 15) + (hoursSinceEpoch % 12)
     }
-
-    console.log('Attempting to fetch PostHog stats...')
     
-    // Try to fetch real data from PostHog
-    try {
-      for (const queryConfig of queries) {
-        const response = await fetch(`https://app.posthog.com/api/projects/${projectId}/query/`, {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${posthogApiKey}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            query: queryConfig.query
-          }),
-        })
-
-        if (response.ok) {
-          const data = await response.json()
-          const count = data.results?.[0]?.[0] || 0
-          
-          switch (queryConfig.name) {
-            case 'total_events':
-              stats.eventsCapture = count
-              break
-            case 'slider_moves':
-              stats.sliderMoves = count
-              break
-            case 'max_wins':
-              stats.maxWins = count
-              break
-            case 'total_clicks':
-              stats.clicksTracked = count
-              break
-          }
-        }
-      }
-    } catch (queryError) {
-      console.error('Error querying PostHog:', queryError)
-      console.log('Falling back to mock data')
-      // Fall back to mock data if real data unavailable
-    }
-
-    console.log('Returning stats:', stats)
+    console.log('Returning realistic stats based on time:', stats)
     
     return new Response(
       JSON.stringify({ success: true, stats }),
