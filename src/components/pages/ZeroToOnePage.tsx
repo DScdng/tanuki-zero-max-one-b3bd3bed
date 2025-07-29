@@ -184,6 +184,36 @@ const ZeroToOnePage = () => {
           </CardContent>
         </Card>
       </section>
+
+      {/* App v0 to v1 Comparison */}
+      <section className="max-w-3xl mx-auto">
+        <Card className="bg-white border-[#151515]/20">
+          <CardHeader>
+            <CardTitle className="text-2xl text-center text-[#151515]">App v0 to v1 Comparison</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="text-center">
+                <h3 className="text-xl font-semibold mb-2 text-[#151515]/70">Version 0</h3>
+                <p className="text-sm text-[#151515]/70">
+                  Standard corporate transparency: We're open... when it's convenient.
+                </p>
+              </div>
+              <div className="text-center">
+                <h3 className="text-xl font-semibold mb-2 text-[#F54E00]">Version 1</h3>
+                <p className="text-sm text-[#151515]">
+                  <strong>PostHog transparency:</strong> Everything is open. Even our mistakes. Especially our mistakes.
+                </p>
+              </div>
+            </div>
+            <div className="text-center pt-4">
+              <p className="text-lg text-[#151515]">
+                <span className="text-[#F54E00] font-semibold">That's my 0→1:</span> From conditional transparency to radical transparency.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
     </div>
   );
 };
