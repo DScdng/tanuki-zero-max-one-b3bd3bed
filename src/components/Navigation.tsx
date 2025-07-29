@@ -14,6 +14,7 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
     { id: 'zero-to-one', label: 'Zero-to-One Playground' },
     { id: 'versions', label: 'Version 0 vs Version 1' },
     { id: 'arena', label: 'Hedgehog Arena' },
+    { id: 'disclaimer', label: 'Disclaimer' },
   ];
 
   return (
