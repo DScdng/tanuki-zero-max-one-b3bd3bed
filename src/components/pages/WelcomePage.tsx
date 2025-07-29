@@ -51,7 +51,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
             Welcome to <span className="text-primary">Đorđe's Transparency Fight Club</span>
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-4 max-w-3xl mx-auto leading-relaxed">
             Where hedgehogs beat raccoon dogs (and everyone else) in transparency, every time.
           </p>
         </div>
