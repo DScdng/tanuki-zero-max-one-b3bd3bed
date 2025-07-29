@@ -38,8 +38,8 @@ serve(async (req) => {
 
     console.log('Sending to PostHog:', payload)
 
-    // Use the correct PostHog capture endpoint (US region)
-    const response = await fetch('https://us.i.posthog.com/capture/', {
+    // Use the correct PostHog capture endpoint (EU region)
+    const response = await fetch('https://eu.i.posthog.com/capture/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
