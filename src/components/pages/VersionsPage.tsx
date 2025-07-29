@@ -7,9 +7,17 @@ const VersionsPage = () => {
       {/* Header */}
       <section className="text-center py-8">
         <h1 className="text-4xl font-bold mb-4 text-primary">Version 0 vs Version 1</h1>
-        <p className="text-xl text-muted-foreground">
-          The evolution of my approach (and transparency)
+        <p className="text-xl text-muted-foreground mb-4">
+          This is not just about code. It's about mindset: from hacking HTML like it's 2010 (v0) to building with AI and modern tools (v1).
         </p>
+        <div className="flex justify-center gap-8 text-lg">
+          <div className="text-muted-foreground">
+            <span className="font-semibold">v0</span> – 3 hours, brute force, manual code.
+          </div>
+          <div className="text-primary">
+            <span className="font-semibold">v1</span> – 10 minutes, AI-assisted, beautiful.
+          </div>
+        </div>
       </section>
 
       {/* Version Comparison */}

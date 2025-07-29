@@ -10,9 +10,9 @@ const AboutPage = () => {
     <div className={`space-y-8 transition-all duration-500 ${interiorDesignMode ? 'bg-background' : ''}`}>
       {/* Header */}
       <section className="text-center py-8">
-        <h1 className="text-4xl font-bold mb-4 text-primary">About Me</h1>
+        <h1 className="text-4xl font-bold mb-4 text-primary">From Tanuki Fanboy to Max's Transparency Advocate</h1>
         <p className="text-xl text-muted-foreground">
-          From Tanuki fanboy to Max's transparency advocate
+          My Journey
         </p>
       </section>
 
@@ -27,28 +27,28 @@ const AboutPage = () => {
               <div className="border-l-4 border-primary pl-4">
                 <h3 className="text-lg font-semibold text-primary">GitLab 🦝</h3>
                 <p className="text-muted-foreground">
-                  Started as a Tanuki enthusiast. Loved the culture, but transparency had its limits.
+                  "My first love. Right out of high school, I was trusted by GitLab's CEO to manage Reddit, HackerNews, and Twitter. I learned the power of open-source and docs-first culture — but transparency had its limits."
                 </p>
               </div>
               
               <div className="border-l-4 border-posthog-blue pl-4">
                 <h3 className="text-lg font-semibold text-posthog-blue">Respondo 💬</h3>
                 <p className="text-muted-foreground">
-                  Learned the power of customer feedback and real-time communication.
+                  "I built my own startup, helping companies centralize user feedback across forums and social. It was my first leap from 0 to 1."
                 </p>
               </div>
               
               <div className="border-l-4 border-accent pl-4">
                 <h3 className="text-lg font-semibold">Humanitec 🚀</h3>
                 <p className="text-muted-foreground">
-                  Dove deep into platform engineering and developer experience.
+                  "Closed €780K ARR by helping engineering teams build Internal Developer Platforms. Learned that engineers love transparency and hate BS."
                 </p>
               </div>
               
               <div className="border-l-4 border-primary pl-4">
                 <h3 className="text-lg font-semibold text-primary">PostHog 🦔</h3>
                 <p className="text-foreground">
-                  <strong>Found my transparency tribe!</strong> Max {'>'}  Tanuki. Fight me.
+                  <strong>"PostHog feels like GitLab's cool, weird cousin — transparent, fun, and product-led. Max {'>'}  Tanuki, fight me."</strong>
                 </p>
               </div>
             </div>
@@ -65,8 +65,7 @@ const AboutPage = () => {
           <CardContent>
             <p className="text-lg leading-relaxed">
               This app is my creative resume — my <strong>HogFlix moment</strong>. 
-              It's part technical showcase, part love letter to PostHog's culture, 
-              and part transparent admission that I'm ready to trade my Tanuki allegiance 
+              A fun mix of storytelling, coding, and PostHog culture that shows I'm ready to trade my Tanuki allegiance 
               for a lifetime of hedgehog wisdom.
             </p>
           </CardContent>

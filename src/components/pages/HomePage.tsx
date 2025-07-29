@@ -8,10 +8,13 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="text-center py-12">
         <h1 className="text-5xl font-bold mb-4 text-foreground">
-          Max's Transparency Fight Club
+          Who's More Transparent?
         </h1>
-        <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-          The transparent battle between GitLab's Tanuki and PostHog's Max the Hedgehog
+        <p className="text-2xl text-primary font-semibold mb-4">
+          GitLab's Tanuki vs PostHog's Max the Hedgehog
+        </p>
+        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          In this fight club, every commit tells a story...
         </p>
         
         <div className="relative w-full max-w-4xl mx-auto mb-8">
@@ -25,7 +28,12 @@ const HomePage = () => {
 
       {/* Interactive Elements */}
       <section className="grid md:grid-cols-2 gap-8 py-8">
-        <TransparencyMeter />
+        <div>
+          <p className="text-center text-muted-foreground mb-4">
+            Slide to test their transparency (spoiler: Max always wins).
+          </p>
+          <TransparencyMeter />
+        </div>
         <FakeCommitHistory />
       </section>
 
@@ -53,7 +61,7 @@ const HomePage = () => {
       {/* Footer */}
       <footer className="text-center py-8 text-muted-foreground">
         <p className="text-lg">
-          <span className="text-primary font-semibold">See you on Superday, Max!</span> 🦔
+          <span className="text-primary font-semibold">Max is sunbathing now, waiting for Superday.</span> 🦔
         </p>
       </footer>
     </div>

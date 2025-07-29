@@ -11,27 +11,27 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
     {
       id: 'home',
       title: 'Home',
-      description: 'Meet the characters in this transparency battle - GitLab Tanuki vs PostHog Max!'
+      description: 'Meet Tanuki & Max: transparency rivals, but only one can win.'
     },
     {
       id: 'about',
       title: 'About Me',
-      description: 'My journey from GitLab → Respondo → Humanitec → PostHog, with transparency lessons learned.'
+      description: 'My career journey and why I\'m on Team Max now.'
     },
     {
       id: 'zero-to-one',
       title: 'Zero-to-One Playground',
-      description: 'Interactive experiments and creative ideas that showcase technical skills and innovation.'
+      description: 'What 0→1 thinking means for AI, coding, and PostHog.'
     },
     {
       id: 'versions',
       title: 'Version 0 vs Version 1',
-      description: 'A detailed comparison showing evolution, transparency, and product development insights.'
+      description: 'How I built this app: from manual struggle to AI-boosted magic.'
     },
     {
       id: 'arena',
       title: 'Hedgehog Arena',
-      description: 'The ultimate showdown! Interactive game where transparency wins every time.'
+      description: 'Play the transparency showdown and see if Max wins!'
     }
   ];
 
@@ -53,17 +53,25 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
             Where hedgehogs beat foxes in transparency, every time.
           </p>
-          <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
-            A creative showcase of my journey from GitLab → Respondo → Humanitec → PostHog, 
-            demonstrating humor, technical skill, and PostHog's legendary culture of transparency.
-          </p>
+          
+          <div className="max-w-4xl mx-auto mb-12 bg-card/50 backdrop-blur-sm p-8 rounded-lg border border-border/50">
+            <p className="text-lg text-foreground mb-4 leading-relaxed">
+              <strong>This project is my creative resume — my HogFlix moment.</strong> It's a playful journey that shows my technical skills, love for PostHog's culture, and belief that transparency wins every time.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Inspired by my journey from GitLab's Tanuki → Respondo → Humanitec → PostHog (next!), this is my way of going from 0 to 1.
+            </p>
+          </div>
           <Button 
             size="lg" 
             onClick={() => onNavigate('home')}
-            className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground"
+            className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground mb-4"
           >
             Start the Experience
           </Button>
+          <p className="text-muted-foreground">
+            Explore transparency, AI experiments, and the ultimate showdown between GitLab Tanuki and PostHog's Max the Hedgehog.
+          </p>
         </div>
       </section>
 

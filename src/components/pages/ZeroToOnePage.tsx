@@ -26,7 +26,10 @@ const ZeroToOnePage = () => {
       {/* Header */}
       <section className="text-center py-8">
         <h1 className="text-4xl font-bold mb-4 text-primary">Zero-to-One Playground</h1>
-        <p className="text-xl text-muted-foreground">
+        <p className="text-xl text-muted-foreground mb-4">
+          Inspired by Zero to One, this section is where I experiment, think big, and show what 0→1 means in 2025.
+        </p>
+        <p className="text-lg text-muted-foreground">
           Where Peter Thiel meets PostHog transparency
         </p>
       </section>
@@ -41,9 +44,24 @@ const ZeroToOnePage = () => {
                 <blockquote className="text-lg italic mb-4 text-foreground">
                   "{quote.text}"
                 </blockquote>
-                <cite className="text-sm text-muted-foreground">
+                <cite className="text-sm text-muted-foreground mb-3">
                   — Peter Thiel, on {quote.context}
                 </cite>
+                {index === 0 && (
+                  <p className="text-sm text-primary italic">
+                    "Just like finding a transparent company that's also fun (hint: PostHog)."
+                  </p>
+                )}
+                {index === 1 && (
+                  <p className="text-sm text-primary italic">
+                    "Like believing hedgehogs can beat foxes in transparency."
+                  </p>
+                )}
+                {index === 2 && (
+                  <p className="text-sm text-primary italic">
+                    "Sometimes the crowd thinks Tanuki {'>'}  Max. They're wrong."
+                  </p>
+                )}
               </CardContent>
             </Card>
           ))}
@@ -58,7 +76,7 @@ const ZeroToOnePage = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-lg">
-              <strong>ChatGPT is today's 0→1.</strong> Max approves vibe coding. 🦔
+              <strong>If GitLab taught me 0, PostHog's AI, culture, and Max's shades took me to 1.</strong> 🦔
             </p>
             <p className="text-muted-foreground">
               Why spend months building what AI can help you prototype in hours? 

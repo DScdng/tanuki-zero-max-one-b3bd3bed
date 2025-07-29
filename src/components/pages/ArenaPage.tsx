@@ -90,8 +90,8 @@ const ArenaPage = () => {
       {/* Header */}
       <section className="text-center py-8">
         <h1 className="text-4xl font-bold mb-4 text-primary">Hedgehog Arena</h1>
-        <p className="text-xl text-muted-foreground">
-          The ultimate transparency showdown
+        <p className="text-xl text-muted-foreground mb-4">
+          The ultimate transparency showdown. Can you click faster than Tanuki's corporate opacity?
         </p>
       </section>
 
@@ -202,7 +202,7 @@ const ArenaPage = () => {
                         />
                       </div>
                       <p className="text-2xl mb-2">🎉 Max Wins! Strong PostHog beats scary Tanuki!</p>
-                      <p className="text-lg mb-4">Transparency achieved!</p>
+                      <p className="text-lg mb-4">Max says: "Transparency unlocked! Here's PostHog's Handbook."</p>
                       <Button 
                         onClick={() => window.open('https://posthog.com/handbook', '_blank')}
                         className="mr-2"
@@ -213,6 +213,7 @@ const ArenaPage = () => {
                   ) : (
                     <div className="p-4 bg-destructive/10 rounded-lg border border-destructive/20">
                       <p className="text-2xl mb-2">😈 Tanuki Wins!</p>
+                      <p className="text-lg mb-4">Tanuki grins: "Back to GitLab's handbook for you."</p>
                       <Button 
                         variant="destructive"
                         onClick={() => window.open('https://about.gitlab.com/handbook/', '_blank')}
