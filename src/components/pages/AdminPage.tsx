@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { supabase, type FeedbackSubmission } from '@/lib/supabase';
+import { supabase, isSupabaseConfigured, type FeedbackSubmission } from '@/lib/supabase';
 import { toast } from 'sonner';
 
 interface AdminPageProps {
@@ -18,6 +18,12 @@ const AdminPage = ({ onNavigate }: AdminPageProps) => {
   }, []);
 
   const fetchFeedback = async () => {
+    if (!isSupabaseConfigured || !supabase) {
+      toast.error('Supabase is not configured. Please set up the integration first.');
+      setLoading(false);
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('feedback_submissions')
@@ -46,6 +52,32 @@ const AdminPage = ({ onNavigate }: AdminPageProps) => {
       <div className="min-h-screen bg-background py-8 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-lg">Loading feedback submissions...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isSupabaseConfigured) {
+    return (
+      <div className="min-h-screen bg-background py-8 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl font-bold text-foreground mb-6">🦔 Admin Dashboard</h1>
+          <Card className="bg-destructive/10 border-destructive/20">
+            <CardContent className="p-8">
+              <p className="text-lg text-foreground mb-4">
+                Supabase is not configured yet.
+              </p>
+              <p className="text-muted-foreground">
+                Please click the green Supabase button in the top right and connect your project to enable feedback storage.
+              </p>
+              <Button 
+                onClick={() => onNavigate('home')}
+                className="mt-4"
+              >
+                ← Back to Home
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
     );

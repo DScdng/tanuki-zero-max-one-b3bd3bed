@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { supabase, type FeedbackSubmission } from '@/lib/supabase';
+import { supabase, isSupabaseConfigured, type FeedbackSubmission } from '@/lib/supabase';
 import { toast } from 'sonner';
 
 interface DisclaimerPageProps {
@@ -53,6 +53,14 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // If Supabase is not configured, fall back to alert
+    if (!isSupabaseConfigured || !supabase) {
+      toast.success("Thanks, Charles! Max approves your feedback. 🦔 (Note: Supabase not configured - feedback not saved)");
+      setFormData({ name: '', sandwich: '', feedback: '' });
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const submission: FeedbackSubmission = {
