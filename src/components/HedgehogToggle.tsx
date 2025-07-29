@@ -158,17 +158,27 @@ export const HedgehogToggle = () => {
         onMouseDown={handleMouseDown}
         onClick={handleClick}
       >
-        {/* Hedgehog emoji as character */}
-        <div className="text-4xl animate-bounce hover:scale-110 transition-transform select-none">
-          🦔
+        {/* Hedgehog character */}
+        <div className="w-16 h-16 animate-bounce hover:scale-110 transition-transform select-none">
+          <img 
+            src="/lovable-uploads/8c441bd3-1728-4b62-943d-9420c4f75288.png"
+            alt="PostHog Hedgehog"
+            className="w-full h-full object-contain"
+            draggable={false}
+          />
         </div>
         
-        {/* Quote bubble */}
+        {/* Speech cloud bubble */}
         {showQuote && (
-          <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 bg-card border border-border rounded-lg px-3 py-2 shadow-lg animate-fade-in max-w-48 text-center">
-            <div className="text-sm font-medium text-foreground">{currentQuote}</div>
-            {/* Speech bubble tail */}
-            <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-border"></div>
+          <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 animate-fade-in">
+            <div className="relative bg-white dark:bg-gray-800 rounded-full px-4 py-3 shadow-lg border border-gray-200 dark:border-gray-600 max-w-56 text-center">
+              <div className="text-sm font-medium text-gray-800 dark:text-gray-200 leading-relaxed">{currentQuote}</div>
+              
+              {/* Cloud-like bubbles */}
+              <div className="absolute -bottom-2 left-6 w-3 h-3 bg-white dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-600"></div>
+              <div className="absolute -bottom-4 left-4 w-2 h-2 bg-white dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-600"></div>
+              <div className="absolute -bottom-5 left-2 w-1 h-1 bg-white dark:bg-gray-800 rounded-full"></div>
+            </div>
           </div>
         )}
       </div>
