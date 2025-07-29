@@ -23,25 +23,25 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
   ];
 
   return (
-    <nav className="bg-card/95 backdrop-blur-lg border-b border-border sticky top-0 z-50">
-      <div className="container mx-auto px-4 py-2">
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
+    <nav className="bg-card/95 backdrop-blur-lg sticky top-0 z-50 shadow-soft">
+      <div className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
             <img 
               src={hedgehogVsTanukiLogo} 
               alt="Hedgehog vs Tanuki Fight Club Logo" 
-              className="h-8 w-8 object-contain"
+              className="h-10 w-10 object-contain"
             />
-            <h1 className="text-lg md:text-xl font-bold text-primary tracking-tight hidden sm:block">
+            <h1 className="text-xl md:text-2xl font-bold text-primary tracking-tight hidden sm:block">
               Transparency Fight Club
             </h1>
           </div>
           
-          <div className="flex items-center gap-1 md:gap-2">
+          <div className="flex items-center gap-3">
             <ThemeToggle />
             
             {/* Desktop Navigation */}
-            <div className="hidden lg:flex gap-1">
+            <div className="hidden lg:flex gap-2">
               {navItems.map((item) => (
                 <Button
                   key={item.id}
@@ -51,7 +51,7 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
                     trackNavigationClick(item.id, currentPage);
                     onPageChange(item.id);
                   }}
-                  className="transition-all duration-200 hover:bg-accent text-xs font-medium px-2 py-1 h-8 rounded-md"
+                  className="text-xs font-medium"
                 >
                   {item.label}
                 </Button>
@@ -66,7 +66,7 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
                   trackNavigationClick(e.target.value, currentPage);
                   onPageChange(e.target.value);
                 }}
-                className="bg-card border border-border rounded-md px-2 py-1 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary h-8"
+                className="bg-card border border-border rounded-[16px] px-4 py-2 text-xs font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary shadow-soft"
               >
                 {navItems.map((item) => (
                   <option key={item.id} value={item.id}>
