@@ -71,8 +71,8 @@ export const trackStartExperienceClicked = () => {
   trackEvent('start_experience_clicked')
 }
 
-export const trackCharlesGrade = (grade: 'passed' | 'not_yet') => {
-  trackEvent('charles_grade', { grade })
+export const trackCharlesGradeOld = (grade: 'passed' | 'not_yet') => {
+  trackEvent('charles_grade_old', { grade })
 }
 
 // Navigation tracking
@@ -165,3 +165,24 @@ export const trackScrollDepth = (pageName: string, scrollPercentage: number) => 
     scroll_percentage: scrollPercentage 
   })
 }
+
+export const trackArenaClick = (clickType: string, additionalData?: Record<string, any>) =>
+  trackEvent('arena_click', { click_type: clickType, ...additionalData });
+
+export const trackCharlesGrade = (grade: 'thumbs_up' | 'thumbs_down', additionalData?: Record<string, any>) =>
+  trackEvent('charles_grade', { grade, ...additionalData });
+
+export const trackGameStart = (gameType: string, additionalData?: Record<string, any>) =>
+  trackEvent('game_start', { game_type: gameType, ...additionalData });
+
+export const trackGameEnd = (gameType: string, result: 'win' | 'loss', additionalData?: Record<string, any>) =>
+  trackEvent('game_end', { game_type: gameType, result, ...additionalData });
+
+export const trackFeatureFlagView = (flagName: string, flagValue: boolean, additionalData?: Record<string, any>) =>
+  trackEvent('feature_flag_view', { flag_name: flagName, flag_value: flagValue, ...additionalData });
+
+export const trackExperimentView = (experimentName: string, variant: string, additionalData?: Record<string, any>) =>
+  trackEvent('experiment_view', { experiment_name: experimentName, variant, ...additionalData });
+
+export const trackRageClick = (element: string, clickCount: number, additionalData?: Record<string, any>) =>
+  trackEvent('rage_click', { element, click_count: clickCount, ...additionalData });

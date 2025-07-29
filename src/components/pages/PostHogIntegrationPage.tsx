@@ -1,5 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { usePageAnalytics } from '@/hooks/useAnalytics';
+import LiveStatsWidget from '@/components/LiveStatsWidget';
+import FeatureFlagDemo from '@/components/FeatureFlagDemo';
+import ABTestDemo from '@/components/ABTestDemo';
 
 const PostHogIntegrationPage = () => {
   usePageAnalytics('posthog-integration');
@@ -26,6 +29,11 @@ const PostHogIntegrationPage = () => {
         </div>
       </section>
 
+      {/* Live Stats */}
+      <section className="max-w-4xl mx-auto">
+        <LiveStatsWidget />
+      </section>
+
       {/* Live Event Tracking */}
       <section className="max-w-4xl mx-auto">
         <Card>
@@ -33,9 +41,15 @@ const PostHogIntegrationPage = () => {
             <CardTitle className="text-2xl">Live Event Tracking</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-lg">
-              PostHog tracked X slider moves and Y arena clicks today.
+            <p className="text-lg mb-4">
+              PostHog is tracking every interaction in real-time. The numbers above show today's activity.
             </p>
+            <div className="bg-muted/50 p-4 rounded-lg">
+              <p className="text-sm">
+                <strong>Currently tracking:</strong> page views, scroll depth, navigation clicks, 
+                transparency slider moves, arena clicks, time spent on pages, and more.
+              </p>
+            </div>
           </CardContent>
         </Card>
       </section>
@@ -46,43 +60,32 @@ const PostHogIntegrationPage = () => {
           <CardHeader>
             <CardTitle className="text-2xl">Session Replay</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-4">
             <p className="text-lg">
               Every rage click on Tanuki's smug face is recorded, just like real product teams 
               use Session Replay to debug user behavior.
             </p>
+            <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg border border-yellow-200">
+              <p className="text-sm">
+                <strong>⚠️ Warning:</strong> Your session is being recorded for transparency reasons. 
+                Charles, when you watch the replay later, you'll see exactly how you interacted with this app!
+              </p>
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Session replay data helps understand user behavior patterns and identify UX issues.
+            </div>
           </CardContent>
         </Card>
       </section>
 
       {/* Feature Flags */}
       <section className="max-w-4xl mx-auto">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Feature Flags</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg">
-              Interior Design Mode (aka Charles-in-Serbia mode) is behind a PostHog feature flag. 
-              Flip it and watch the app switch styles.
-            </p>
-          </CardContent>
-        </Card>
+        <FeatureFlagDemo />
       </section>
 
       {/* A/B Testing */}
       <section className="max-w-4xl mx-auto">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">A/B Testing</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg">
-              Some of you might see the headline "Max's Transparency Fight Club" while others 
-              see "Transparency Wars: Max vs Tanuki" — thanks to PostHog experiments.
-            </p>
-          </CardContent>
-        </Card>
+        <ABTestDemo />
       </section>
 
       {/* Closing */}

@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { supabase, isSupabaseConfigured, type FeedbackSubmission } from '@/lib/supabase';
 import { toast } from 'sonner';
-import { trackCharlesGrade } from '@/lib/posthog';
+import { trackCharlesGradeOld } from '@/lib/posthog';
 
 interface DisclaimerPageProps {
   onNavigate: (page: string) => void;
@@ -96,7 +96,7 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
   const handleCharlesGrade = (grade: 'passed' | 'not_yet') => {
     localStorage.setItem('charlesGrade', grade);
     setCharlesGrade(grade);
-    trackCharlesGrade(grade);
+    trackCharlesGradeOld(grade);
     toast.success(`Charles' grade has been saved: ${grade === 'passed' ? '👍 Passed!' : '👎 Not Yet!'}`);
   };
 
