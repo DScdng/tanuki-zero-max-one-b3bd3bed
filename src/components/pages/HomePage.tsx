@@ -16,8 +16,8 @@ const HomePage = () => {
         
         <div className="relative w-full max-w-4xl mx-auto mb-8">
           <img 
-            src={maxVsTanukiHero} 
-            alt="Max the Hedgehog vs Tanuki showdown"
+            src="/lovable-uploads/f3fc7c9f-8499-4ff3-b7a2-f1329e01c945.png" 
+            alt="Who's More Transparent? GitLab Tanuki vs PostHog Max relaxing in beach chairs"
             className="w-full h-auto rounded-lg shadow-lg"
           />
         </div>
