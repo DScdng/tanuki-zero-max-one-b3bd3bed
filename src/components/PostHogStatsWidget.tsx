@@ -11,23 +11,27 @@ const PostHogStatsWidget = () => {
   });
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchRealStats = async () => {
-      try {
-        const { data, error } = await supabase.functions.invoke('posthog-stats');
-        
-        if (error) {
-          console.error('Error fetching PostHog stats:', error);
-        } else if (data?.stats) {
-          setStats(data.stats);
-        }
-      } catch (error) {
-        console.error('Error calling PostHog stats function:', error);
-      } finally {
-        setLoading(false);
+  const fetchRealStats = async () => {
+    try {
+      console.log('🔄 Fetching PostHog stats...');
+      const { data, error } = await supabase.functions.invoke('posthog-stats');
+      
+      if (error) {
+        console.error('❌ Error fetching PostHog stats:', error);
+      } else if (data?.stats) {
+        console.log('✅ PostHog stats received:', data.stats);
+        setStats(data.stats);
+      } else {
+        console.log('⚠️ No stats data returned:', data);
       }
-    };
+    } catch (error) {
+      console.error('💥 Error calling PostHog stats function:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchRealStats();
 
     // Refresh stats every 30 seconds
@@ -44,6 +48,17 @@ const PostHogStatsWidget = () => {
         <p className="text-sm text-muted-foreground text-center">
           Every slider move, every Tanuki defeat, and every boost button is tracked by PostHog. This isn't just a demo — it's a live analytics playground.
         </p>
+        <div className="text-center mt-2">
+          <button 
+            onClick={() => {
+              setLoading(true);
+              fetchRealStats();
+            }}
+            className="text-xs bg-[#F54E00] text-white px-3 py-1 rounded hover:bg-[#F54E00]/80"
+          >
+            🔄 Refresh Stats
+          </button>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
