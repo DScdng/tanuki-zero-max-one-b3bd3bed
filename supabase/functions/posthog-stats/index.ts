@@ -11,10 +11,15 @@ serve(async (req) => {
   }
 
   try {
+    console.log('PostHog stats function called')
+    
     const posthogApiKey = Deno.env.get('POSTHOG_API_KEY')
     if (!posthogApiKey) {
+      console.error('PostHog API key not found in environment')
       throw new Error('PostHog API key not configured')
     }
+    
+    console.log('PostHog API key found, length:', posthogApiKey.length)
 
     // Extract project ID from API key (format: phc_projectId_suffix)
     const projectId = posthogApiKey.split('_')[1]
@@ -73,6 +78,8 @@ serve(async (req) => {
       sliderMoves: 234 // fallback
     }
 
+    console.log('Attempting to fetch PostHog stats...')
+    
     // Try to fetch real data from PostHog
     try {
       for (const queryConfig of queries) {
@@ -109,9 +116,12 @@ serve(async (req) => {
       }
     } catch (queryError) {
       console.error('Error querying PostHog:', queryError)
+      console.log('Falling back to mock data')
       // Fall back to mock data if real data unavailable
     }
 
+    console.log('Returning stats:', stats)
+    
     return new Response(
       JSON.stringify({ success: true, stats }),
       {
