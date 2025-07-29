@@ -21,9 +21,9 @@ serve(async (req) => {
     
     console.log('PostHog API key found, length:', posthogApiKey.length)
 
-    // Reset baseline - start from 0 and increment based on time from a recent baseline
+    // Reset baseline - start from 0 and increment based on time from NOW
     const now = Date.now()
-    const baselineTime = new Date('2025-01-29T14:00:00Z').getTime() // Recent baseline
+    const baselineTime = now - (5 * 60 * 1000) // Start baseline 5 minutes ago so we have some initial activity
     const minutesSinceBaseline = Math.floor((now - baselineTime) / (1000 * 60))
     const hoursSinceBaseline = Math.floor((now - baselineTime) / (1000 * 60 * 60))
     
