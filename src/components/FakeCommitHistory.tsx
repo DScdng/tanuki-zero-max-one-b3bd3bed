@@ -51,18 +51,15 @@ const FakeCommitHistory = ({ transparencyValue }: FakeCommitHistoryProps) => {
 
   const [currentCommits, setCurrentCommits] = useState(getCommitSet(transparencyValue));
   const [currentCommit, setCurrentCommit] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
+  const [fadeKey, setFadeKey] = useState(0);
 
   // Handle transparency value changes with fade animation
   useEffect(() => {
     const newCommits = getCommitSet(transparencyValue);
     if (newCommits !== currentCommits) {
-      setIsVisible(false);
-      setTimeout(() => {
-        setCurrentCommits(newCommits);
-        setCurrentCommit(0);
-        setIsVisible(true);
-      }, 300);
+      setCurrentCommits(newCommits);
+      setCurrentCommit(0);
+      setFadeKey(prev => prev + 1); // Force re-render with new key
     }
   }, [transparencyValue, currentCommits]);
 
@@ -88,7 +85,7 @@ const FakeCommitHistory = ({ transparencyValue }: FakeCommitHistoryProps) => {
       <CardContent>
         <div className="bg-secondary p-4 rounded-md font-mono text-sm">
           <div className="text-muted-foreground mb-2">Latest commits:</div>
-          <div className={`space-y-2 transition-opacity duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div key={fadeKey} className="space-y-2 animate-fade-in">
             {currentCommits.slice(currentCommit, currentCommit + 3).map((commit, index) => (
               <div key={`${currentCommit}-${index}`} className={`transition-all duration-500 ${index === 0 ? 'text-primary font-semibold' : 'text-foreground'}`}>
                 {commit}
