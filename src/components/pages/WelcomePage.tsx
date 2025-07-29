@@ -58,7 +58,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
       </section>
 
       {/* Narrative Section */}
-      <section className="py-4 px-4">
+      <section className="px-4">
         <div className="max-w-4xl mx-auto">
           <div className="bg-card/50 backdrop-blur-sm p-8 rounded-lg border border-border/50">
             <p className="text-lg text-foreground leading-relaxed">
