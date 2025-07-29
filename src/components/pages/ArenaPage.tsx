@@ -3,6 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import maxVsTanukiHero from '@/assets/max-vs-tanuki-hero.jpg';
+import posthogMaxTryIt from '@/assets/posthog-max-try-it.png';
+import gitlabTanukiOld from '@/assets/gitlab-tanuki-old.png';
+import godzillaMaxVictory from '@/assets/godzilla-max-victory.png';
 import confetti from 'canvas-confetti';
 
 const ArenaPage = () => {
@@ -86,12 +89,19 @@ const ArenaPage = () => {
               {/* Tanuki */}
               <div className="text-center">
                 <div 
-                  className="text-8xl mb-4 transition-opacity duration-300"
+                  className="w-24 h-24 mb-4 transition-opacity duration-300 flex items-center justify-center"
                   style={{ opacity: tanukiOpacity }}
                 >
-                  🦝
+                  <img 
+                    src={gitlabTanukiOld} 
+                    alt="GitLab Tanuki (old scary logo)" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <p className="text-lg font-semibold">Tanuki</p>
+                <p className="text-sm text-muted-foreground">
+                  "Yeah it was scary"
+                </p>
                 <p className="text-sm text-muted-foreground">
                   Transparency: {Math.round(tanukiOpacity * 100)}%
                 </p>
@@ -102,12 +112,19 @@ const ArenaPage = () => {
               {/* Max */}
               <div className="text-center">
                 <div 
-                  className="text-8xl mb-4 transition-opacity duration-300"
+                  className="w-24 h-24 mb-4 transition-opacity duration-300 flex items-center justify-center"
                   style={{ opacity: maxOpacity }}
                 >
-                  🦔
+                  <img 
+                    src={posthogMaxTryIt} 
+                    alt="PostHog Max with TRY IT sign" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <p className="text-lg font-semibold">Max</p>
+                <p className="text-sm text-muted-foreground">
+                  Not scared away!
+                </p>
                 <p className="text-sm text-muted-foreground">
                   Transparency: {Math.round(maxOpacity * 100)}%
                 </p>
@@ -126,8 +143,16 @@ const ArenaPage = () => {
             {winner && (
               <div className="text-center mb-4">
                 {winner === 'max' ? (
-                  <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
-                    <p className="text-2xl mb-2">🎉 Max Wins! Transparency achieved!</p>
+                  <div className="p-6 bg-primary/10 rounded-lg border border-primary/20">
+                    <div className="mb-4">
+                      <img 
+                        src={godzillaMaxVictory} 
+                        alt="Godzilla Max dominating the city" 
+                        className="w-48 h-48 mx-auto object-contain"
+                      />
+                    </div>
+                    <p className="text-2xl mb-2">🎉 Max Wins! Strong PostHog beats scary Tanuki!</p>
+                    <p className="text-lg mb-4">Transparency achieved!</p>
                     <Button 
                       onClick={() => window.open('https://posthog.com/handbook', '_blank')}
                       className="mr-2"
