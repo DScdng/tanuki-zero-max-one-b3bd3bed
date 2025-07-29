@@ -47,20 +47,17 @@ const Index = () => {
     }
   };
 
-  console.log('Index component rendering, hedgehogVisible:', hedgehogVisible);
-  console.log('About to render HedgehogToggleButton in header');
-
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-background">
         <AppSidebar currentPage={currentPage} onPageChange={setCurrentPage} />
         
         <div className="flex-1 flex flex-col">
-          <header className="h-12 flex items-center justify-between border-b border-border px-4" style={{ backgroundColor: 'lightblue' }}>
+          <header className="h-12 flex items-center justify-between border-b border-border px-4">
             <div className="flex items-center gap-2">
               <SidebarTrigger />
             </div>
-            <div className="flex items-center gap-1" style={{ backgroundColor: 'yellow', padding: '4px' }}>
+            <div className="flex items-center gap-1">
               <ThemeToggle />
               <HedgehogToggleButton isVisible={hedgehogVisible} onToggle={setHedgehogVisible} />
             </div>

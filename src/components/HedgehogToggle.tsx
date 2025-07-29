@@ -31,19 +31,13 @@ interface HedgehogToggleProps {
 }
 
 export const HedgehogToggleButton = ({ isVisible, onToggle }: HedgehogToggleProps) => {
-  console.log('HedgehogToggleButton rendering with isVisible:', isVisible);
-  
   return (
     <Button
-      onClick={() => {
-        console.log('HedgehogToggleButton clicked');
-        onToggle(!isVisible);
-      }}
+      onClick={() => onToggle(!isVisible)}
       variant="outline"
       size="icon"
-      className="transition-all duration-200 hover:scale-105 bg-red-500"
+      className="transition-all duration-200 hover:scale-105"
       title={isVisible ? "Hide Hedgehog" : "Show Hedgehog"}
-      style={{ backgroundColor: 'red', border: '2px solid blue' }}
     >
       {isVisible ? <X className="h-[1.2rem] w-[1.2rem]" /> : <Rabbit className="h-[1.2rem] w-[1.2rem]" />}
     </Button>
