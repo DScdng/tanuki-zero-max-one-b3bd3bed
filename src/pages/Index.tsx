@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import Navigation from '@/components/Navigation';
+import { AppSidebar } from '@/components/AppSidebar';
+import { ThemeToggle } from '@/components/ThemeToggle';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import WelcomePage from '@/components/pages/WelcomePage';
 import HomePage from '@/components/pages/HomePage';
 import AboutPage from '@/components/pages/AboutPage';
@@ -44,12 +46,22 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation currentPage={currentPage} onPageChange={setCurrentPage} />
-      <main className="container mx-auto px-4 py-8">
-        {renderPage()}
-      </main>
-    </div>
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full bg-background">
+        <AppSidebar currentPage={currentPage} onPageChange={setCurrentPage} />
+        
+        <div className="flex-1 flex flex-col">
+          <header className="h-12 flex items-center justify-between border-b border-border px-4">
+            <SidebarTrigger />
+            <ThemeToggle />
+          </header>
+          
+          <main className="flex-1 container mx-auto px-4 py-8">
+            {renderPage()}
+          </main>
+        </div>
+      </div>
+    </SidebarProvider>
   );
 };
 
