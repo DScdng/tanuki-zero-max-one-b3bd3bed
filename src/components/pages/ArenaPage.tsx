@@ -1,8 +1,16 @@
+import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import maxVsTanukiHero from '@/assets/max-vs-tanuki-hero.jpg';
+import confetti from 'canvas-confetti';
 
 const ArenaPage = () => {
+  const [maxOpacity, setMaxOpacity] = useState(0.3);
+  const [tanukiOpacity, setTanukiOpacity] = useState(0.3);
+  const [gameActive, setGameActive] = useState(true);
+  const [winner, setWinner] = useState<string | null>(null);
+
   const stats = [
     { label: "Transparency Level", tanuki: "75%", max: "100%", winner: "max" },
     { label: "Open Source Commitment", tanuki: "High", max: "Everything", winner: "max" },
@@ -12,6 +20,50 @@ const ArenaPage = () => {
     { label: "Meme Potential", tanuki: "Solid", max: "Legendary", winner: "max" },
   ];
 
+  const triggerConfetti = useCallback(() => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  }, []);
+
+  const clickMax = useCallback(() => {
+    if (!gameActive) return;
+    const newOpacity = Math.min(maxOpacity + 0.1, 1.0);
+    setMaxOpacity(newOpacity);
+    
+    if (newOpacity >= 1.0) {
+      setWinner('max');
+      setGameActive(false);
+      triggerConfetti();
+    }
+  }, [maxOpacity, gameActive, triggerConfetti]);
+
+  const resetGame = useCallback(() => {
+    setMaxOpacity(0.3);
+    setTanukiOpacity(0.3);
+    setGameActive(true);
+    setWinner(null);
+  }, []);
+
+  useEffect(() => {
+    if (!gameActive) return;
+    
+    const interval = setInterval(() => {
+      setTanukiOpacity(prev => {
+        const newOpacity = Math.min(prev + 0.1, 1.0);
+        if (newOpacity >= 1.0) {
+          setWinner('tanuki');
+          setGameActive(false);
+        }
+        return newOpacity;
+      });
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, [gameActive]);
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -20,6 +72,88 @@ const ArenaPage = () => {
         <p className="text-xl text-muted-foreground">
           The ultimate transparency showdown
         </p>
+      </section>
+
+      {/* Click Battle Game */}
+      <section className="max-w-4xl mx-auto mb-8">
+        <Card className="p-6">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl mb-4">🥊 Transparency Battle!</CardTitle>
+            <p className="text-muted-foreground">Click to make Max more transparent before Tanuki wins automatically!</p>
+          </CardHeader>
+          <CardContent>
+            <div className="flex justify-center items-center gap-16 mb-8">
+              {/* Tanuki */}
+              <div className="text-center">
+                <div 
+                  className="text-8xl mb-4 transition-opacity duration-300"
+                  style={{ opacity: tanukiOpacity }}
+                >
+                  🦝
+                </div>
+                <p className="text-lg font-semibold">Tanuki</p>
+                <p className="text-sm text-muted-foreground">
+                  Transparency: {Math.round(tanukiOpacity * 100)}%
+                </p>
+              </div>
+
+              <div className="text-4xl">⚡</div>
+
+              {/* Max */}
+              <div className="text-center">
+                <div 
+                  className="text-8xl mb-4 transition-opacity duration-300"
+                  style={{ opacity: maxOpacity }}
+                >
+                  🦔
+                </div>
+                <p className="text-lg font-semibold">Max</p>
+                <p className="text-sm text-muted-foreground">
+                  Transparency: {Math.round(maxOpacity * 100)}%
+                </p>
+                <Button 
+                  onClick={clickMax}
+                  disabled={!gameActive}
+                  className="mt-2"
+                  size="lg"
+                >
+                  🚀 Boost Max!
+                </Button>
+              </div>
+            </div>
+
+            {/* Winner Message */}
+            {winner && (
+              <div className="text-center mb-4">
+                {winner === 'max' ? (
+                  <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                    <p className="text-2xl mb-2">🎉 Max Wins! Transparency achieved!</p>
+                    <Button 
+                      onClick={() => window.open('https://posthog.com/handbook', '_blank')}
+                      className="mr-2"
+                    >
+                      Go to PostHog Handbook
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="p-4 bg-destructive/10 rounded-lg border border-destructive/20">
+                    <p className="text-2xl mb-2">😈 Tanuki Wins!</p>
+                    <Button 
+                      variant="destructive"
+                      onClick={() => window.open('https://about.gitlab.com/handbook/', '_blank')}
+                      className="mr-2"
+                    >
+                      Visit GitLab Handbook
+                    </Button>
+                  </div>
+                )}
+                <Button onClick={resetGame} variant="outline" className="mt-2">
+                  🔄 Play Again
+                </Button>
+              </div>
+            )}
+          </CardContent>
+        </Card>
       </section>
 
       {/* Arena Image */}
