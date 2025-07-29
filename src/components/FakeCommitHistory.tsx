@@ -79,6 +79,11 @@ const FakeCommitHistory = ({ transparencyValue }: FakeCommitHistoryProps) => {
     <Card className="w-full max-w-lg mx-auto">
       <CardHeader>
         <CardTitle className="text-center font-mono">Git Commit History</CardTitle>
+        <p className="text-sm text-center text-muted-foreground">
+          {transparencyValue <= 40 && "🤖 Boring Mode (0-40%)"}
+          {transparencyValue > 40 && transparencyValue <= 70 && "😊 Playful Mode (41-70%)"}
+          {transparencyValue > 70 && "🦔 Max Mode (71-100%)"}
+        </p>
       </CardHeader>
       <CardContent>
         <div className="bg-secondary p-4 rounded-md font-mono text-sm">

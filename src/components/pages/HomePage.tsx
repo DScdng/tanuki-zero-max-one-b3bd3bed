@@ -20,7 +20,7 @@ const HomePage = () => {
           In this fight club, every commit tells a story...
         </p>
         
-        <div className="relative w-full max-w-3xl mx-auto mb-12">
+        <div className="relative w-full max-w-xl mx-auto mb-12">
           <img 
             src="/lovable-uploads/f3fc7c9f-8499-4ff3-b7a2-f1329e01c945.png" 
             alt="Who's More Transparent? GitLab Tanuki vs PostHog Max relaxing in beach chairs"
@@ -32,6 +32,9 @@ const HomePage = () => {
       {/* Interactive Elements */}
       <section className="grid md:grid-cols-2 gap-8 py-8">
         <div>
+          <p className="text-center text-muted-foreground mb-4">
+            Control transparency to see different commit styles!
+          </p>
           <TransparencyMeter 
             value={transparencyValue} 
             onValueChange={setTransparencyValue} 
