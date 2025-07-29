@@ -11,8 +11,10 @@ import confetti from 'canvas-confetti';
 const ArenaPage = () => {
   const [maxOpacity, setMaxOpacity] = useState(0.3);
   const [tanukiOpacity, setTanukiOpacity] = useState(0.3);
-  const [gameActive, setGameActive] = useState(true);
+  const [gameActive, setGameActive] = useState(false);
   const [winner, setWinner] = useState<string | null>(null);
+  const [countdown, setCountdown] = useState(3);
+  const [gameStarted, setGameStarted] = useState(false);
 
   const stats = [
     { label: "Transparency Level", tanuki: "75%", max: "100%", winner: "max" },
@@ -46,9 +48,27 @@ const ArenaPage = () => {
   const resetGame = useCallback(() => {
     setMaxOpacity(0.3);
     setTanukiOpacity(0.3);
-    setGameActive(true);
+    setGameActive(false);
+    setGameStarted(false);
+    setCountdown(3);
     setWinner(null);
   }, []);
+
+  // Countdown effect
+  useEffect(() => {
+    if (!gameStarted && !winner) {
+      const timer = setTimeout(() => {
+        if (countdown > 1) {
+          setCountdown(countdown - 1);
+        } else {
+          setGameActive(true);
+          setGameStarted(true);
+        }
+      }, 1000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [countdown, gameStarted, winner]);
 
   useEffect(() => {
     if (!gameActive) return;
@@ -85,6 +105,26 @@ const ArenaPage = () => {
             <p className="text-muted-foreground">Click to make Max more transparent before Tanuki wins automatically!</p>
           </CardHeader>
           <CardContent>
+            {/* Countdown Display */}
+            {!gameStarted && !winner && (
+              <div className="text-center mb-8">
+                <div className="text-6xl font-bold text-primary animate-pulse mb-4">
+                  {countdown}
+                </div>
+                <p className="text-xl text-muted-foreground">Battle starting in...</p>
+              </div>
+            )}
+
+            {/* Game Active Message */}
+            {gameStarted && gameActive && !winner && (
+              <div className="text-center mb-6">
+                <p className="text-lg font-bold text-primary animate-pulse">
+                  🔥 BATTLE IN PROGRESS! 🔥
+                </p>
+                <p className="text-sm text-muted-foreground">Click the button to boost Max!</p>
+              </div>
+            )}
+
             <div className="flex justify-center items-center gap-16 mb-8">
               {/* Tanuki */}
               <div className="text-center">
@@ -131,7 +171,7 @@ const ArenaPage = () => {
                 <Button 
                   onClick={clickMax}
                   disabled={!gameActive}
-                  className="mt-2"
+                  className={`mt-2 ${gameActive && !winner ? 'animate-pulse bg-primary hover:bg-primary/90' : ''}`}
                   size="lg"
                 >
                   🚀 Boost Max!
