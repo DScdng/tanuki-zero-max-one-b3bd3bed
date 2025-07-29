@@ -1,4 +1,4 @@
-# 🦔 Max's Transparency Fight Club
+# 🦔 Djordje's Transparency Fight Club
 
 A playful tribute to PostHog's culture, Charles Cook (VP of Ops), and my journey from GitLab (Tanuki) to PostHog (Max the Hedgehog). This is my "HogFlix moment" - a creative resume that showcases both technical skills and cultural alignment.
 
@@ -133,7 +133,7 @@ MIT License - feel free to use this code for your own creative resume experiment
 
 ## 🙋‍♂️ About the Creator
 
-Hi! I'm Max, and I believe the best way to demonstrate skills is through building something that makes people smile while showcasing real technical capabilities. This project represents my approach to transparency, growth, and the belief that the best interviews are conversations between people who are excited to build things together.
+Hi! I'm Djordje, and I believe the best way to demonstrate skills is through building something that makes people smile while showcasing real technical capabilities. This project represents my approach to transparency, growth, and the belief that the best interviews are conversations between people who are excited to build things together.
 
 If you're reading this, Charles, thanks for inspiring this journey. If you're someone else who stumbled upon this repo - welcome to the transparency fight club! The first rule is: everyone talks about transparency fight club.
 
@@ -156,6 +156,6 @@ This represents what happens when you combine:
 
 **Built with ❤️, ☕, AI assistance, and a questionable amount of hedgehog references.**
 
-**🦔 [Visit the Live Application](https://your-app-url.lovable.app)** | **📧 [Get in Touch](mailto:your-email@example.com)** | **💼 [Connect on LinkedIn](https://linkedin.com/in/yourprofile)**
+**🦔 [Visit the Live Application](https://your-app-url.lovable.app)** | **📧 [Get in Touch](mailto:your-email@example.com)** | **💼 [Connect on LinkedIn](https://www.linkedin.com/in/georgeschu/)**
 
 *P.S. - Charles, I hope this makes you smile. Win or lose, building this was a blast and taught me a ton about AI-assisted development. That's a Zero-to-One win in my book!* 🚀
