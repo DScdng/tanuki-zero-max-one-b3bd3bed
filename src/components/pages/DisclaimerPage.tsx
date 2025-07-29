@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { supabase, isSupabaseConfigured, type FeedbackSubmission } from '@/lib/supabase';
 import { toast } from 'sonner';
+import { trackCharlesGrade } from '@/lib/posthog';
 
 interface DisclaimerPageProps {
   onNavigate: (page: string) => void;
@@ -26,6 +27,7 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [charlesGrade, setCharlesGrade] = useState<string | null>(null);
 
   // Target date: Thursday, July 31, 2025, at 15:00 CEST
   const targetDate = new Date('2025-07-31T15:00:00+02:00');
@@ -46,6 +48,10 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       }
     }, 1000);
+
+    // Load Charles' grade from localStorage
+    const savedGrade = localStorage.getItem('charlesGrade');
+    setCharlesGrade(savedGrade);
 
     return () => clearInterval(timer);
   }, [targetDate]);
@@ -85,6 +91,13 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleCharlesGrade = (grade: 'passed' | 'not_yet') => {
+    localStorage.setItem('charlesGrade', grade);
+    setCharlesGrade(grade);
+    trackCharlesGrade(grade);
+    toast.success(`Charles' grade has been saved: ${grade === 'passed' ? '👍 Passed!' : '👎 Not Yet!'}`);
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -219,6 +232,84 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
                   </Button>
                 </div>
               </form>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* The Real Spin Section */}
+        <section>
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold text-center text-[#F54E00]">
+                The Real 0→1 Moment: Powered by PostHog
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-foreground">
+                Everything you've seen here — the Transparency Meter clicks, the Hedgehog Arena battles, even Charles' grading buttons — is being tracked in a real PostHog instance. I wanted this app to do more than show my coding chops; I wanted it to prove I can use PostHog's features (events, funnels, user actions) to measure and improve the experience.
+              </p>
+              <p className="text-foreground">
+                Every counter, every commit log rotation, every victory against Tanuki — all of it is data I can analyze with PostHog. Because that's what the real 1 is: turning fun into insights.
+              </p>
+              <p className="text-sm text-muted-foreground italic text-center">
+                Want to see the live events? (Don't worry, Charles, I anonymized you… mostly 😉).
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* But is this all? Section */}
+        <section>
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle className="text-xl font-bold text-center">
+                But is this all?
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-foreground">
+                Of course not. The real 0→1 for me isn't just vibe coding, AI tools, or Git commits — it's using PostHog. Every click, slider move, and Tanuki defeat on this site is being tracked by PostHog. This is how I learn — by using the product I want to sell.
+              </p>
+              <p className="text-sm text-muted-foreground italic text-center">
+                If you're reading this, Charles, you've already triggered 3 PostHog events. Don't worry, I anonymized your clicks (mostly 😉).
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Charles Grading Section */}
+        <section>
+          <Card className="mt-8">
+            <CardHeader>
+              <CardTitle className="text-xl font-bold text-center">
+                Grade My Interview
+              </CardTitle>
+              {charlesGrade && (
+                <p className="text-center text-lg font-semibold">
+                  Charles' Last Grade: {charlesGrade === 'passed' ? '👍 You Passed!' : '👎 Not Yet!'}
+                </p>
+              )}
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex gap-4 justify-center">
+                <Button
+                  onClick={() => handleCharlesGrade('passed')}
+                  size="lg"
+                  className="text-2xl px-8 py-6 bg-green-600 hover:bg-green-700"
+                >
+                  👍 Passed
+                </Button>
+                <Button
+                  onClick={() => handleCharlesGrade('not_yet')}
+                  size="lg"
+                  className="text-2xl px-8 py-6 bg-red-600 hover:bg-red-700"
+                >
+                  👎 Not Yet
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground text-center italic">
+                Don't click if you're not Charles! (This is a vibe-coding feedback loop 😅)
+              </p>
             </CardContent>
           </Card>
         </section>

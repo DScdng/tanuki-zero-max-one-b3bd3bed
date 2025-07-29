@@ -1,5 +1,6 @@
 import { Slider } from '@/components/ui/slider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { trackTransparencySliderMoved } from '@/lib/posthog';
 
 interface TransparencyMeterProps {
   value: number;
@@ -28,7 +29,11 @@ const TransparencyMeter = ({ value, onValueChange }: TransparencyMeterProps) => 
       <CardContent className="space-y-4">
         <Slider
           value={[value]}
-          onValueChange={(newValue) => onValueChange(newValue[0])}
+          onValueChange={(newValue) => {
+            const newVal = newValue[0];
+            onValueChange(newVal);
+            trackTransparencySliderMoved(newVal);
+          }}
           max={100}
           step={1}
           className={`w-full ${value > 85 ? '[&_.slider-thumb]:bg-[#F54E00] [&_.slider-thumb]:border-[#F54E00]' : ''}`}

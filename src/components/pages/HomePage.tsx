@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import TransparencyMeter from '../TransparencyMeter';
 import FakeCommitHistory from '../FakeCommitHistory';
+import PostHogStatsWidget from '../PostHogStatsWidget';
 import maxVsTanukiHero from '@/assets/max-vs-tanuki-hero.jpg';
 
 const HomePage = () => {
@@ -41,6 +42,11 @@ const HomePage = () => {
           />
         </div>
         <FakeCommitHistory transparencyValue={transparencyValue} />
+      </section>
+
+      {/* PostHog Analytics Widget */}
+      <section className="py-4">
+        <PostHogStatsWidget />
       </section>
 
       {/* Transparency Philosophy */}

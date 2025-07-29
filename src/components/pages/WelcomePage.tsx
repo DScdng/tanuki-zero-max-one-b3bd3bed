@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import godzillaMaxVictory from '@/assets/godzilla-max-victory.png';
+import { trackStartExperienceClicked } from '@/lib/posthog';
 
 interface WelcomePageProps {
   onNavigate: (page: string) => void;
@@ -76,7 +77,10 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
           {/* CTA Section */}
           <Button 
             size="lg" 
-            onClick={() => onNavigate('home')}
+            onClick={() => {
+              trackStartExperienceClicked();
+              onNavigate('home');
+            }}
             className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground mb-4"
           >
             Start the Experience

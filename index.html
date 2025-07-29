@@ -6,6 +6,10 @@
     <title>Max's Transparency Fight Club</title>
     <meta name="description" content="A playful tribute to PostHog's culture, transparency, and the journey from GitLab's Tanuki to PostHog's Max the Hedgehog" />
     <meta name="author" content="Max" />
+    <script>
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);var n=t;if("undefined"!=typeof e)n=t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))};else for(var r=["set","identify","setPersonProperties","$set","$setOnce","capture","$capture","register","registerOnce","alias","page","once","off","track","trackLink","trackForm","addFeatureFlags","removeFeatureFlags","override","people.set","people.increment","people.append","people.union","people.track_charge","people.clear_charges"],p=0;p<r.length;p++)n[r[p]]=function(t){return function(){e.push([t].concat(Array.prototype.slice.call(arguments,0)))}}(r[p]);"capture"!==e&&(n.capture=function(){n.track.apply(n,arguments)});return n}(e),p=t.createElement("script");p.type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.increment group".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init('phc_your_api_key_here',{api_host:'https://app.posthog.com'})
+    </script>
 
     <meta property="og:title" content="Max's Transparency Fight Club" />
     <meta property="og:description" content="The transparent battle between GitLab's Tanuki and PostHog's Max" />

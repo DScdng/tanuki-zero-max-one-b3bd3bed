@@ -6,6 +6,7 @@ import maxVsTanukiHero from '@/assets/max-vs-tanuki-hero.jpg';
 import posthogMaxTryIt from '@/assets/posthog-max-try-it.png';
 import godzillaMaxVictory from '@/assets/godzilla-max-victory.png';
 import confetti from 'canvas-confetti';
+import { trackHedgehogArenaStarted, trackMaxWins, trackTanukiWins } from '@/lib/posthog';
 
 const ArenaPage = () => {
   const [maxOpacity, setMaxOpacity] = useState(0.3);
@@ -41,6 +42,7 @@ const ArenaPage = () => {
       setWinner('max');
       setGameActive(false);
       triggerConfetti();
+      trackMaxWins(newOpacity, tanukiOpacity);
     }
   }, [maxOpacity, gameActive, triggerConfetti]);
 
@@ -52,6 +54,7 @@ const ArenaPage = () => {
     if (newOpacity >= 1.0) {
       setWinner('tanuki');
       setGameActive(false);
+      trackTanukiWins(maxOpacity, newOpacity);
     }
   }, [tanukiOpacity, gameActive]);
 
@@ -88,6 +91,7 @@ const ArenaPage = () => {
         if (newOpacity >= 1.0) {
           setWinner('tanuki');
           setGameActive(false);
+          trackTanukiWins(maxOpacity, newOpacity);
         }
         return newOpacity;
       });

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { trackCommitLogRotated } from '@/lib/posthog';
 
 interface FakeCommitHistoryProps {
   transparencyValue: number;
@@ -84,11 +85,15 @@ const FakeCommitHistory = ({ transparencyValue }: FakeCommitHistoryProps) => {
   // Rotate commits every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentCommit((prev) => (prev + 1) % currentCommits.length);
+      setCurrentCommit((prev) => {
+        const newIndex = (prev + 1) % currentCommits.length;
+        trackCommitLogRotated(currentCommits[newIndex], transparencyValue);
+        return newIndex;
+      });
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [currentCommits.length]);
+  }, [currentCommits.length, transparencyValue]);
 
   return (
     <Card className="w-full max-w-lg mx-auto">
