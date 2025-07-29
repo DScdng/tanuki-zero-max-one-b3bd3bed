@@ -219,22 +219,6 @@ const ArenaPage = () => {
         </Card>
       </section>
 
-      {/* Arena Image */}
-      <section className="max-w-4xl mx-auto">
-        <div className="relative">
-          <img 
-            src={maxVsTanukiHero} 
-            alt="Max vs Tanuki in the transparency arena"
-            className="w-full h-auto rounded-lg shadow-lg"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent rounded-lg"></div>
-          <div className="absolute bottom-4 left-4 right-4 text-center">
-            <p className="text-xl font-bold text-primary">
-              "I was a Tanuki fan, but Max is more transparent!"
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* Battle Stats */}
       <section className="max-w-4xl mx-auto">
