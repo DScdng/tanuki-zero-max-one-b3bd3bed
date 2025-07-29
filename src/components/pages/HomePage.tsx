@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import TransparencyMeter from '../TransparencyMeter';
 import FakeCommitHistory from '../FakeCommitHistory';
 import maxVsTanukiHero from '@/assets/max-vs-tanuki-hero.jpg';
 
 const HomePage = () => {
+  const [transparencyValue, setTransparencyValue] = useState(75);
+
   return (
     <div className="space-y-12">
       {/* Hero Section */}
@@ -17,7 +20,7 @@ const HomePage = () => {
           In this fight club, every commit tells a story...
         </p>
         
-        <div className="relative w-full max-w-4xl mx-auto mb-8">
+        <div className="relative w-full max-w-3xl mx-auto mb-12">
           <img 
             src="/lovable-uploads/f3fc7c9f-8499-4ff3-b7a2-f1329e01c945.png" 
             alt="Who's More Transparent? GitLab Tanuki vs PostHog Max relaxing in beach chairs"
@@ -29,12 +32,12 @@ const HomePage = () => {
       {/* Interactive Elements */}
       <section className="grid md:grid-cols-2 gap-8 py-8">
         <div>
-          <p className="text-center text-muted-foreground mb-4">
-            Slide to test their transparency (spoiler: Max always wins).
-          </p>
-          <TransparencyMeter />
+          <TransparencyMeter 
+            value={transparencyValue} 
+            onValueChange={setTransparencyValue} 
+          />
         </div>
-        <FakeCommitHistory />
+        <FakeCommitHistory transparencyValue={transparencyValue} />
       </section>
 
       {/* Transparency Philosophy */}

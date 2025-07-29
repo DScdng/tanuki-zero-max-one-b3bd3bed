@@ -1,17 +1,20 @@
-import { useState } from 'react';
 import { Slider } from '@/components/ui/slider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-const TransparencyMeter = () => {
-  const [value, setValue] = useState([75]);
+interface TransparencyMeterProps {
+  value: number;
+  onValueChange: (value: number) => void;
+}
+
+const TransparencyMeter = ({ value, onValueChange }: TransparencyMeterProps) => {
 
   const getTransparencyStatus = (val: number) => {
-    if (val < 30) return { text: "Tanuki Territory 🦝", color: "text-muted-foreground" };
-    if (val < 70) return { text: "Getting There... 🤔", color: "text-posthog-blue" };
+    if (val <= 40) return { text: "Tanuki Territory 🦝", color: "text-muted-foreground" };
+    if (val <= 70) return { text: "Getting There... 🤔", color: "text-posthog-blue" };
     return { text: "Max Level Transparency! 🦔✨", color: "text-primary" };
   };
 
-  const status = getTransparencyStatus(value[0]);
+  const status = getTransparencyStatus(value);
 
   return (
     <Card className="w-full max-w-md mx-auto">
@@ -23,18 +26,21 @@ const TransparencyMeter = () => {
       </CardHeader>
       <CardContent className="space-y-4">
         <Slider
-          value={value}
-          onValueChange={setValue}
+          value={[value]}
+          onValueChange={(newValue) => onValueChange(newValue[0])}
           max={100}
           step={1}
-          className="w-full"
+          className={`w-full ${value > 70 ? '[&_.slider-thumb]:bg-[#F54E00] [&_.slider-thumb]:border-[#F54E00]' : ''}`}
         />
         <div className="text-center">
           <p className={`text-lg font-semibold ${status.color}`}>
             {status.text}
           </p>
           <p className="text-sm text-muted-foreground">
-            Transparency Level: {value[0]}%
+            Transparency Level: {value}%
+          </p>
+          <p className="text-xs text-muted-foreground mt-2 italic">
+            Slide to unlock funnier commits.
           </p>
         </div>
       </CardContent>
