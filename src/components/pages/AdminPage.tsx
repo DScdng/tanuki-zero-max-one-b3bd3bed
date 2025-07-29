@@ -26,7 +26,7 @@ const AdminPage = ({ onNavigate }: AdminPageProps) => {
 
     try {
       const { data, error } = await supabase
-        .from('feedback_submissions')
+        .from('charlse\'s feedback')
         .select('*')
         .order('created_at', { ascending: false });
 
