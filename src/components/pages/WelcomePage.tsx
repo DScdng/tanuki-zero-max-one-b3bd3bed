@@ -54,13 +54,6 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
       {/* Hero Section */}
       <section className="py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
-            <img 
-              src={godzillaMaxVictory} 
-              alt="Max the Hedgehog" 
-              className="w-32 h-32 mx-auto mb-6 object-contain"
-            />
-          </div>
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
             Welcome to <span className="text-primary">Max's Transparency Fight Club</span>
           </h1>
