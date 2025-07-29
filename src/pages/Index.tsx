@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AppSidebar } from '@/components/AppSidebar';
+import { HedgehogToggle } from '@/components/HedgehogToggle';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import WelcomePage from '@/components/pages/WelcomePage';
@@ -63,6 +64,9 @@ const Index = () => {
           </main>
         </div>
       </div>
+      
+      {/* Hedgehog toggle - appears on all pages */}
+      <HedgehogToggle />
     </SidebarProvider>
   );
 };
