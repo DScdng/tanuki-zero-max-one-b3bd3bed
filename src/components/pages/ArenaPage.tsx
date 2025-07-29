@@ -233,7 +233,7 @@ const ArenaPage = () => {
                         />
                       </div>
                       <p className="text-2xl mb-2">🎉 Max Wins! Strong PostHog beats scary Tanuki!</p>
-                      <p className="text-lg mb-4">Max says: "Transparency unlocked! Here's PostHog's Handbook."</p>
+                      <p className="text-lg mb-4">Max says: Transparency unlocked! Here's PostHog's Handbook.</p>
                       <Button 
                         onClick={() => {
                           trackArenaHandbookClick('max');
@@ -247,7 +247,7 @@ const ArenaPage = () => {
                   ) : (
                     <div className="p-4 bg-destructive/10 rounded-lg border border-destructive/20">
                       <p className="text-2xl mb-2">😈 Tanuki Wins!</p>
-                      <p className="text-lg mb-4">Tanuki grins: "Back to GitLab's handbook for you."</p>
+                      <p className="text-lg mb-4">Tanuki grins: Back to GitLab's handbook for you.</p>
                       <Button 
                         variant="destructive"
                         onClick={() => {

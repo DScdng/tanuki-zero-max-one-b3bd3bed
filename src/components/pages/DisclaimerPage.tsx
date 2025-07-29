@@ -119,10 +119,10 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
           <Card className="bg-card/50 backdrop-blur-sm border border-border/50">
             <CardContent className="p-8">
               <p className="text-lg text-foreground leading-relaxed italic">
-                "This project is purely for fun — a creative, slightly unhinged resume experiment. No hedgehogs, raccoon dogs, or tech executives were harmed in the making of this site (yet).
+                This project is purely for fun; a creative, slightly unhinged resume experiment. No hedgehogs, raccoon dogs, or tech executives were harmed in the making of this site (yet).
               </p>
               <p className="text-lg text-foreground leading-relaxed italic mt-4">
-                All mentions of Charles Cook, PostHog, GitLab, and Tanuki are fictional tributes. They are not officially associated with this app — unless, of course, on Thursday, July 31st, 2025, at my interview with Charles, he decides otherwise."
+                All mentions of Charles Cook, PostHog, GitLab, and Tanuki are fictional tributes. They are not officially associated with this app; unless, of course, on Thursday, July 31st, 2025, at my interview with Charles, he decides otherwise.
               </p>
             </CardContent>
           </Card>
@@ -133,7 +133,7 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
           <Card className="bg-primary/5 border-primary/20">
             <CardContent className="p-6 text-center">
               <p className="text-lg text-primary font-semibold">
-                "If you're reading this, Charles, sorry in advance for the bad hedgehog puns. I swear it's all done with love, transparency, and a questionable sense of humor."
+                If you're reading this, Charles, sorry in advance for the bad hedgehog puns. I swear it's all done with love, transparency, and a questionable sense of humor.
               </p>
             </CardContent>
           </Card>
@@ -246,10 +246,10 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-foreground">
-                Everything you've seen here — the Transparency Meter clicks, the Hedgehog Arena battles, even Charles' grading buttons — is being tracked in a real PostHog instance. I wanted this app to do more than show my coding chops; I wanted it to prove I can use PostHog's features (events, funnels, user actions) to measure and improve the experience.
+                Everything you've seen here; the Transparency Meter clicks, the Hedgehog Arena battles, even Charles' grading buttons; is being tracked in a real PostHog instance. I wanted this app to do more than show my coding chops; I wanted it to prove I can use PostHog's features (events, funnels, user actions) to measure and improve the experience.
               </p>
               <p className="text-foreground">
-                Every counter, every commit log rotation, every victory against Tanuki — all of it is data I can analyze with PostHog. Because that's what the real 1 is: turning fun into insights.
+                Every counter, every commit log rotation, every victory against Tanuki; all of it is data I can analyze with PostHog. Because that's what the real 1 is: turning fun into insights.
               </p>
               <p className="text-sm text-muted-foreground italic text-center">
                 Want to see the live events? (Don't worry, Charles, I anonymized you… mostly 😉).

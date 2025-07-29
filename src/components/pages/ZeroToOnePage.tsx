@@ -51,24 +51,24 @@ const ZeroToOnePage = () => {
             >
               <CardContent className="p-6">
                 <blockquote className="text-lg italic mb-4 text-foreground">
-                  "{quote.text}"
+                  {quote.text}
                 </blockquote>
                 <cite className="text-sm text-muted-foreground mb-3">
-                  — Peter Thiel, on {quote.context}
+                  Peter Thiel, on {quote.context}
                 </cite>
                 {index === 0 && (
                   <p className="text-sm text-primary italic">
-                    "Just like finding a transparent company that's also fun (hint: PostHog)."
+                    Just like finding a transparent company that's also fun (hint: PostHog).
                   </p>
                 )}
                 {index === 1 && (
                   <p className="text-sm text-primary italic">
-                    "Like believing hedgehogs can beat foxes in transparency."
+                    Like believing hedgehogs can beat foxes in transparency.
                   </p>
                 )}
                 {index === 2 && (
                   <p className="text-sm text-primary italic">
-                    "Sometimes the crowd thinks Tanuki {'>'}  Max. They're wrong."
+                    Sometimes the crowd thinks Tanuki {'>'}  Max. They're wrong.
                   </p>
                 )}
               </CardContent>
@@ -113,13 +113,13 @@ const ZeroToOnePage = () => {
               <div className="text-center">
                 <h3 className="text-xl font-semibold mb-2 text-muted-foreground">Version 0</h3>
                 <p className="text-sm text-muted-foreground">
-                  Standard corporate transparency: "We're open... when it's convenient."
+                  Standard corporate transparency: We're open... when it's convenient.
                 </p>
               </div>
               <div className="text-center">
                 <h3 className="text-xl font-semibold mb-2 text-primary">Version 1</h3>
                 <p className="text-sm">
-                  <strong>PostHog transparency:</strong> "Everything is open. Even our mistakes. Especially our mistakes."
+                  <strong>PostHog transparency:</strong> Everything is open. Even our mistakes. Especially our mistakes.
                 </p>
               </div>
             </div>

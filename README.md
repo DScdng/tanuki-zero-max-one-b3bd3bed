@@ -12,7 +12,7 @@ This app serves as:
 
 ## 📖 My Story
 
-**GitLab → Respondo → Humanitec → PostHog**
+**GitLab to Respondo to Humanitec to PostHog**
 
 - **GitLab** 🦝: Started as a Tanuki enthusiast, loved the culture but transparency had limits
 - **Respondo** 💬: Learned the power of customer feedback and real-time communication  
@@ -21,9 +21,9 @@ This app serves as:
 
 ## 💡 The Real 0→1 Philosophy
 
-This project isn't just about fun or showcasing technical skills—it's about demonstrating genuine product knowledge and philosophy. The "real 0→1 spin" comes from understanding that true innovation happens when you deeply engage with the tools you're building with.
+This project isn't just about fun or showcasing technical skills; it's about demonstrating genuine product knowledge and philosophy. The real 0→1 spin comes from understanding that true innovation happens when you deeply engage with the tools you're building with.
 
-Every interaction on this site is tracked through PostHog because this is how I learn: by using the product I want to help sell. The transparency meter, arena battles, and user journeys aren't just clever features—they're real PostHog events that generate actionable insights.
+Every interaction on this site is tracked through PostHog because this is how I learn: by using the product I want to help sell. The transparency meter, arena battles, and user journeys aren't just clever features; they're real PostHog events that generate actionable insights.
 
 This approach reflects the core 0→1 principle: build something that didn't exist before by combining domain expertise with genuine product understanding. It's not enough to read about PostHog; you have to live it, measure it, and optimize with it.
 
@@ -36,11 +36,11 @@ This approach reflects the core 0→1 principle: build something that didn't exi
 
 ## 🎪 Easter Eggs & Humor
 
-- **Completely Unbiased Statistics** - Max wins everything (obviously)
-- **Hedgehog Puns Everywhere** - Because why be subtle?
-- **Real Countdown Timer** - Actual interview anticipation
-- **Transparent Feedback System** - Practice what you preach
-- **Admin Dashboard** - Secret monitoring in plain sight
+- **Completely Unbiased Statistics**: Max wins everything (obviously)
+- **Hedgehog Puns Everywhere**: Because why be subtle?
+- **Real Countdown Timer**: Actual interview anticipation
+- **Transparent Feedback System**: Practice what you preach
+- **Admin Dashboard**: Secret monitoring in plain sight
 
 ## 🚀 Getting Started
 
@@ -64,7 +64,7 @@ MIT License - feel free to use this code for your own creative resume experiment
 
 Hi! I'm Đorđe, and I believe the best way to demonstrate skills is through building something that makes people smile while showcasing real technical capabilities. This project represents my approach to transparency, growth, and the belief that the best interviews are conversations between people who are excited to build things together.
 
-If you're reading this, Charles, thanks for inspiring this journey. If you're someone else who stumbled upon this repo - welcome to the transparency fight club! The first rule is: everyone talks about transparency fight club.
+If you're reading this, Charles, thanks for inspiring this journey. If you're someone else who stumbled upon this repo; welcome to the transparency fight club! The first rule is: everyone talks about transparency fight club.
 
 ## 🎬 The Real Story Behind This Project
 
@@ -87,4 +87,4 @@ This represents what happens when you combine:
 
 **🦔 [Visit the Live Application](https://your-app-url.lovable.app)** | **📧 [Get in Touch](mailto:your-email@example.com)** | **💼 [Connect on LinkedIn](https://www.linkedin.com/in/georgeschu/)**
 
-*P.S. - Charles, I hope this makes you smile. Win or lose, building this was a blast and taught me a ton about AI-assisted development. That's a Zero-to-One win in my book!* 🚀
+*P.S. Charles, I hope this makes you smile. Win or lose, building this was a blast and taught me a ton about AI-assisted development. That's a Zero-to-One win in my book!* 🚀

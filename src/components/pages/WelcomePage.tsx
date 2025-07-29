@@ -18,7 +18,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
     },
     {
       id: 'about',
-      title: 'About Me',
+      title: 'About Me and Charles',
       description: 'My career path and why I\'m ready to join Team Max.'
     },
     {
@@ -28,7 +28,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
     },
     {
       id: 'versions',
-      title: 'Version 0 vs Version 1',
+      title: 'App v0 vs v1',
       description: 'How I built this app: 3-hour manual attempt vs AI-powered magic.'
     },
     {
@@ -52,17 +52,17 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
             <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 mb-6">
               <h3 className="text-xl font-semibold text-primary mb-3">Note to Charles:</h3>
               <p className="text-lg text-foreground leading-relaxed">
-                "Charles, this entire app is part of my interview prep for you. I want you to explore each page — but save the Disclaimer for last."
+                Charles, this entire app is part of my interview prep for you. I want you to explore each page, but save the Disclaimer for last.
               </p>
             </div>
             <p className="text-lg text-foreground leading-relaxed">
-              This whole project started because of <a href="https://www.linkedin.com/in/wololo/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Charles Cook's</a> legendary LinkedIn quiz — <a href="https://dictatorortechbro.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">'Tech Bro or Dictator?'</a> I proudly scored… 2 out of 8. His response? 'You've clearly never read Zero to One.' He was right. I grabbed the book — my first real read in a while — and it completely changed how I think about building and learning.
+              This whole project started because of <a href="https://www.linkedin.com/in/wololo/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Charles Cook's</a> legendary LinkedIn quiz, <a href="https://dictatorortechbro.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">'Tech Bro or Dictator?'</a> I proudly scored… 2 out of 8. His response? You've clearly never read Zero to One. He was right. I grabbed the book; my first real read in a while, and it completely changed how I think about building and learning.
             </p>
             <p className="text-lg text-foreground leading-relaxed mt-4">
               This app is my personal 0→1 experiment. From GitLab's Tanuki (fun fact: not a fox but a Japanese raccoon dog!) to PostHog's Max, from the old internet to LLMs, from brute-force coding to vibe coding with AI, this project reflects everything I've researched, prepped, and learned along the way.
             </p>
             <p className="text-lg text-foreground leading-relaxed mt-4">
-              By the time I wrapped this app, I saw Charles publish Debugger Heart on Linkedin. Should that be my 2nd book out of his 50-books-a-year challenge? Probably not — I'm done reading about debugging love stories. My real 1 (from 0→1) is configuring PostHog here.
+              By the time I wrapped this app, I saw Charles publish Debugger Heart on Linkedin. Should that be my 2nd book out of his 50-books-a-year challenge? Probably not; I'm done reading about debugging love stories. My real 1 (from 0→1) is configuring PostHog here.
             </p>
           </div>
         </div>
@@ -75,13 +75,13 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
             Welcome to <span className="text-primary">Đorđe's Transparency Fight Club</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            Where hedgehogs beat raccoon dogs (and everyone else) in transparency — every time.
+            Where hedgehogs beat raccoon dogs (and everyone else) in transparency, every time.
           </p>
           
           {/* Narrative Section */}
           <div className="max-w-4xl mx-auto mb-12 bg-card/50 backdrop-blur-sm p-8 rounded-lg border border-border/50">
             <p className="text-lg text-foreground leading-relaxed">
-              "This isn't just a web app. It's my HogFlix moment — a creative resume, a love letter to PostHog's weird and transparent culture, and a playful way of saying: I'm ready to go from Tanuki to Max."
+              "This isn't just a web app. It's my HogFlix moment; a creative resume, a love letter to PostHog's weird and transparent culture, and a playful way of saying: I'm ready to go from Tanuki to Max."
             </p>
           </div>
 
@@ -97,7 +97,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
             Start the Experience
           </Button>
           <p className="text-muted-foreground">
-            Explore transparency battles, AI-powered experiments, and my journey from GitLab → Respondo → Humanitec → PostHog (next!).
+            Explore transparency battles, AI-powered experiments, and my journey from GitLab to Respondo to Humanitec to PostHog (next!).
           </p>
         </div>
       </section>
@@ -137,7 +137,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
       <section className="py-16 px-4 bg-primary/5">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-lg text-foreground leading-relaxed">
-            "Đorđe's Transparency Fight Club isn't just about transparency — it's about building boldly, having fun, and turning research into something real. See you on Superday!"
+            "Đorđe's Transparency Fight Club isn't just about transparency; it's about building boldly, having fun, and turning research into something real. See you on Superday!"
           </p>
         </div>
       </section>

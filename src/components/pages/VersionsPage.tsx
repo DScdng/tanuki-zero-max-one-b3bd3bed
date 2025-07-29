@@ -9,16 +9,16 @@ const VersionsPage = () => {
     <div className="space-y-8">
       {/* Header */}
       <section className="text-center py-8">
-        <h1 className="text-4xl font-bold mb-4 text-primary">Version 0 vs Version 1</h1>
+        <h1 className="text-4xl font-bold mb-4 text-primary">App v0 vs v1</h1>
         <p className="text-xl text-muted-foreground mb-4">
           This is not just about code. It's about mindset: from hacking HTML like it's 2010 (v0) to building with AI and modern tools (v1).
         </p>
         <div className="flex justify-center gap-8 text-lg">
           <div className="text-muted-foreground">
-            <span className="font-semibold">v0</span> – 3 hours, brute force, manual code.
+            <span className="font-semibold">v0</span>: 3 hours, brute force, manual code.
           </div>
           <div className="text-primary">
-            <span className="font-semibold">v1</span> – 10 minutes, AI-assisted, beautiful.
+            <span className="font-semibold">v1</span>: 10 minutes, AI-assisted, beautiful.
           </div>
         </div>
       </section>
@@ -76,7 +76,7 @@ const VersionsPage = () => {
 
             <div className="text-center p-4 bg-muted/50 rounded-md">
               <p className="text-sm italic text-muted-foreground">
-                "This looks like a 2010 website and I'm not sure why the buttons don't work on mobile." 
+                This looks like a 2010 website and I'm not sure why the buttons don't work on mobile. 
                 - Future me, probably
               </p>
             </div>
@@ -93,6 +93,17 @@ const VersionsPage = () => {
             <p className="text-muted-foreground">The PostHog way: smart tools, better results</p>
           </CardHeader>
           <CardContent className="space-y-4">
+            <div className="text-center mb-4">
+              <a 
+                href="https://github.com/DScdng/tanuki-zero-max-one-b3bd3bed" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm"
+                onClick={() => trackVersionLinkClick('v1', 'github')}
+              >
+                View v1 GitHub Repo
+              </a>
+            </div>
             <div className="bg-primary/5 border border-primary/20 p-4 rounded-md">
               <h4 className="font-semibold mb-2 text-primary">The Power-Up:</h4>
               <ul className="text-sm space-y-1">
@@ -107,14 +118,14 @@ const VersionsPage = () => {
             <div className="bg-secondary p-4 rounded-md">
               <h4 className="font-semibold mb-2">The Result:</h4>
               <p className="text-sm">
-                <strong>Clean, maintainable, and scalable.</strong> Like PostHog's approach to everything - 
+                <strong>Clean, maintainable, and scalable.</strong> Like PostHog's approach to everything; 
                 transparent about using the best tools available.
               </p>
             </div>
 
             <div className="text-center p-4 bg-primary/5 rounded-md border border-primary/20">
               <p className="text-sm italic text-primary">
-                "This actually looks professional and the transparency meter works on every device!" 
+                This actually looks professional and the transparency meter works on every device! 
                 - Current me, very pleased
               </p>
             </div>
@@ -134,7 +145,7 @@ const VersionsPage = () => {
               Version 1 is about proving I <em>should</em> build it, and build it right.
             </p>
             <p className="text-muted-foreground mt-4">
-              Just like how PostHog doesn't reinvent every wheel - they use the best tools 
+              Just like how PostHog doesn't reinvent every wheel; they use the best tools 
               and are transparent about it. That's the real competitive advantage.
             </p>
           </CardContent>
