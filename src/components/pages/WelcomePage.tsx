@@ -55,6 +55,9 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
             <p className="text-lg text-foreground leading-relaxed mt-4">
               This app is my personal 0→1 experiment. From GitLab's Tanuki (fun fact: not a fox but a Japanese raccoon dog!) to PostHog's Max, from the old internet to LLMs, from brute-force coding to vibe coding with AI, this project reflects everything I've researched, prepped, and learned along the way.
             </p>
+            <p className="text-lg text-foreground leading-relaxed mt-4">
+              By the time I wrapped this app, I saw Charles publish Debugger Heart on Linkedin. Should that be my 2nd book out of his 50-books-a-year challenge? Probably not — I'm done reading about debugging love stories. My real 1 (from 0→1) is configuring PostHog here.
+            </p>
           </div>
         </div>
       </section>
