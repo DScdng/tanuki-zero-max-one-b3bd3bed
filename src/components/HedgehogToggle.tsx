@@ -166,14 +166,14 @@ export const HedgehogCharacter = ({ isVisible }: { isVisible: boolean }) => {
         
         {/* Speech cloud bubble */}
         {showQuote && (
-          <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 animate-fade-in">
-            <div className="relative bg-white dark:bg-gray-800 rounded-full px-4 py-3 shadow-lg border border-gray-200 dark:border-gray-600 max-w-56 text-center">
+          <div className="absolute -top-24 left-1/2 transform -translate-x-1/2 animate-fade-in">
+            <div className="relative bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full px-4 py-3 shadow-lg border border-gray-200/50 dark:border-gray-600/50 max-w-56 text-center">
               <div className="text-sm font-medium text-gray-800 dark:text-gray-200 leading-relaxed">{currentQuote}</div>
               
               {/* Cloud-like bubbles */}
-              <div className="absolute -bottom-2 left-6 w-3 h-3 bg-white dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-600"></div>
-              <div className="absolute -bottom-4 left-4 w-2 h-2 bg-white dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-600"></div>
-              <div className="absolute -bottom-5 left-2 w-1 h-1 bg-white dark:bg-gray-800 rounded-full"></div>
+              <div className="absolute -bottom-2 left-6 w-3 h-3 bg-white/80 dark:bg-gray-800/80 rounded-full border border-gray-200/30 dark:border-gray-600/30"></div>
+              <div className="absolute -bottom-4 left-4 w-2 h-2 bg-white/70 dark:bg-gray-800/70 rounded-full border border-gray-200/20 dark:border-gray-600/20"></div>
+              <div className="absolute -bottom-5 left-2 w-1 h-1 bg-white/60 dark:bg-gray-800/60 rounded-full"></div>
             </div>
           </div>
         )}
