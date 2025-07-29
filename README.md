@@ -19,84 +19,13 @@ This app serves as:
 - **Humanitec** 🚀: Dove deep into platform engineering and developer experience
 - **PostHog** 🦔: Found my transparency tribe! Max > Tanuki. Fight me.
 
-## ✨ Features
+## 💡 The Real 0→1 Philosophy
 
-### 🏠 Home Page
-- Hero section with Max vs Tanuki battle illustration
-- **Transparency Meter** - Interactive slider (PostHog always wins)
-- **Fake Git Commit History** - Rotating commit messages with personality
-- Call-to-action buttons leading to different story chapters
+This project isn't just about fun or showcasing technical skills—it's about demonstrating genuine product knowledge and philosophy. The "real 0→1 spin" comes from understanding that true innovation happens when you deeply engage with the tools you're building with.
 
-### 👨‍💻 About Me
-- Journey timeline from GitLab to PostHog
-- **Charles-in-Serbia Easter Egg** - Interior design mode toggle
-- "HogFlix moment" explanation with personal storytelling
+Every interaction on this site is tracked through PostHog because this is how I learn: by using the product I want to help sell. The transparency meter, arena battles, and user journeys aren't just clever features—they're real PostHog events that generate actionable insights.
 
-### 📚 Zero-to-One Playground  
-- Peter Thiel quotes from *Zero to One*
-- **Interactive Max button** - AI philosophy on 0→1 thinking
-- Personal application of 0→1 concepts to career journey
-
-### 🔄 Version 0 vs Version 1
-- **Version 0**: Manual 3-hour attempt (the struggle)
-- **Version 1**: AI-assisted with Lovable (the smart approach)
-- Side-by-side comparison with battle visuals
-- Lessons learned about tool selection and AI-assisted development
-
-### 🏟️ Hedgehog Arena
-- **Epic battle scenarios** between Max and Tanuki
-- **Battle statistics** comparing Tanuki vs Max across multiple categories
-- Transparency showdown metrics
-- Completely unbiased verdict (Max wins everything, obviously)
-
-### ⏰ Disclaimer & Countdown
-- **Live countdown timer** to actual interview with Charles Cook
-- Legal disclaimers wrapped in hedgehog humor
-- **Real feedback collection system** powered by Supabase
-- Form for Charles to leave feedback after our chat
-
-### 🔧 Admin Dashboard (Secret!)
-- **Real-time feedback monitoring** - View all submissions as they come in
-- **Analytics and statistics** - Track engagement and feedback trends
-- **Supabase integration showcase** - Demonstrates full-stack capabilities
-- Access through navigation (because transparency means no secrets!)
-
-## 🛠️ Tech Stack
-
-- **React 18** with TypeScript for type safety
-- **Tailwind CSS** with custom design system
-- **Shadcn/ui** component library for consistent UI
-- **Vite** for blazing fast development
-- **Supabase** - PostgreSQL database with real-time capabilities
-- **Lovable Platform** - AI-assisted development environment
-- **GitHub Integration** - Automatic bidirectional sync
-
-## 🎨 Design Philosophy
-
-Custom design system using PostHog brand colors:
-- **Primary**: `hsl(9 100% 48%)` - PostHog signature red
-- **Blue**: `hsl(229 100% 56%)` - PostHog blue for highlights
-- **Semantic color tokens** for theme-aware design
-- **Mobile-first responsive** approach
-- **Smooth animations** and micro-interactions
-
-## 🚀 Development Journey
-
-- **Phase 1**: Concept & React foundation with PostHog design system
-- **Phase 2**: Interactive features (transparency meter, commit history, countdown)
-- **Phase 3**: Battle arena, version comparison, and storytelling pages
-- **Phase 4**: Supabase integration for real feedback collection
-- **Phase 5**: Polish, GitHub integration, and comprehensive documentation
-
-## 🎯 Key Features
-
-1. **Live Countdown Timer** - Real countdown to actual interview with Charles
-2. **Transparency Meter** - Interactive slider (PostHog always wins)
-3. **Real Feedback Form** - Supabase-powered data collection
-4. **Battle Statistics** - Completely unbiased comparisons (Max wins everything)
-5. **Admin Dashboard** - Live monitoring of submissions
-6. **Rotating Git Commits** - Humorous commit messages every 3 seconds
-7. **Zero-to-One Philosophy** - AI-generated wisdom integration
+This approach reflects the core 0→1 principle: build something that didn't exist before by combining domain expertise with genuine product understanding. It's not enough to read about PostHog; you have to live it, measure it, and optimize with it.
 
 ## 🧪 The "Zero to One" Philosophy Applied
 
