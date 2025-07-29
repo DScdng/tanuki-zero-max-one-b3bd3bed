@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { supabase } from '@/integrations/supabase/client';
 
 const PostHogStatsWidget = () => {
   const [stats, setStats] = useState({
@@ -8,18 +9,29 @@ const PostHogStatsWidget = () => {
     clicksTracked: 567,
     sliderMoves: 234
   });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate real-time updates
-    const interval = setInterval(() => {
-      setStats(prev => ({
-        eventsCapture: prev.eventsCapture + Math.floor(Math.random() * 3),
-        maxWins: prev.maxWins + (Math.random() > 0.8 ? 1 : 0),
-        clicksTracked: prev.clicksTracked + Math.floor(Math.random() * 2),
-        sliderMoves: prev.sliderMoves + (Math.random() > 0.7 ? 1 : 0)
-      }));
-    }, 3000);
+    const fetchRealStats = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('posthog-stats');
+        
+        if (error) {
+          console.error('Error fetching PostHog stats:', error);
+        } else if (data?.stats) {
+          setStats(data.stats);
+        }
+      } catch (error) {
+        console.error('Error calling PostHog stats function:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchRealStats();
+
+    // Refresh stats every 30 seconds
+    const interval = setInterval(fetchRealStats, 30000);
     return () => clearInterval(interval);
   }, []);
 
@@ -27,7 +39,7 @@ const PostHogStatsWidget = () => {
     <Card className="w-full max-w-2xl mx-auto bg-gradient-to-r from-[#F54E00]/10 to-primary/10 border-[#F54E00]/20">
       <CardHeader className="pb-3">
         <CardTitle className="text-center text-lg font-bold text-[#F54E00]">
-          🦔 Powered by PostHog Analytics
+          🦔 Powered by PostHog Analytics {loading && '(Loading...)'}
         </CardTitle>
         <p className="text-sm text-muted-foreground text-center">
           Every slider move, every Tanuki defeat, and every boost button is tracked by PostHog. This isn't just a demo — it's a live analytics playground.
@@ -51,6 +63,11 @@ const PostHogStatsWidget = () => {
             <p className="text-2xl font-bold text-muted-foreground">{stats.sliderMoves}</p>
             <p className="text-xs text-muted-foreground">Slider Moves</p>
           </div>
+        </div>
+        <div className="mt-4 text-center">
+          <p className="text-xs text-muted-foreground italic">
+            📊 Real data from PostHog • Updates every 30 seconds
+          </p>
         </div>
       </CardContent>
     </Card>
