@@ -49,6 +49,12 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
       <section className="py-2 px-4 bg-gradient-to-b from-primary/5 to-background">
         <div className="max-w-4xl mx-auto">
           <div className="bg-card/70 backdrop-blur-sm p-8 rounded-lg border border-border/50 mb-12">
+            <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 mb-6">
+              <h3 className="text-xl font-semibold text-primary mb-3">Note to Charles:</h3>
+              <p className="text-lg text-foreground leading-relaxed">
+                "Charles, this entire app is part of my interview prep for you. I want you to explore each page — but save the Disclaimer for last."
+              </p>
+            </div>
             <p className="text-lg text-foreground leading-relaxed">
               This whole project started because of <a href="https://www.linkedin.com/in/wololo/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Charles Cook's</a> legendary LinkedIn quiz — <a href="https://dictatorortechbro.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">'Tech Bro or Dictator?'</a> I proudly scored… 2 out of 8. His response? 'You've clearly never read Zero to One.' He was right. I grabbed the book — my first real read in a while — and it completely changed how I think about building and learning.
             </p>
