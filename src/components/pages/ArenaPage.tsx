@@ -4,7 +4,6 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import maxVsTanukiHero from '@/assets/max-vs-tanuki-hero.jpg';
 import posthogMaxTryIt from '@/assets/posthog-max-try-it.png';
-import gitlabTanukiOld from '@/assets/gitlab-tanuki-old.png';
 import godzillaMaxVictory from '@/assets/godzilla-max-victory.png';
 import confetti from 'canvas-confetti';
 
@@ -35,7 +34,7 @@ const ArenaPage = () => {
 
   const clickMax = useCallback(() => {
     if (!gameActive) return;
-    const newOpacity = Math.min(maxOpacity + 0.05, 1.0); // Slower increment
+    const newOpacity = Math.min(maxOpacity + 0.05, 1.0);
     setMaxOpacity(newOpacity);
     
     if (newOpacity >= 1.0) {
@@ -54,7 +53,6 @@ const ArenaPage = () => {
     setWinner(null);
   }, []);
 
-  // Countdown effect
   useEffect(() => {
     if (!gameStarted && !winner) {
       const timer = setTimeout(() => {
@@ -75,14 +73,14 @@ const ArenaPage = () => {
     
     const interval = setInterval(() => {
       setTanukiOpacity(prev => {
-        const newOpacity = Math.min(prev + 0.03, 1.0); // Much slower increment
+        const newOpacity = Math.min(prev + 0.03, 1.0);
         if (newOpacity >= 1.0) {
           setWinner('tanuki');
           setGameActive(false);
         }
         return newOpacity;
       });
-    }, 800); // Slower interval
+    }, 800);
 
     return () => clearInterval(interval);
   }, [gameActive]);
@@ -133,8 +131,8 @@ const ArenaPage = () => {
                   style={{ opacity: tanukiOpacity }}
                 >
                   <img 
-                    src={gitlabTanukiOld} 
-                    alt="GitLab Tanuki (old scary logo)" 
+                    src="/lovable-uploads/1da7b2b5-a55a-42c4-bc6d-86345a46a1c1.png" 
+                    alt="GitLab Tanuki" 
                     className="w-full h-full object-contain"
                   />
                 </div>
