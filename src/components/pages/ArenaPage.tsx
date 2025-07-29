@@ -97,7 +97,18 @@ const ArenaPage = () => {
 
       {/* Click Battle Game */}
       <section className="max-w-4xl mx-auto mb-8">
-        <Card className="p-6">
+        <Card className="p-6 relative">
+          {/* Play Again Button - Top Right */}
+          {winner && (
+            <Button 
+              onClick={resetGame} 
+              variant="outline" 
+              className="absolute top-4 right-4 z-20"
+              size="sm"
+            >
+              🔄 Play Again
+            </Button>
+          )}
           <CardHeader className="text-center">
             <CardTitle className="text-2xl mb-4">🥊 Transparency Battle!</CardTitle>
             <p className="text-muted-foreground">Click to make Max more transparent before Tanuki wins automatically!</p>
@@ -177,42 +188,41 @@ const ArenaPage = () => {
               </div>
             </div>
 
-            {/* Winner Message */}
+            {/* Winner Message - Overlay */}
             {winner && (
-              <div className="text-center mb-4">
-                {winner === 'max' ? (
-                  <div className="p-6 bg-primary/10 rounded-lg border border-primary/20">
-                    <div className="mb-4">
-                      <img 
-                        src={godzillaMaxVictory} 
-                        alt="Godzilla Max dominating the city" 
-                        className="w-48 h-48 mx-auto object-contain"
-                      />
+              <div className="absolute inset-0 bg-background/95 backdrop-blur-sm z-10 flex items-center justify-center rounded-lg">
+                <div className="text-center max-w-md">
+                  {winner === 'max' ? (
+                    <div className="p-6 bg-primary/10 rounded-lg border border-primary/20">
+                      <div className="mb-4">
+                        <img 
+                          src={godzillaMaxVictory} 
+                          alt="Godzilla Max dominating the city" 
+                          className="w-48 h-48 mx-auto object-contain"
+                        />
+                      </div>
+                      <p className="text-2xl mb-2">🎉 Max Wins! Strong PostHog beats scary Tanuki!</p>
+                      <p className="text-lg mb-4">Transparency achieved!</p>
+                      <Button 
+                        onClick={() => window.open('https://posthog.com/handbook', '_blank')}
+                        className="mr-2"
+                      >
+                        Go to PostHog Handbook
+                      </Button>
                     </div>
-                    <p className="text-2xl mb-2">🎉 Max Wins! Strong PostHog beats scary Tanuki!</p>
-                    <p className="text-lg mb-4">Transparency achieved!</p>
-                    <Button 
-                      onClick={() => window.open('https://posthog.com/handbook', '_blank')}
-                      className="mr-2"
-                    >
-                      Go to PostHog Handbook
-                    </Button>
-                  </div>
-                ) : (
-                  <div className="p-4 bg-destructive/10 rounded-lg border border-destructive/20">
-                    <p className="text-2xl mb-2">😈 Tanuki Wins!</p>
-                    <Button 
-                      variant="destructive"
-                      onClick={() => window.open('https://about.gitlab.com/handbook/', '_blank')}
-                      className="mr-2"
-                    >
-                      Visit GitLab Handbook
-                    </Button>
-                  </div>
-                )}
-                <Button onClick={resetGame} variant="outline" className="mt-2">
-                  🔄 Play Again
-                </Button>
+                  ) : (
+                    <div className="p-4 bg-destructive/10 rounded-lg border border-destructive/20">
+                      <p className="text-2xl mb-2">😈 Tanuki Wins!</p>
+                      <Button 
+                        variant="destructive"
+                        onClick={() => window.open('https://about.gitlab.com/handbook/', '_blank')}
+                        className="mr-2"
+                      >
+                        Visit GitLab Handbook
+                      </Button>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </CardContent>
