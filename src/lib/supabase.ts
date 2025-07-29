@@ -1,15 +1,8 @@
-import { createClient } from '@supabase/supabase-js'
+import { supabase as supabaseClient } from '@/integrations/supabase/client'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
-
-// Check if Supabase is configured
-export const isSupabaseConfigured = !!(supabaseUrl && supabaseAnonKey)
-
-// Create Supabase client only if configured
-export const supabase = isSupabaseConfigured 
-  ? createClient(supabaseUrl, supabaseAnonKey)
-  : null
+// Use the auto-generated client
+export const supabase = supabaseClient
+export const isSupabaseConfigured = true
 
 // Database types
 export interface FeedbackSubmission {
