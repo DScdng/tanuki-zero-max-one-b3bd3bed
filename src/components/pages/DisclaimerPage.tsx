@@ -258,24 +258,6 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
           </Card>
         </section>
 
-        {/* But is this all? Section */}
-        <section>
-          <Card className="mt-8">
-            <CardHeader>
-              <CardTitle className="text-xl font-bold text-center">
-                But is this all?
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-foreground">
-                Of course not. The real 0→1 for me isn't just vibe coding, AI tools, or Git commits — it's using PostHog. Every click, slider move, and Tanuki defeat on this site is being tracked by PostHog. This is how I learn — by using the product I want to sell.
-              </p>
-              <p className="text-sm text-muted-foreground italic text-center">
-                If you're reading this, Charles, you've already triggered 3 PostHog events. Don't worry, I anonymized your clicks (mostly 😉).
-              </p>
-            </CardContent>
-          </Card>
-        </section>
 
         {/* Charles Grading Section */}
         <section>
