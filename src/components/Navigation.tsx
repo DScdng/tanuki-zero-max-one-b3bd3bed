@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { trackNavigationClick } from '@/lib/posthog';
 
 interface NavigationProps {
@@ -25,7 +26,9 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold text-primary">Đorđe's Transparency Fight Club</h1>
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <div className="flex gap-2 flex-wrap">
             {navItems.map((item) => (
               <Button
                 key={item.id}
@@ -39,6 +42,7 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
                 {item.label}
               </Button>
             ))}
+            </div>
           </div>
         </div>
       </div>
