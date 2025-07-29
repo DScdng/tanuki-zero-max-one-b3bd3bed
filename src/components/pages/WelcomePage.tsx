@@ -62,7 +62,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
         <div className="max-w-4xl mx-auto">
           <div className="bg-card/50 backdrop-blur-sm p-8 rounded-lg border border-border/50">
             <p className="text-lg text-foreground leading-relaxed">
-              This isn't just a web app. It's my HogFlix moment; a creative resume, a love letter to PostHog's weird and transparent culture, and a playful way of saying: I'm ready to go from Tanuki to Max.
+              This isn't just a web app. It's my HogFlix 3000 demo moment; a creative resume, a love letter to PostHog's weird and transparent culture, and a playful way of saying: I'm ready to go from Tanuki to Max.
             </p>
           </div>
         </div>
