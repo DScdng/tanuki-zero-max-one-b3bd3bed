@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { trackNavigationClick } from '@/lib/posthog';
+import hedgehogVsTanukiLogo from '@/assets/hedgehog-vs-tanuki-logo.png';
 
 interface NavigationProps {
   currentPage: string;
@@ -25,9 +26,16 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
     <nav className="bg-card/95 backdrop-blur-lg border-b border-border sticky top-0 z-50">
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between gap-4">
-          <h1 className="text-lg md:text-xl font-bold text-primary tracking-tight">
-            Đorđe's Transparency Fight Club
-          </h1>
+          <div className="flex items-center gap-2">
+            <img 
+              src={hedgehogVsTanukiLogo} 
+              alt="Hedgehog vs Tanuki Fight Club Logo" 
+              className="h-8 w-8 object-contain"
+            />
+            <h1 className="text-lg md:text-xl font-bold text-primary tracking-tight hidden sm:block">
+              Transparency Fight Club
+            </h1>
+          </div>
           
           <div className="flex items-center gap-1 md:gap-2">
             <ThemeToggle />
