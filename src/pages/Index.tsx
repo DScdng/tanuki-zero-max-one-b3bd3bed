@@ -7,7 +7,6 @@ import ZeroToOnePage from '@/components/pages/ZeroToOnePage';
 import VersionsPage from '@/components/pages/VersionsPage';
 import ArenaPage from '@/components/pages/ArenaPage';
 import DisclaimerPage from '@/components/pages/DisclaimerPage';
-import AdminPage from '@/components/pages/AdminPage';
 
 const Index = () => {
   const [currentPage, setCurrentPage] = useState('welcome');
@@ -28,8 +27,6 @@ const Index = () => {
         return <ArenaPage />;
       case 'disclaimer':
         return <DisclaimerPage onNavigate={setCurrentPage} />;
-      case 'admin':
-        return <AdminPage onNavigate={setCurrentPage} />;
       default:
         return <WelcomePage onNavigate={setCurrentPage} />;
     }

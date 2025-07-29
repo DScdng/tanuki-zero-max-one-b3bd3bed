@@ -4,8 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { supabase, isSupabaseConfigured, type FeedbackSubmission } from '@/lib/supabase';
-import { toast } from 'sonner';
 
 interface DisclaimerPageProps {
   onNavigate: (page: string) => void;
@@ -24,8 +22,6 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
     sandwich: '',
     feedback: ''
   });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Target date: Thursday, July 31, 2025, at 15:00 CEST
   const targetDate = new Date('2025-07-31T15:00:00+02:00');
@@ -50,41 +46,10 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
     return () => clearInterval(timer);
   }, [targetDate]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    // If Supabase is not configured, fall back to alert
-    if (!isSupabaseConfigured || !supabase) {
-      toast.success("Thanks, Charles! Max approves your feedback. 🦔 (Note: Supabase not configured - feedback not saved)");
-      setFormData({ name: '', sandwich: '', feedback: '' });
-      setIsSubmitting(false);
-      return;
-    }
-
-    try {
-      const submission: FeedbackSubmission = {
-        name: formData.name || null,
-        sandwich_type: formData.sandwich,
-        feedback: formData.feedback
-      };
-
-      const { error } = await supabase
-        .from('feedback_submissions')
-        .insert([submission]);
-
-      if (error) {
-        throw error;
-      }
-
-      toast.success("Thanks, Charles! Max approves your feedback. 🦔");
-      setFormData({ name: '', sandwich: '', feedback: '' });
-    } catch (error) {
-      console.error('Error submitting feedback:', error);
-      toast.error("Oops! Something went wrong. Max is investigating...");
-    } finally {
-      setIsSubmitting(false);
-    }
+    alert("Thanks, Charles! Max approves your feedback.");
+    setFormData({ name: '', sandwich: '', feedback: '' });
   };
 
   const handleInputChange = (field: string, value: string) => {
@@ -212,10 +177,9 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
                   <Button 
                     type="submit" 
                     size="lg"
-                    disabled={isSubmitting}
                     className="bg-primary hover:bg-primary/90 text-primary-foreground px-8"
                   >
-                    {isSubmitting ? "Sending..." : "Send Transparency Feedback"}
+                    Send Transparency Feedback
                   </Button>
                 </div>
               </form>
