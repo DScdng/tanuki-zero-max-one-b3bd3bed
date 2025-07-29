@@ -15,6 +15,7 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
     { id: 'zero-to-one', label: 'Zero-to-One Playground' },
     { id: 'versions', label: 'Version 0 vs Version 1' },
     { id: 'arena', label: 'Hedgehog Arena' },
+    { id: 'posthog-integration', label: 'PostHog Integration' },
     { id: 'disclaimer', label: 'Disclaimer' },
     { id: 'admin', label: 'Admin' },
   ];

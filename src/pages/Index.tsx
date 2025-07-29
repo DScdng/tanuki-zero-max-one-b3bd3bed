@@ -6,6 +6,7 @@ import AboutPage from '@/components/pages/AboutPage';
 import ZeroToOnePage from '@/components/pages/ZeroToOnePage';
 import VersionsPage from '@/components/pages/VersionsPage';
 import ArenaPage from '@/components/pages/ArenaPage';
+import PostHogIntegrationPage from '@/components/pages/PostHogIntegrationPage';
 import DisclaimerPage from '@/components/pages/DisclaimerPage';
 import AdminPage from '@/components/pages/AdminPage';
 
@@ -31,6 +32,8 @@ const Index = () => {
         return <VersionsPage />;
       case 'arena':
         return <ArenaPage />;
+      case 'posthog-integration':
+        return <PostHogIntegrationPage />;
       case 'disclaimer':
         return <DisclaimerPage onNavigate={setCurrentPage} />;
       case 'admin':
