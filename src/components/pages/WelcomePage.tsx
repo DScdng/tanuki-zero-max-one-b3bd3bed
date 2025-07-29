@@ -45,16 +45,22 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="py-8 px-4 text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
+            Welcome to <span className="text-primary">Đorđe's Transparency Fight Club</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+            Where hedgehogs beat raccoon dogs (and everyone else) in transparency, every time.
+          </p>
+        </div>
+      </section>
+
       {/* Intro Story Section */}
       <section className="py-2 px-4 bg-gradient-to-b from-primary/5 to-background">
         <div className="max-w-4xl mx-auto">
           <div className="bg-card/70 backdrop-blur-sm p-8 rounded-lg border border-border/50 mb-12">
-            <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 mb-6">
-              <h3 className="text-xl font-semibold text-primary mb-3">Note to Charles:</h3>
-              <p className="text-lg text-foreground leading-relaxed">
-                Charles, this entire app is part of my interview prep for you. I want you to explore each page, but save the Disclaimer for last.
-              </p>
-            </div>
             <p className="text-lg text-foreground leading-relaxed">
               This whole project started because of <a href="https://www.linkedin.com/in/wololo/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Charles Cook's</a> legendary LinkedIn quiz, <a href="https://dictatorortechbro.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">'Tech Bro or Dictator?'</a> I proudly scored… 2 out of 8. His response? You've clearly never read Zero to One. He was right. I grabbed the book; my first real read in a while, and it completely changed how I think about building and learning.
             </p>
@@ -68,37 +74,22 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
         </div>
       </section>
 
-      {/* Hero Section */}
-      <section className="px-4 text-center">
+      {/* Note to Charles Section */}
+      <section className="py-4 px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
-            Welcome to <span className="text-primary">Đorđe's Transparency Fight Club</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
-            Where hedgehogs beat raccoon dogs (and everyone else) in transparency, every time.
-          </p>
-          
-          {/* Narrative Section */}
-          <div className="max-w-4xl mx-auto mb-12 bg-card/50 backdrop-blur-sm p-8 rounded-lg border border-border/50">
+          <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 mb-6">
+            <h3 className="text-xl font-semibold text-primary mb-3">Note to Charles:</h3>
             <p className="text-lg text-foreground leading-relaxed">
-              "This isn't just a web app. It's my HogFlix moment; a creative resume, a love letter to PostHog's weird and transparent culture, and a playful way of saying: I'm ready to go from Tanuki to Max."
+              Charles, this entire app is part of my interview prep for you. I want you to explore each page, but save the Disclaimer for last.
             </p>
           </div>
-
-          {/* CTA Section */}
-          <Button 
-            size="lg" 
-            onClick={() => {
-              trackStartExperienceClicked();
-              onNavigate('home');
-            }}
-            className="text-lg px-8 py-6 bg-primary hover:bg-primary/90 text-primary-foreground mb-4"
-          >
-            Start the Experience
-          </Button>
-          <p className="text-muted-foreground">
-            Explore transparency battles, AI-powered experiments, and my journey from GitLab to Respondo to Humanitec to PostHog (next!).
-          </p>
+          
+          {/* Narrative Section */}
+          <div className="bg-card/50 backdrop-blur-sm p-8 rounded-lg border border-border/50">
+            <p className="text-lg text-foreground leading-relaxed">
+              This isn't just a web app. It's my HogFlix moment; a creative resume, a love letter to PostHog's weird and transparent culture, and a playful way of saying: I'm ready to go from Tanuki to Max.
+            </p>
+          </div>
         </div>
       </section>
 
