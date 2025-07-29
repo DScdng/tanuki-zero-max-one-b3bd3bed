@@ -3,8 +3,10 @@ import TransparencyMeter from '../TransparencyMeter';
 import FakeCommitHistory from '../FakeCommitHistory';
 import PostHogStatsWidget from '../PostHogStatsWidget';
 import maxVsTanukiHero from '@/assets/max-vs-tanuki-hero.jpg';
+import { usePageAnalytics } from '@/hooks/useAnalytics';
 
 const HomePage = () => {
+  usePageAnalytics('home');
   const [transparencyValue, setTransparencyValue] = useState(75);
 
   return (

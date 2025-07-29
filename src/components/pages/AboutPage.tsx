@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
+import { trackInteriorDesignModeToggle } from '@/lib/posthog';
+import { usePageAnalytics } from '@/hooks/useAnalytics';
 
 const AboutPage = () => {
+  usePageAnalytics('about');
   const [interiorDesignMode, setInteriorDesignMode] = useState(false);
 
   return (
@@ -80,7 +83,10 @@ const AboutPage = () => {
               Charles-in-Serbia Mode
               <Switch 
                 checked={interiorDesignMode}
-                onCheckedChange={setInteriorDesignMode}
+                onCheckedChange={(checked) => {
+                  setInteriorDesignMode(checked);
+                  trackInteriorDesignModeToggle(checked);
+                }}
               />
             </CardTitle>
           </CardHeader>

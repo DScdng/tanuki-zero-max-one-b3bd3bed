@@ -1,8 +1,13 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { trackMaxExplainsClick, trackQuoteCardHover } from '@/lib/posthog';
+import { usePageAnalytics } from '@/hooks/useAnalytics';
 
 const ZeroToOnePage = () => {
+  usePageAnalytics('zero-to-one');
+  
   const handleMaxExplains = () => {
+    trackMaxExplainsClick();
     alert("🦔 Max says: '0→1 means building something that never existed before. Like this app - going from Tanuki transparency to REAL transparency! ChatGPT helped me vibe-code this beauty, proving that AI is the ultimate 0→1 multiplier. Zero to hedgehog, baby!' 🚀");
   };
 
@@ -39,7 +44,11 @@ const ZeroToOnePage = () => {
         <h2 className="text-2xl font-bold mb-6 text-center">Wisdom from Zero to One</h2>
         <div className="grid gap-6">
           {quotes.map((quote, index) => (
-            <Card key={index} className="hover:shadow-lg transition-shadow duration-200">
+            <Card 
+              key={index} 
+              className="hover:shadow-lg transition-shadow duration-200"
+              onMouseEnter={() => trackQuoteCardHover(index, quote.text)}
+            >
               <CardContent className="p-6">
                 <blockquote className="text-lg italic mb-4 text-foreground">
                   "{quote.text}"

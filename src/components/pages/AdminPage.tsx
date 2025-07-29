@@ -4,12 +4,14 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { supabase, isSupabaseConfigured, type FeedbackSubmission } from '@/lib/supabase';
 import { toast } from 'sonner';
+import { usePageAnalytics } from '@/hooks/useAnalytics';
 
 interface AdminPageProps {
   onNavigate: (page: string) => void;
 }
 
 const AdminPage = ({ onNavigate }: AdminPageProps) => {
+  usePageAnalytics('admin');
   const [feedbackList, setFeedbackList] = useState<FeedbackSubmission[]>([]);
   const [loading, setLoading] = useState(true);
 

@@ -1,7 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { trackVersionLinkClick } from '@/lib/posthog';
+import { usePageAnalytics } from '@/hooks/useAnalytics';
 
 const VersionsPage = () => {
+  usePageAnalytics('versions');
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -38,6 +41,7 @@ const VersionsPage = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-block bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors mr-2 text-sm"
+                onClick={() => trackVersionLinkClick('v0', 'live')}
               >
                 View Live v0
               </a>
@@ -46,6 +50,7 @@ const VersionsPage = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-block bg-secondary text-secondary-foreground px-4 py-2 rounded-md hover:bg-secondary/80 transition-colors text-sm"
+                onClick={() => trackVersionLinkClick('v0', 'github')}
               >
                 GitHub Repo
               </a>

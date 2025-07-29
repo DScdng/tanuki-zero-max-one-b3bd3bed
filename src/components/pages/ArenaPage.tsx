@@ -6,9 +6,12 @@ import maxVsTanukiHero from '@/assets/max-vs-tanuki-hero.jpg';
 import posthogMaxTryIt from '@/assets/posthog-max-try-it.png';
 import godzillaMaxVictory from '@/assets/godzilla-max-victory.png';
 import confetti from 'canvas-confetti';
-import { trackHedgehogArenaStarted, trackMaxWins, trackTanukiWins } from '@/lib/posthog';
+import { trackHedgehogArenaStarted, trackMaxWins, trackTanukiWins, trackArenaGameStart, trackArenaGameReset, trackArenaCharacterClick, trackArenaHandbookClick } from '@/lib/posthog';
+import { usePageAnalytics } from '@/hooks/useAnalytics';
 
 const ArenaPage = () => {
+  usePageAnalytics('arena');
+  
   const [maxOpacity, setMaxOpacity] = useState(0.3);
   const [tanukiOpacity, setTanukiOpacity] = useState(0.3);
   const [gameActive, setGameActive] = useState(false);
@@ -35,6 +38,7 @@ const ArenaPage = () => {
 
   const clickMax = useCallback(() => {
     if (!gameActive) return;
+    trackArenaCharacterClick('max', maxOpacity);
     const newOpacity = Math.min(maxOpacity + 0.05, 1.0);
     setMaxOpacity(newOpacity);
     
@@ -44,10 +48,11 @@ const ArenaPage = () => {
       triggerConfetti();
       trackMaxWins(newOpacity, tanukiOpacity);
     }
-  }, [maxOpacity, gameActive, triggerConfetti]);
+  }, [maxOpacity, gameActive, triggerConfetti, tanukiOpacity]);
 
   const clickTanuki = useCallback(() => {
     if (!gameActive) return;
+    trackArenaCharacterClick('tanuki', tanukiOpacity);
     const newOpacity = Math.min(tanukiOpacity + 0.05, 1.0);
     setTanukiOpacity(newOpacity);
     
@@ -56,9 +61,10 @@ const ArenaPage = () => {
       setGameActive(false);
       trackTanukiWins(maxOpacity, newOpacity);
     }
-  }, [tanukiOpacity, gameActive]);
+  }, [tanukiOpacity, gameActive, maxOpacity]);
 
   const resetGame = useCallback(() => {
+    trackArenaGameReset();
     setMaxOpacity(0.3);
     setTanukiOpacity(0.3);
     setGameActive(false);
@@ -73,6 +79,7 @@ const ArenaPage = () => {
         if (countdown > 1) {
           setCountdown(countdown - 1);
         } else {
+          trackArenaGameStart();
           setGameActive(true);
           setGameStarted(true);
         }
@@ -228,7 +235,10 @@ const ArenaPage = () => {
                       <p className="text-2xl mb-2">🎉 Max Wins! Strong PostHog beats scary Tanuki!</p>
                       <p className="text-lg mb-4">Max says: "Transparency unlocked! Here's PostHog's Handbook."</p>
                       <Button 
-                        onClick={() => window.open('https://posthog.com/handbook', '_blank')}
+                        onClick={() => {
+                          trackArenaHandbookClick('max');
+                          window.open('https://posthog.com/handbook', '_blank');
+                        }}
                         className="mr-2"
                       >
                         Go to PostHog Handbook
@@ -240,7 +250,10 @@ const ArenaPage = () => {
                       <p className="text-lg mb-4">Tanuki grins: "Back to GitLab's handbook for you."</p>
                       <Button 
                         variant="destructive"
-                        onClick={() => window.open('https://about.gitlab.com/handbook/', '_blank')}
+                        onClick={() => {
+                          trackArenaHandbookClick('tanuki');
+                          window.open('https://about.gitlab.com/handbook/', '_blank');
+                        }}
                         className="mr-2"
                       >
                         Visit GitLab Handbook

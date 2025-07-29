@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { trackNavigationClick } from '@/lib/posthog';
 
 interface NavigationProps {
   currentPage: string;
@@ -28,7 +29,10 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
               <Button
                 key={item.id}
                 variant={currentPage === item.id ? "default" : "outline"}
-                onClick={() => onPageChange(item.id)}
+                onClick={() => {
+                  trackNavigationClick(item.id, currentPage);
+                  onPageChange(item.id);
+                }}
                 className="transition-all duration-200 hover:scale-105"
               >
                 {item.label}

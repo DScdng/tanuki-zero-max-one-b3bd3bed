@@ -76,26 +76,45 @@ const PostHogStatsWidget = () => {
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          <div>
-            <p className="text-2xl font-bold text-[#F54E00]">{stats.eventsCapture.toLocaleString()}</p>
-            <p className="text-xs text-muted-foreground">Events Captured</p>
+          <div className="bg-secondary p-3 rounded-md">
+            <div className="text-2xl font-bold text-primary">{stats.eventsCapture.toLocaleString()}</div>
+            <div className="text-sm text-muted-foreground">Total Events</div>
           </div>
-          <div>
-            <p className="text-2xl font-bold text-primary">{stats.maxWins}</p>
-            <p className="text-xs text-muted-foreground">Max Wins</p>
+          <div className="bg-secondary p-3 rounded-md">
+            <div className="text-2xl font-bold text-primary">{stats.maxWins.toLocaleString()}</div>
+            <div className="text-sm text-muted-foreground">Max Victories</div>
           </div>
-          <div>
-            <p className="text-2xl font-bold text-foreground">{stats.clicksTracked}</p>
-            <p className="text-xs text-muted-foreground">Clicks Tracked</p>
+          <div className="bg-secondary p-3 rounded-md">
+            <div className="text-2xl font-bold text-primary">{stats.clicksTracked.toLocaleString()}</div>
+            <div className="text-sm text-muted-foreground">User Clicks</div>
           </div>
-          <div>
-            <p className="text-2xl font-bold text-muted-foreground">{stats.sliderMoves}</p>
-            <p className="text-xs text-muted-foreground">Slider Moves</p>
+          <div className="bg-secondary p-3 rounded-md">
+            <div className="text-2xl font-bold text-primary">{stats.sliderMoves.toLocaleString()}</div>
+            <div className="text-sm text-muted-foreground">Slider Moves</div>
           </div>
         </div>
+
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+          <div className="bg-card border p-3 rounded-md">
+            <div className="text-lg font-bold text-green-600">🎯 Navigation</div>
+            <div className="text-sm text-muted-foreground">Page transitions tracked</div>
+          </div>
+          <div className="bg-card border p-3 rounded-md">
+            <div className="text-lg font-bold text-blue-600">⚡ Interactions</div>
+            <div className="text-sm text-muted-foreground">Button clicks & toggles</div>
+          </div>
+          <div className="bg-card border p-3 rounded-md">
+            <div className="text-lg font-bold text-purple-600">📊 Engagement</div>
+            <div className="text-sm text-muted-foreground">Time spent & scroll depth</div>
+          </div>
+        </div>
+        
         <div className="mt-4 text-center">
           <p className="text-xs text-muted-foreground italic">
-            📊 Real data from PostHog • Updates every 30 seconds
+            📊 Comprehensive tracking: Navigation • Clicks • Scrolling • Time • Arena battles • Link clicks • Toggles
+          </p>
+          <p className="text-xs text-muted-foreground mt-1">
+            Updates every 30 seconds • All events sent to PostHog EU
           </p>
         </div>
       </CardContent>
