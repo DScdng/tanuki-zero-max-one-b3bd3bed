@@ -36,6 +36,7 @@ export const HedgehogToggleButton = ({ isVisible, onToggle }: HedgehogToggleProp
       onClick={() => onToggle(!isVisible)}
       variant="ghost"
       size="sm"
+      className="relative"
       title={isVisible ? "Hide Hedgehog" : "Show Hedgehog"}
     >
       {isVisible ? <X className="h-4 w-4" /> : <Rabbit className="h-4 w-4" />}
