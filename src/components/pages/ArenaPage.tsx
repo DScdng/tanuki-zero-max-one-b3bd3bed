@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import maxVsTanukiHero from '@/assets/max-vs-tanuki-hero.jpg';
-import posthogMaxTryIt from '@/assets/posthog-max-try-it.png';
+import maxHedgehogNew from '@/assets/max-hedgehog-new.png';
 import godzillaMaxVictory from '@/assets/godzilla-max-victory.png';
 import confetti from 'canvas-confetti';
 import { trackHedgehogArenaStarted, trackMaxWins, trackTanukiWins, trackArenaGameStart, trackArenaGameReset, trackArenaCharacterClick, trackArenaHandbookClick } from '@/lib/posthog';
@@ -196,8 +196,8 @@ const ArenaPage = () => {
                   style={{ opacity: maxOpacity }}
                 >
                   <img 
-                    src={posthogMaxTryIt} 
-                    alt="PostHog Max with TRY IT sign" 
+                    src={maxHedgehogNew} 
+                    alt="PostHog Max hedgehog" 
                     className="w-full h-full object-contain"
                   />
                 </div>

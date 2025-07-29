@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Max's Transparency Fight Club</title>
+    <meta name="description" content="A playful tribute to PostHog's culture, transparency, and the journey from GitLab's Tanuki to PostHog's Max the Hedgehog" />
+    <meta name="author" content="Max" />
+
+    <meta property="og:title" content="Max's Transparency Fight Club" />
+    <meta property="og:description" content="The transparent battle between GitLab's Tanuki and PostHog's Max" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx?t=1753807856480"></script>
+  </body>
+</html>
