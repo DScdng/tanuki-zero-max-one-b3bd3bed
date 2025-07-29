@@ -57,6 +57,17 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
         </div>
       </section>
 
+      {/* Narrative Section */}
+      <section className="py-4 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-card/50 backdrop-blur-sm p-8 rounded-lg border border-border/50">
+            <p className="text-lg text-foreground leading-relaxed">
+              This isn't just a web app. It's my HogFlix moment; a creative resume, a love letter to PostHog's weird and transparent culture, and a playful way of saying: I'm ready to go from Tanuki to Max.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Intro Story Section */}
       <section className="py-2 px-4 bg-gradient-to-b from-primary/5 to-background">
         <div className="max-w-4xl mx-auto">
@@ -84,13 +95,6 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
             </p>
             <p className="text-lg text-foreground leading-relaxed mt-3">
               Oh, and please open it on your computer or laptop; vibe coding for mobile-native layouts is still a work-in-progress (read: sucks).
-            </p>
-          </div>
-          
-          {/* Narrative Section */}
-          <div className="bg-card/50 backdrop-blur-sm p-8 rounded-lg border border-border/50">
-            <p className="text-lg text-foreground leading-relaxed">
-              This isn't just a web app. It's my HogFlix moment; a creative resume, a love letter to PostHog's weird and transparent culture, and a playful way of saying: I'm ready to go from Tanuki to Max.
             </p>
           </div>
         </div>
