@@ -196,7 +196,7 @@ const ArenaPage = () => {
                     <div className="p-6 bg-primary/10 rounded-lg border border-primary/20">
                       <div className="mb-4">
                         <img 
-                          src={godzillaMaxVictory} 
+                          src="/lovable-uploads/625f3ded-cf05-45a5-a01e-261ded14832a.png" 
                           alt="Godzilla Max dominating the city" 
                           className="w-48 h-48 mx-auto object-contain"
                         />
