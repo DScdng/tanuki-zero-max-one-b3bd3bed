@@ -48,15 +48,29 @@ const PostHogStatsWidget = () => {
         <p className="text-sm text-muted-foreground text-center">
           Every slider move, every Tanuki defeat, and every boost button is tracked by PostHog. This isn't just a demo — it's a live analytics playground.
         </p>
-        <div className="text-center mt-2">
+        <div className="text-center mt-2 space-x-2">
           <button 
             onClick={() => {
+              console.log('🧪 Testing PostHog stats function...');
               setLoading(true);
               fetchRealStats();
             }}
             className="text-xs bg-[#F54E00] text-white px-3 py-1 rounded hover:bg-[#F54E00]/80"
           >
             🔄 Refresh Stats
+          </button>
+          <button 
+            onClick={() => {
+              console.log('🧪 Testing PostHog tracking...');
+              // Import the tracking function
+              import('@/lib/posthog').then(({ trackEvent }) => {
+                trackEvent('test_button_clicked', { timestamp: Date.now() });
+                console.log('✅ Test event sent to PostHog');
+              });
+            }}
+            className="text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-600/80"
+          >
+            🧪 Test Tracking
           </button>
         </div>
       </CardHeader>
