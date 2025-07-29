@@ -8,101 +8,97 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Soft Productivity Minimalism - Light Mode */
-    --background: 0 0% 99%; /* Pure white */
-    --foreground: 0 0% 20%; /* Soft dark #333333 */
+    /* PostHog Brand Colors - Light Mode */
+    --background: 60 14% 93%; /* #EEEFE9 */
+    --foreground: 0 0% 8%; /* #151515 at 90% opacity */
 
-    --card: 0 0% 97%; /* Very light gray */
-    --card-foreground: 0 0% 20%;
+    --card: 60 14% 93%;
+    --card-foreground: 0 0% 8%;
 
-    --popover: 0 0% 100%; /* Pure white */
-    --popover-foreground: 0 0% 20%;
+    --popover: 60 14% 93%;
+    --popover-foreground: 0 0% 8%;
 
-    --primary: 260 60% 75%; /* Muted lavender */
-    --primary-foreground: 0 0% 100%;
+    --primary: 14 100% 48%; /* #F54E00 PostHog Red */
+    --primary-foreground: 60 14% 93%;
 
-    --secondary: 150 30% 85%; /* Soft mint green */
-    --secondary-foreground: 0 0% 20%;
+    --secondary: 60 9% 90%; /* #E5E7E0 PostHog Accent */
+    --secondary-foreground: 0 0% 8%;
 
-    --muted: 0 0% 94%; /* Very light gray */
-    --muted-foreground: 0 0% 50%;
+    --muted: 60 9% 90%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 200 50% 80%; /* Soft sky blue */
-    --accent-foreground: 0 0% 20%;
+    --accent: 60 9% 90%;
+    --accent-foreground: 0 0% 8%;
 
-    --destructive: 0 50% 70%; /* Soft coral red */
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 14 100% 48%;
+    --destructive-foreground: 60 14% 93%;
 
-    --success: 120 40% 70%; /* Soft green */
-    --warning: 40 70% 75%; /* Soft peach */
-    --info: 200 60% 75%; /* Soft blue */
+    --posthog-blue: 232 100% 56%; /* #1D4AFF */
+    --posthog-blue-foreground: 60 14% 93%;
 
-    --border: 0 0% 90%; /* Very light border */
-    --input: 0 0% 96%; /* Light input background */
-    --ring: 260 60% 75%; /* Lavender focus ring */
+    --posthog-yellow: 38 100% 43%; /* #DC9300 */
+    --posthog-gray: 30 3% 75%; /* #BFBFBC */
 
-    --radius: 1.25rem; /* Large, pillowy rounded corners */
+    --border: 60 9% 83%; /* #D0D1C9 Dashed divider */
+    --input: 60 9% 85%;
+    --ring: 14 100% 48%;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 20%;
-    --sidebar-primary: 260 60% 75%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 95%;
-    --sidebar-accent-foreground: 0 0% 20%;
-    --sidebar-border: 0 0% 92%;
-    --sidebar-ring: 260 60% 75%;
+    --radius: 0.75rem;
 
-    /* Soft shadows */
-    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.08);
-    --shadow-medium: 0 8px 30px -8px hsl(0 0% 0% / 0.12);
+    --sidebar-background: 60 14% 93%;
+    --sidebar-foreground: 0 0% 8%;
+    --sidebar-primary: 14 100% 48%;
+    --sidebar-primary-foreground: 60 14% 93%;
+    --sidebar-accent: 60 9% 90%;
+    --sidebar-accent-foreground: 0 0% 8%;
+    --sidebar-border: 60 9% 83%;
+    --sidebar-ring: 14 100% 48%;
   }
 
   .dark {
-    /* Soft Productivity Minimalism - Dark Mode */
-    --background: 0 0% 7%; /* Very dark */
-    --foreground: 0 0% 85%; /* Soft light gray */
+    /* PostHog Brand Colors - Dark Mode */
+    --background: 0 0% 8%; /* #151515 */
+    --foreground: 60 14% 93%; /* #EEEFE9 at 90% opacity */
 
-    --card: 0 0% 10%; /* Dark card background */
-    --card-foreground: 0 0% 85%;
+    --card: 0 0% 8%;
+    --card-foreground: 60 14% 93%;
 
-    --popover: 0 0% 8%; /* Dark popover */
-    --popover-foreground: 0 0% 85%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 60 14% 93%;
 
-    --primary: 260 50% 70%; /* Muted lavender for dark */
-    --primary-foreground: 0 0% 100%;
+    --primary: 14 100% 48%; /* #F54E00 PostHog Red */
+    --primary-foreground: 60 14% 93%;
 
-    --secondary: 150 25% 25%; /* Dark mint green */
-    --secondary-foreground: 0 0% 85%;
+    --secondary: 0 0% 17%; /* #2C2C2C PostHog Accent Dark */
+    --secondary-foreground: 60 14% 93%;
 
-    --muted: 0 0% 15%; /* Dark muted */
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 17%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 200 40% 30%; /* Dark sky blue */
-    --accent-foreground: 0 0% 85%;
+    --accent: 0 0% 17%;
+    --accent-foreground: 60 14% 93%;
 
-    --destructive: 0 40% 60%; /* Soft coral red for dark */
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 14 100% 48%;
+    --destructive-foreground: 60 14% 93%;
 
-    --success: 120 30% 50%; /* Dark soft green */
-    --warning: 40 60% 55%; /* Dark soft peach */
-    --info: 200 50% 60%; /* Dark soft blue */
+    --posthog-blue: 232 100% 56%; /* #1D4AFF */
+    --posthog-blue-foreground: 60 14% 93%;
 
-    --border: 0 0% 20%; /* Dark border */
-    --input: 0 0% 12%; /* Dark input background */
-    --ring: 260 50% 70%; /* Lavender focus ring */
+    --posthog-yellow: 38 66% 57%; /* #F1A82C */
+    --posthog-gray: 30 3% 75%; /* #BFBFBC */
+
+    --border: 0 0% 29%; /* #4B4B4B Dashed divider */
+    --input: 0 0% 17%;
+    --ring: 14 100% 48%;
 
     --sidebar-background: 0 0% 8%;
-    --sidebar-foreground: 0 0% 85%;
-    --sidebar-primary: 260 50% 70%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 85%;
-    --sidebar-border: 0 0% 20%;
-    --sidebar-ring: 260 50% 70%;
-
-    /* Soft shadows for dark mode */
-    --shadow-soft: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
-    --shadow-medium: 0 8px 30px -8px hsl(0 0% 0% / 0.6);
+    --sidebar-foreground: 60 14% 93%;
+    --sidebar-primary: 14 100% 48%;
+    --sidebar-primary-foreground: 60 14% 93%;
+    --sidebar-accent: 0 0% 17%;
+    --sidebar-accent-foreground: 60 14% 93%;
+    --sidebar-border: 0 0% 29%;
+    --sidebar-ring: 14 100% 48%;
   }
 }
 
@@ -128,33 +124,5 @@ All colors MUST be HSL.
     50% {
       opacity: 0.5;
     }
-  }
-
-  /* Soft shadows */
-  .shadow-soft {
-    box-shadow: var(--shadow-soft);
-  }
-  
-  .shadow-medium {
-    box-shadow: var(--shadow-medium);
-  }
-
-  /* Generous spacing utilities */
-  .space-generous > * + * {
-    margin-top: 2rem;
-  }
-
-  .space-generous-x > * + * {
-    margin-left: 2rem;
-  }
-
-  /* Soft animations */
-  .transition-soft {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .hover-lift:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-medium);
   }
 }
