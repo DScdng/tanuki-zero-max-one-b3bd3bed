@@ -51,9 +51,11 @@ const Index = () => {
         <AppSidebar currentPage={currentPage} onPageChange={setCurrentPage} />
         
         <div className="flex-1 flex flex-col">
-          <header className="h-12 flex items-center justify-between border-b border-border px-4">
-            <SidebarTrigger />
-            <ThemeToggle />
+          <header className="h-12 flex items-center justify-start border-b border-border px-4">
+            <div className="flex items-center gap-2">
+              <SidebarTrigger />
+              <ThemeToggle />
+            </div>
           </header>
           
           <main className="flex-1 container mx-auto px-4 py-8">
