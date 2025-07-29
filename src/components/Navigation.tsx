@@ -15,6 +15,7 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
     { id: 'versions', label: 'Version 0 vs Version 1' },
     { id: 'arena', label: 'Hedgehog Arena' },
     { id: 'disclaimer', label: 'Disclaimer' },
+    { id: 'admin', label: 'Admin' },
   ];
 
   return (
