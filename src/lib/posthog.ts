@@ -1,16 +1,27 @@
-import posthog from 'posthog-js'
+import { supabase } from '@/integrations/supabase/client'
 
-// Initialize PostHog (if not already done in index.html)
-if (typeof window !== 'undefined') {
-  posthog.init('phc_your_api_key_here', {
-    api_host: 'https://app.posthog.com',
-  })
-}
+// Track event via Supabase Edge Function (more secure)
+export const trackEvent = async (eventName: string, properties?: Record<string, any>) => {
+  try {
+    const { data, error } = await supabase.functions.invoke('posthog-track', {
+      body: {
+        event: eventName,
+        properties: {
+          ...properties,
+          $lib: 'custom',
+          $lib_version: '1.0.0',
+          distinct_id: crypto.randomUUID(), // You can replace this with user ID if you have auth
+        }
+      }
+    })
 
-// Event tracking functions
-export const trackEvent = (eventName: string, properties?: Record<string, any>) => {
-  if (typeof window !== 'undefined') {
-    posthog.capture(eventName, properties)
+    if (error) {
+      console.error('PostHog tracking error:', error)
+    }
+    
+    return data
+  } catch (error) {
+    console.error('Error tracking event:', error)
   }
 }
 
@@ -50,5 +61,3 @@ export const trackStartExperienceClicked = () => {
 export const trackCharlesGrade = (grade: 'passed' | 'not_yet') => {
   trackEvent('charles_grade', { grade })
 }
-
-export default posthog
