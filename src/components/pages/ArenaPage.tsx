@@ -44,6 +44,17 @@ const ArenaPage = () => {
     }
   }, [maxOpacity, gameActive, triggerConfetti]);
 
+  const clickTanuki = useCallback(() => {
+    if (!gameActive) return;
+    const newOpacity = Math.min(tanukiOpacity + 0.05, 1.0);
+    setTanukiOpacity(newOpacity);
+    
+    if (newOpacity >= 1.0) {
+      setWinner('tanuki');
+      setGameActive(false);
+    }
+  }, [tanukiOpacity, gameActive]);
+
   const resetGame = useCallback(() => {
     setMaxOpacity(0.3);
     setTanukiOpacity(0.3);
@@ -154,6 +165,15 @@ const ArenaPage = () => {
                 <p className="text-sm text-muted-foreground">
                   Transparency: {Math.round(tanukiOpacity * 100)}%
                 </p>
+                <Button 
+                  onClick={clickTanuki}
+                  disabled={!gameActive}
+                  variant="destructive"
+                  className={`mt-2 ${gameActive && !winner ? 'animate-pulse' : ''}`}
+                  size="lg"
+                >
+                  😈 Boost Tanuki!
+                </Button>
               </div>
 
               <div className="text-4xl">⚡</div>
