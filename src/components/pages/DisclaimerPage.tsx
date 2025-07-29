@@ -70,7 +70,7 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
       };
 
       const { error } = await supabase
-        .from('feedback_submissions')
+        .from('charlse\'s feedback')
         .insert([submission]);
 
       if (error) {
