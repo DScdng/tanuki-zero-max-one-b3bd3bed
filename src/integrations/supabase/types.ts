@@ -17,15 +17,24 @@ export type Database = {
       "charlse's feedback": {
         Row: {
           created_at: string
+          feedback: string
           id: number
+          name: string | null
+          sandwich_type: string
         }
         Insert: {
           created_at?: string
+          feedback?: string
           id?: number
+          name?: string | null
+          sandwich_type?: string
         }
         Update: {
           created_at?: string
+          feedback?: string
           id?: number
+          name?: string | null
+          sandwich_type?: string
         }
         Relationships: []
       }
