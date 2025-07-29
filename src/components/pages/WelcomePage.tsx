@@ -11,34 +11,48 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
     {
       id: 'home',
       title: 'Home',
-      description: 'Meet Tanuki & Max: transparency rivals, but only one can win.'
+      description: 'Meet the rivals: GitLab\'s Tanuki vs PostHog\'s Max (transparency showdown).'
     },
     {
       id: 'about',
       title: 'About Me',
-      description: 'My career journey and why I\'m on Team Max now.'
+      description: 'My career path and why I\'m ready to join Team Max.'
     },
     {
       id: 'zero-to-one',
       title: 'Zero-to-One Playground',
-      description: 'What 0→1 thinking means for AI, coding, and PostHog.'
+      description: 'My take on 0→1 thinking, AI, and vibe coding.'
     },
     {
       id: 'versions',
       title: 'Version 0 vs Version 1',
-      description: 'How I built this app: from manual struggle to AI-boosted magic.'
+      description: 'How I built this app: 3-hour manual attempt vs AI-powered magic.'
     },
     {
       id: 'arena',
       title: 'Hedgehog Arena',
-      description: 'Play the transparency showdown and see if Max wins!'
+      description: 'The ultimate click battle: can you beat Tanuki?'
     }
   ];
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Intro Story Section */}
+      <section className="py-16 px-4 bg-gradient-to-b from-primary/5 to-background">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-card/70 backdrop-blur-sm p-8 rounded-lg border border-border/50 mb-12">
+            <p className="text-lg text-foreground leading-relaxed">
+              "This whole project started because of Charles Cook's legendary LinkedIn quiz — 'Tech Bro or Dictator?' I proudly scored… 2 out of 8. His response? 'You've clearly never read Zero to One.' He was right. I grabbed the book — my first real read in a while — and it completely changed how I think about building and learning.
+            </p>
+            <p className="text-lg text-foreground leading-relaxed mt-4">
+              This app is my personal 0→1 experiment. From GitLab's Tanuki (fun fact: not a fox but a Japanese raccoon dog!) to PostHog's Max, from the old internet to LLMs, from brute-force coding to vibe coding with AI, this project reflects everything I've researched, prepped, and learned along the way."
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Hero Section */}
-      <section className="py-20 px-4 text-center bg-gradient-to-b from-primary/5 to-background">
+      <section className="py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
             <img 
@@ -50,18 +64,18 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
             Welcome to <span className="text-primary">Max's Transparency Fight Club</span>
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-            Where hedgehogs beat foxes in transparency, every time.
+          <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
+            Where hedgehogs beat raccoon dogs (and everyone else) in transparency — every time.
           </p>
           
+          {/* Narrative Section */}
           <div className="max-w-4xl mx-auto mb-12 bg-card/50 backdrop-blur-sm p-8 rounded-lg border border-border/50">
-            <p className="text-lg text-foreground mb-4 leading-relaxed">
-              <strong>This project is my creative resume — my HogFlix moment.</strong> It's a playful journey that shows my technical skills, love for PostHog's culture, and belief that transparency wins every time.
-            </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Inspired by my journey from GitLab's Tanuki → Respondo → Humanitec → PostHog (next!), this is my way of going from 0 to 1.
+            <p className="text-lg text-foreground leading-relaxed">
+              "This isn't just a web app. It's my HogFlix moment — a creative resume, a love letter to PostHog's weird and transparent culture, and a playful way of saying: I'm ready to go from Tanuki to Max."
             </p>
           </div>
+
+          {/* CTA Section */}
           <Button 
             size="lg" 
             onClick={() => onNavigate('home')}
@@ -70,7 +84,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
             Start the Experience
           </Button>
           <p className="text-muted-foreground">
-            Explore transparency, AI experiments, and the ultimate showdown between GitLab Tanuki and PostHog's Max the Hedgehog.
+            Explore transparency battles, AI-powered experiments, and my journey from GitLab → Respondo → Humanitec → PostHog (next!).
           </p>
         </div>
       </section>
@@ -106,22 +120,12 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
         </div>
       </section>
 
-      {/* Call to Action */}
+      {/* Closing Section */}
       <section className="py-16 px-4 bg-primary/5">
         <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-            Ready to See Transparency in Action?
-          </h3>
-          <p className="text-lg text-muted-foreground mb-8">
-            Dive into the world where hedgehogs reign supreme and transparency always wins
+          <p className="text-lg text-foreground leading-relaxed">
+            "Max's Transparency Fight Club isn't just about transparency — it's about building boldly, having fun, and turning research into something real. See you on Superday, Max!"
           </p>
-          <Button 
-            size="lg" 
-            onClick={() => onNavigate('home')}
-            className="text-lg px-8 py-6"
-          >
-            Begin the Journey
-          </Button>
         </div>
       </section>
     </div>
