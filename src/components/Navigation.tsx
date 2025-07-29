@@ -8,6 +8,7 @@ interface NavigationProps {
 
 const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
   const navItems = [
+    { id: 'welcome', label: 'Welcome' },
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About Me' },
     { id: 'zero-to-one', label: 'Zero-to-One Playground' },

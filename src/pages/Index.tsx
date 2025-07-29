@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Navigation from '@/components/Navigation';
+import WelcomePage from '@/components/pages/WelcomePage';
 import HomePage from '@/components/pages/HomePage';
 import AboutPage from '@/components/pages/AboutPage';
 import ZeroToOnePage from '@/components/pages/ZeroToOnePage';
@@ -7,10 +8,12 @@ import VersionsPage from '@/components/pages/VersionsPage';
 import ArenaPage from '@/components/pages/ArenaPage';
 
 const Index = () => {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState('welcome');
 
   const renderPage = () => {
     switch (currentPage) {
+      case 'welcome':
+        return <WelcomePage onNavigate={setCurrentPage} />;
       case 'home':
         return <HomePage />;
       case 'about':
@@ -22,7 +25,7 @@ const Index = () => {
       case 'arena':
         return <ArenaPage />;
       default:
-        return <HomePage />;
+        return <WelcomePage onNavigate={setCurrentPage} />;
     }
   };
 
