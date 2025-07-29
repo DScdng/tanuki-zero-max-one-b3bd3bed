@@ -1,29 +1,42 @@
 import { supabase } from '@/integrations/supabase/client'
 
-// Track event via Supabase Edge Function (more secure)
+// Track event via Supabase Edge Function AND store locally for real-time stats
 export const trackEvent = async (eventName: string, properties?: Record<string, any>) => {
+  const eventData = {
+    ...properties,
+    $lib: 'custom',
+    $lib_version: '1.0.0',
+    distinct_id: crypto.randomUUID(), // You can replace this with user ID if you have auth
+  };
+
   try {
+    // Store in Supabase analytics table for real-time stats
+    const { error: insertError } = await supabase.from('analytics_events').insert({
+      event_name: eventName,
+      properties: eventData
+    });
+
+    if (insertError) {
+      console.error('Error storing analytics event locally:', insertError);
+    }
+
+    // Send to PostHog via edge function
     const { data, error } = await supabase.functions.invoke('posthog-track', {
       body: {
         event: eventName,
-        properties: {
-          ...properties,
-          $lib: 'custom',
-          $lib_version: '1.0.0',
-          distinct_id: crypto.randomUUID(), // You can replace this with user ID if you have auth
-        }
+        properties: eventData
       }
-    })
+    });
 
     if (error) {
-      console.error('PostHog tracking error:', error)
+      console.error('PostHog tracking error:', error);
     }
     
-    return data
+    return data;
   } catch (error) {
-    console.error('Error tracking event:', error)
+    console.error('Error tracking event:', error);
   }
-}
+};
 
 export const trackTransparencySliderMoved = (value: number) => {
   trackEvent('transparency_slider_moved', { slider_value: value })

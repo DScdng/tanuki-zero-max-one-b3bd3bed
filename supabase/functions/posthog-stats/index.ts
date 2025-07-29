@@ -5,6 +5,8 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 }
 
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: corsHeaders })
@@ -13,66 +15,41 @@ serve(async (req) => {
   try {
     console.log('PostHog stats function called')
     
-    const posthogApiKey = Deno.env.get('POSTHOG_API_KEY')
-    if (!posthogApiKey) {
-      console.error('PostHog API key not found in environment')
-      throw new Error('PostHog API key not configured')
+    // Initialize Supabase client
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!
+    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+    const supabase = createClient(supabaseUrl, supabaseKey)
+    
+    // Query analytics events from Supabase for real stats
+    const now = new Date()
+    const oneDayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000)
+    
+    const { data: events, error } = await supabase
+      .from('analytics_events')
+      .select('event_name, properties, created_at')
+      .gte('created_at', oneDayAgo.toISOString())
+    
+    if (error) {
+      console.error('Error fetching analytics events:', error)
+      throw new Error('Failed to fetch analytics events')
     }
     
-    console.log('PostHog API key found, length:', posthogApiKey.length)
-
-    // Try to fetch real data from PostHog API
-    try {
-      const response = await fetch('https://eu.posthog.com/api/projects/158913/events/', {
-        headers: {
-          'Authorization': `Bearer ${posthogApiKey}`,
-          'Content-Type': 'application/json'
-        }
-      })
-      
-      if (response.ok) {
-        const data = await response.json()
-        console.log('PostHog API response:', data)
-        
-        // Count specific events
-        const events = data.results || []
-        const maxWins = events.filter((e: any) => e.event === 'max_wins').length
-        const arenaClicks = events.filter((e: any) => e.event === 'arena_character_click').length
-        const sliderMoves = events.filter((e: any) => e.event === 'transparency_slider_moved').length
-        
-        const stats = {
-          eventsCapture: events.length,
-          maxWins: maxWins,
-          clicksTracked: arenaClicks,
-          sliderMoves: sliderMoves
-        }
-        
-        console.log('Real PostHog stats:', stats)
-        return new Response(
-          JSON.stringify({ success: true, stats }),
-          {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-            status: 200,
-          },
-        )
-      }
-    } catch (apiError) {
-      console.log('PostHog API call failed, using fallback:', apiError)
-    }
-
-    // Fallback: Generate realistic incremental numbers
-    const now = Date.now()
-    const baselineTime = now - (5 * 60 * 1000) // Start baseline 5 minutes ago
-    const minutesSinceBaseline = Math.floor((now - baselineTime) / (1000 * 60))
+    console.log(`Found ${events?.length || 0} events in the last 24 hours`)
+    
+    // Count specific events
+    const maxWins = events?.filter(e => e.event_name === 'max_wins')?.length || 0
+    const arenaClicks = events?.filter(e => e.event_name === 'arena_character_click')?.length || 0
+    const sliderMoves = events?.filter(e => e.event_name === 'transparency_slider_moved')?.length || 0
+    const totalEvents = events?.length || 0
     
     const stats = {
-      eventsCapture: Math.max(0, minutesSinceBaseline * 2),
-      maxWins: Math.max(0, Math.floor(minutesSinceBaseline / 3)),
-      clicksTracked: Math.max(0, minutesSinceBaseline * 3),
-      sliderMoves: Math.max(0, minutesSinceBaseline)
+      eventsCapture: totalEvents,
+      maxWins: maxWins,
+      clicksTracked: arenaClicks,
+      sliderMoves: sliderMoves
     }
     
-    console.log('Returning realistic stats based on time:', stats)
+    console.log('Real analytics stats:', stats)
     
     return new Response(
       JSON.stringify({ success: true, stats }),
@@ -82,16 +59,16 @@ serve(async (req) => {
       },
     )
   } catch (error) {
-    console.error('Error fetching PostHog stats:', error)
-    // Return mock data as fallback
+    console.error('Error fetching analytics stats:', error)
+    // Return fallback data as backup
     return new Response(
       JSON.stringify({ 
         success: false, 
         stats: {
-          eventsCapture: 1234,
-          maxWins: 89,
-          clicksTracked: 567,
-          sliderMoves: 234
+          eventsCapture: 0,
+          maxWins: 0,
+          clicksTracked: 0,
+          sliderMoves: 0
         }
       }),
       {
