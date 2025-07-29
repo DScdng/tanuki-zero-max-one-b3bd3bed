@@ -162,7 +162,7 @@ const ZeroToOnePage = () => {
         </div>
       </section>
 
-      {/* Interactive Button */}
+      {/* App v0 to v1 Interactive Demo */}
       <section className="max-w-2xl mx-auto text-center">
         <Card className="bg-[#1D4AFF]/10 border-[#1D4AFF]/30">
           <CardContent className="p-8 space-y-6">
