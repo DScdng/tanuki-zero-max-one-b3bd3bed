@@ -82,6 +82,9 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
             <p className="text-lg text-foreground leading-relaxed">
               Charles, this entire app is part of my interview prep for you. I want you to explore each page, but save the Disclaimer for last.
             </p>
+            <p className="text-lg text-foreground leading-relaxed mt-3">
+              Oh, and please open it on your computer or laptop; vibe coding for mobile-native layouts is still a work-in-progress (read: sucks).
+            </p>
           </div>
           
           {/* Narrative Section */}
