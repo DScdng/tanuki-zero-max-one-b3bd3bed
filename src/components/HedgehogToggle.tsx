@@ -34,12 +34,12 @@ export const HedgehogToggleButton = ({ isVisible, onToggle }: HedgehogToggleProp
   return (
     <Button
       onClick={() => onToggle(!isVisible)}
-      variant="ghost"
-      size="sm"
-      className="relative"
+      variant="outline"
+      size="icon"
+      className="transition-all duration-200 hover:scale-105"
       title={isVisible ? "Hide Hedgehog" : "Show Hedgehog"}
     >
-      {isVisible ? <X className="h-4 w-4" /> : <Rabbit className="h-4 w-4" />}
+      {isVisible ? <X className="h-[1.2rem] w-[1.2rem]" /> : <Rabbit className="h-[1.2rem] w-[1.2rem]" />}
     </Button>
   );
 };
