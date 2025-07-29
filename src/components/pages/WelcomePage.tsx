@@ -38,7 +38,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
   return (
     <div className="min-h-screen bg-background">
       {/* Intro Story Section */}
-      <section className="py-16 px-4 bg-gradient-to-b from-primary/5 to-background">
+      <section className="py-2 px-4 bg-gradient-to-b from-primary/5 to-background">
         <div className="max-w-4xl mx-auto">
           <div className="bg-card/70 backdrop-blur-sm p-8 rounded-lg border border-border/50 mb-12">
             <p className="text-lg text-foreground leading-relaxed">
