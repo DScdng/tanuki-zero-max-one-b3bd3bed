@@ -32,6 +32,11 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
       id: 'arena',
       title: 'Hedgehog Arena',
       description: 'The ultimate click battle: can you beat Tanuki?'
+    },
+    {
+      id: 'disclaimer',
+      title: 'Disclaimer & Countdown',
+      description: 'Legal disclaimers, live countdown timer, and feedback form for Charles.'
     }
   ];
 
