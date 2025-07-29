@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import maxVsTanukiHero from '@/assets/max-vs-tanuki-hero.jpg';
-import maxHedgehogNew from '@/assets/max-hedgehog-new.png';
 import godzillaMaxVictory from '@/assets/godzilla-max-victory.png';
 import confetti from 'canvas-confetti';
 import { trackHedgehogArenaStarted, trackMaxWins, trackTanukiWins, trackArenaGameStart, trackArenaGameReset, trackArenaCharacterClick, trackArenaHandbookClick } from '@/lib/posthog';
@@ -196,7 +195,7 @@ const ArenaPage = () => {
                   style={{ opacity: maxOpacity }}
                 >
                   <img 
-                    src={maxHedgehogNew} 
+                    src="/lovable-uploads/896b5bc5-ab2a-4f03-9999-d2b5652cfaff.png" 
                     alt="PostHog Max hedgehog" 
                     className="w-full h-full object-contain"
                   />
