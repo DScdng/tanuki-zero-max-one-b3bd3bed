@@ -122,9 +122,6 @@ const AboutPage = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-muted-foreground">
-              "Charles loves terrible jokes. This page contains at least 3 terrible jokes hidden in the CSS comments. Don't view-source unless you're ready for pain."
-            </p>
-            <p className="text-muted-foreground">
               "Charles looks at designer houses he'll never live in — so I added an 'Interior Design Mode.' Click it to see a clean, minimalist aesthetic that would make IKEA jealous."
             </p>
             <p className="text-muted-foreground">
