@@ -25,8 +25,25 @@ interface Position {
   y: number;
 }
 
-export const HedgehogToggle = () => {
-  const [isVisible, setIsVisible] = useState(false);
+interface HedgehogToggleProps {
+  isVisible: boolean;
+  onToggle: (visible: boolean) => void;
+}
+
+export const HedgehogToggleButton = ({ isVisible, onToggle }: HedgehogToggleProps) => {
+  return (
+    <Button
+      onClick={() => onToggle(!isVisible)}
+      variant="ghost"
+      size="sm"
+      title={isVisible ? "Hide Hedgehog" : "Show Hedgehog"}
+    >
+      {isVisible ? <X className="h-4 w-4" /> : <Rabbit className="h-4 w-4" />}
+    </Button>
+  );
+};
+
+export const HedgehogCharacter = ({ isVisible }: { isVisible: boolean }) => {
   const [position, setPosition] = useState<Position>({ x: 100, y: 100 });
   const [currentQuote, setCurrentQuote] = useState('');
   const [showQuote, setShowQuote] = useState(false);
@@ -118,32 +135,11 @@ export const HedgehogToggle = () => {
   };
 
   if (!isVisible) {
-    return (
-      <Button
-        onClick={() => setIsVisible(true)}
-        variant="ghost"
-        size="sm"
-        className="fixed bottom-4 right-4 z-50"
-        title="Toggle Hedgehog"
-      >
-        <Rabbit className="h-4 w-4" />
-      </Button>
-    );
+    return null;
   }
 
   return (
     <>
-      {/* Toggle off button */}
-      <Button
-        onClick={() => setIsVisible(false)}
-        variant="ghost"
-        size="sm"
-        className="fixed bottom-4 right-4 z-50"
-        title="Hide Hedgehog"
-      >
-        <X className="h-4 w-4" />
-      </Button>
-
       {/* Hedgehog character */}
       <div
         ref={hedgehogRef}

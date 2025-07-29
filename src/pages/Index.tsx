@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AppSidebar } from '@/components/AppSidebar';
-import { HedgehogToggle } from '@/components/HedgehogToggle';
+import { HedgehogToggleButton, HedgehogCharacter } from '@/components/HedgehogToggle';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import WelcomePage from '@/components/pages/WelcomePage';
@@ -15,6 +15,7 @@ import AdminPage from '@/components/pages/AdminPage';
 
 const Index = () => {
   const [currentPage, setCurrentPage] = useState('welcome');
+  const [hedgehogVisible, setHedgehogVisible] = useState(false);
 
   // Scroll to top when page changes
   useEffect(() => {
@@ -56,6 +57,7 @@ const Index = () => {
             <div className="flex items-center gap-2">
               <SidebarTrigger />
               <ThemeToggle />
+              <HedgehogToggleButton isVisible={hedgehogVisible} onToggle={setHedgehogVisible} />
             </div>
           </header>
           
@@ -65,8 +67,8 @@ const Index = () => {
         </div>
       </div>
       
-      {/* Hedgehog toggle - appears on all pages */}
-      <HedgehogToggle />
+      {/* Hedgehog character - appears when visible */}
+      <HedgehogCharacter isVisible={hedgehogVisible} />
     </SidebarProvider>
   );
 };
