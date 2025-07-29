@@ -42,7 +42,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
         <div className="max-w-4xl mx-auto">
           <div className="bg-card/70 backdrop-blur-sm p-8 rounded-lg border border-border/50 mb-12">
             <p className="text-lg text-foreground leading-relaxed">
-              This whole project started because of Charles Cook's legendary LinkedIn quiz — 'Tech Bro or Dictator?' I proudly scored… 2 out of 8. His response? 'You've clearly never read Zero to One.' He was right. I grabbed the book — my first real read in a while — and it completely changed how I think about building and learning.
+              This whole project started because of <a href="https://www.linkedin.com/in/wololo/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Charles Cook's</a> legendary LinkedIn quiz — <a href="https://dictatorortechbro.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">'Tech Bro or Dictator?'</a> I proudly scored… 2 out of 8. His response? 'You've clearly never read Zero to One.' He was right. I grabbed the book — my first real read in a while — and it completely changed how I think about building and learning.
             </p>
             <p className="text-lg text-foreground leading-relaxed mt-4">
               This app is my personal 0→1 experiment. From GitLab's Tanuki (fun fact: not a fox but a Japanese raccoon dog!) to PostHog's Max, from the old internet to LLMs, from brute-force coding to vibe coding with AI, this project reflects everything I've researched, prepped, and learned along the way.
