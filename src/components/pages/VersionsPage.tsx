@@ -32,6 +32,24 @@ const VersionsPage = () => {
             <p className="text-muted-foreground">My rough, manual approach</p>
           </CardHeader>
           <CardContent className="space-y-4">
+            <div className="text-center mb-4">
+              <a 
+                href="https://dscdng.github.io/tanuki-zero-max-one/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors mr-2 text-sm"
+              >
+                View Live v0
+              </a>
+              <a 
+                href="https://github.com/DScdng/tanuki-zero-max-one" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block bg-secondary text-secondary-foreground px-4 py-2 rounded-md hover:bg-secondary/80 transition-colors text-sm"
+              >
+                GitHub Repo
+              </a>
+            </div>
             <div className="bg-muted p-4 rounded-md">
               <h4 className="font-semibold mb-2">The Struggle:</h4>
               <ul className="text-sm space-y-1 text-muted-foreground">
