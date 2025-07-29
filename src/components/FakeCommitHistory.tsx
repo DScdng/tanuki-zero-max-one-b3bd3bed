@@ -33,20 +33,38 @@ const FakeCommitHistory = ({ transparencyValue }: FakeCommitHistoryProps) => {
       "git commit -m 'Charles inspired me to read my first book in years.'",
       "git commit -m 'PostHog red is the new black.'",
       "git commit -m 'Zero to One: From Tanuki to Hedgehog.'",
-      "git commit -m 'Transparency level: over 9000!'",
-      "git commit -m 'Fixed bug: Tanuki was showing transparency.'",
       "git commit -m 'Added Serbian sandwich appreciation module.'",
       "git commit -m 'Interior design mode: Charles-approved.'",
-      "git commit -m 'HogFlix > Netflix confirmed.'",
-      "git commit -m 'Vibe coding achieved 0→1.'",
-      "git commit -m 'Max is sunbathing, waiting for Superday.'",
+      "git commit -m 'Implemented ajvar spread optimization.'",
+      "git commit -m 'Added Charles piano soundtrack feature 🎹.'",
+      "git commit -m 'Transparency level: approaching Serbian standards.'",
+      "git commit -m 'Fixed bug: Tanuki was pretending to be transparent.'",
+      "git commit -m 'Added Charles bad joke logger.'",
+    ],
+    hilarious: [
+      "git commit -m 'Tanuki rage-clicked, but Max stayed cool.'",
+      "git commit -m 'Added AI-generated hedgehog wisdom.'",
+      "git commit -m 'Charles approved the ajvar sandwich design.'",
+      "git commit -m 'Max's sunglasses now 200% more transparent.'",
+      "git commit -m 'PostHog red > all other colors.'",
+      "git commit -m 'Deployed vibe coding to production.'",
+      "git commit -m 'Tanuki tried to rollback, but transparency can't be undone.'",
+      "git commit -m 'Added Easter egg: Charles playing piano 🎹.'",
+      "git commit -m 'Zero → One mode activated. Max wins.'",
+      "git commit -m 'Debugged transparency bugs (Tanuki caused them).'",
+      "git commit -m 'Confetti now explodes when Max wins.'",
+      "git commit -m 'Removed all opacity — full radical transparency!'",
+      "git commit -m 'Charles told a bad joke, so I logged it here.'",
+      "git commit -m 'Tanuki still thinks he's a fox… classic.'",
+      "git commit -m 'Added 110% transparency — broke the meter.'",
     ]
   };
 
   const getCommitSet = (value: number) => {
-    if (value <= 40) return commitSets.boring;
-    if (value <= 70) return commitSets.playful;
-    return commitSets.funny;
+    if (value <= 30) return commitSets.boring;
+    if (value <= 60) return commitSets.playful;
+    if (value <= 85) return commitSets.funny;
+    return commitSets.hilarious;
   };
 
   const [currentCommits, setCurrentCommits] = useState(getCommitSet(transparencyValue));
@@ -77,9 +95,10 @@ const FakeCommitHistory = ({ transparencyValue }: FakeCommitHistoryProps) => {
       <CardHeader>
         <CardTitle className="text-center font-mono">Git Commit History</CardTitle>
         <p className="text-sm text-center text-muted-foreground">
-          {transparencyValue <= 40 && "🤖 Boring Mode (0-40%)"}
-          {transparencyValue > 40 && transparencyValue <= 70 && "😊 Playful Mode (41-70%)"}
-          {transparencyValue > 70 && "🦔 Max Mode (71-100%)"}
+          {transparencyValue <= 30 && "🤖 Boring Mode (0-30%)"}
+          {transparencyValue > 30 && transparencyValue <= 60 && "😊 Playful Mode (31-60%)"}
+          {transparencyValue > 60 && transparencyValue <= 85 && "🦔 Max Mode (61-85%)"}
+          {transparencyValue > 85 && "🚀 Hilarious Mode (86-100%)"}
         </p>
       </CardHeader>
       <CardContent>

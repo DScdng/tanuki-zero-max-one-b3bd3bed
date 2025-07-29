@@ -9,9 +9,10 @@ interface TransparencyMeterProps {
 const TransparencyMeter = ({ value, onValueChange }: TransparencyMeterProps) => {
 
   const getTransparencyStatus = (val: number) => {
-    if (val <= 40) return { text: "Tanuki Territory 🦝", color: "text-muted-foreground" };
-    if (val <= 70) return { text: "Getting There... 🤔", color: "text-posthog-blue" };
-    return { text: "Max Level Transparency! 🦔✨", color: "text-primary" };
+    if (val <= 30) return { text: "Tanuki Territory 🦝", color: "text-muted-foreground" };
+    if (val <= 60) return { text: "Getting There... 🤔", color: "text-posthog-blue" };
+    if (val <= 85) return { text: "Max Level Transparency! 🦔✨", color: "text-primary" };
+    return { text: "ULTIMATE TRANSPARENCY! 🚀💥", color: "text-primary" };
   };
 
   const status = getTransparencyStatus(value);
@@ -30,7 +31,7 @@ const TransparencyMeter = ({ value, onValueChange }: TransparencyMeterProps) => 
           onValueChange={(newValue) => onValueChange(newValue[0])}
           max={100}
           step={1}
-          className={`w-full ${value > 70 ? '[&_.slider-thumb]:bg-[#F54E00] [&_.slider-thumb]:border-[#F54E00]' : ''}`}
+          className={`w-full ${value > 85 ? '[&_.slider-thumb]:bg-[#F54E00] [&_.slider-thumb]:border-[#F54E00]' : ''}`}
         />
         <div className="text-center">
           <p className={`text-lg font-semibold ${status.color}`}>
