@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import WelcomePage from '@/components/pages/WelcomePage';
 import HomePage from '@/components/pages/HomePage';
@@ -11,6 +11,11 @@ import AdminPage from '@/components/pages/AdminPage';
 
 const Index = () => {
   const [currentPage, setCurrentPage] = useState('welcome');
+
+  // Scroll to top when page changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
 
   const renderPage = () => {
     switch (currentPage) {
