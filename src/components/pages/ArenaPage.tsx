@@ -148,9 +148,9 @@ const ArenaPage = () => {
               <div className="text-4xl">⚡</div>
 
               {/* Max */}
-              <div className="text-center">
+              <div className="text-center flex-1">
                 <div 
-                  className="w-24 h-24 mb-4 transition-opacity duration-300 flex items-center justify-center"
+                  className="w-24 h-24 mb-4 transition-opacity duration-300 flex items-center justify-center mx-auto"
                   style={{ opacity: maxOpacity }}
                 >
                   <img 
