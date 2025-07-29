@@ -10,7 +10,7 @@ const ZeroToOnePage = () => {
   const [showQuote, setShowQuote] = useState(false);
   
   const maxQuotes = [
-    "0 is reading about transparency. 1 is measuring it with PostHog.",
+    "0 is reading about transparency. 1 is measuring it with PostHog. (Not sure if James approves, read too many of his statements on vibe coding...)",
     "0 is the Tanuki. 1 is Max's shades.",
     "0 is coding for 100 hours. 1 is vibe coding in 10 mins with Cursor.",
     "0 is manual debugging. 1 is PostHog tracking everything for you.",
