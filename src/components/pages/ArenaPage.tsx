@@ -125,9 +125,9 @@ const ArenaPage = () => {
 
             <div className="flex justify-center items-center gap-16 mb-8">
               {/* Tanuki */}
-              <div className="text-center">
+              <div className="text-center flex-1">
                 <div 
-                  className="w-24 h-24 mb-4 transition-opacity duration-300 flex items-center justify-center"
+                  className="w-24 h-24 mb-4 transition-opacity duration-300 flex items-center justify-center mx-auto"
                   style={{ opacity: tanukiOpacity }}
                 >
                   <img 
@@ -137,7 +137,7 @@ const ArenaPage = () => {
                   />
                 </div>
                 <p className="text-lg font-semibold">Tanuki</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-muted-foreground text-center">
                   "Yeah, GitLab used a scary logo back in time"
                 </p>
                 <p className="text-sm text-muted-foreground">
