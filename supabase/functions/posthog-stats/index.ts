@@ -21,16 +21,17 @@ serve(async (req) => {
     
     console.log('PostHog API key found, length:', posthogApiKey.length)
 
-    // For now, return mock data with incremental updates based on time
+    // Reset baseline - start from 0 and increment based on time from a recent baseline
     const now = Date.now()
-    const daysSinceEpoch = Math.floor(now / (1000 * 60 * 60 * 24))
-    const hoursSinceEpoch = Math.floor(now / (1000 * 60 * 60))
+    const baselineTime = new Date('2025-01-29T14:00:00Z').getTime() // Recent baseline
+    const minutesSinceBaseline = Math.floor((now - baselineTime) / (1000 * 60))
+    const hoursSinceBaseline = Math.floor((now - baselineTime) / (1000 * 60 * 60))
     
     const stats = {
-      eventsCapture: 1234 + (daysSinceEpoch * 12) + (hoursSinceEpoch % 24),
-      maxWins: 89 + Math.floor(daysSinceEpoch / 2),
-      clicksTracked: 567 + (daysSinceEpoch * 8) + Math.floor(hoursSinceEpoch / 3),
-      sliderMoves: 234 + (daysSinceEpoch * 15) + (hoursSinceEpoch % 12)
+      eventsCapture: Math.max(0, minutesSinceBaseline * 2),
+      maxWins: Math.max(0, Math.floor(hoursSinceBaseline / 2)),
+      clicksTracked: Math.max(0, minutesSinceBaseline * 3),
+      sliderMoves: Math.max(0, minutesSinceBaseline)
     }
     
     console.log('Returning realistic stats based on time:', stats)
