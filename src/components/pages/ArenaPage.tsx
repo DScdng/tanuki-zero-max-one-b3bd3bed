@@ -138,7 +138,7 @@ const ArenaPage = () => {
                 </div>
                 <p className="text-lg font-semibold">Tanuki</p>
                 <p className="text-sm text-muted-foreground">
-                  "Yeah it was scary"
+                  "Yeah, GitLab used a scary logo back in time"
                 </p>
                 <p className="text-sm text-muted-foreground">
                   Transparency: {Math.round(tanukiOpacity * 100)}%
