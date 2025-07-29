@@ -63,7 +63,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
       <section className="px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
-            Welcome to <span className="text-primary">Djordje's Transparency Fight Club</span>
+            Welcome to <span className="text-primary">Đorđe's Transparency Fight Club</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
             Where hedgehogs beat raccoon dogs (and everyone else) in transparency — every time.
@@ -128,7 +128,7 @@ const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
       <section className="py-16 px-4 bg-primary/5">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-lg text-foreground leading-relaxed">
-            "Djordje's Transparency Fight Club isn't just about transparency — it's about building boldly, having fun, and turning research into something real. See you on Superday!"
+            "Đorđe's Transparency Fight Club isn't just about transparency — it's about building boldly, having fun, and turning research into something real. See you on Superday!"
           </p>
         </div>
       </section>
