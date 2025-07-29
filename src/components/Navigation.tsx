@@ -22,26 +22,49 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
   ];
 
   return (
-    <nav className="bg-card border-b border-border sticky top-0 z-50">
+    <nav className="bg-card/80 backdrop-blur-lg border-b border-border sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-primary">Đorđe's Transparency Fight Club</h1>
-          <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between gap-4">
+          <h1 className="text-xl md:text-2xl font-bold text-primary tracking-tight">
+            Đorđe's Transparency Fight Club
+          </h1>
+          
+          <div className="flex items-center gap-2 md:gap-4">
             <ThemeToggle />
-            <div className="flex gap-2 flex-wrap">
-            {navItems.map((item) => (
-              <Button
-                key={item.id}
-                variant={currentPage === item.id ? "default" : "outline"}
-                onClick={() => {
-                  trackNavigationClick(item.id, currentPage);
-                  onPageChange(item.id);
+            
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex gap-2 flex-wrap">
+              {navItems.map((item) => (
+                <Button
+                  key={item.id}
+                  variant={currentPage === item.id ? "default" : "outline"}
+                  onClick={() => {
+                    trackNavigationClick(item.id, currentPage);
+                    onPageChange(item.id);
+                  }}
+                  className="transition-all duration-300 hover:scale-105 hover:shadow-md text-sm px-3 py-2"
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </div>
+
+            {/* Mobile Navigation */}
+            <div className="lg:hidden">
+              <select
+                value={currentPage}
+                onChange={(e) => {
+                  trackNavigationClick(e.target.value, currentPage);
+                  onPageChange(e.target.value);
                 }}
-                className="transition-all duration-200 hover:scale-105"
+                className="bg-card border border-border rounded-md px-3 py-2 text-sm font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
               >
-                {item.label}
-              </Button>
-            ))}
+                {navItems.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.label}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </div>
