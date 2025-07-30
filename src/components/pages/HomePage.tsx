@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import godzillaMaxVictory from '@/assets/godzilla-max-victory.png';
 import { posthog } from '@/lib/posthog-client';
+import PageNavigation from '@/components/PageNavigation';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -46,10 +47,22 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
     }
   ];
 
+  const sections = [
+    { id: 'hero', title: 'Welcome' },
+    { id: 'narrative', title: 'About This App' },
+    { id: 'story', title: 'Origin Story' },
+    { id: 'hero-image', title: 'The Rivals' },
+    { id: 'note', title: 'Note to Charles' },
+    { id: 'content', title: 'What\'s Inside' },
+    { id: 'closing', title: 'Final Words' }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
+      <PageNavigation sections={sections} />
+      
       {/* Hero Section */}
-      <section className="py-8 px-4 text-center">
+      <section id="hero" className="py-8 px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
             Welcome to <span className="text-primary">Đorđe's Transparency Fight Club</span>
@@ -61,7 +74,7 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
       </section>
 
       {/* Narrative Section */}
-      <section className="px-4">
+      <section id="narrative" className="px-4">
         <div className="max-w-4xl mx-auto">
           <div className="bg-card/50 backdrop-blur-sm p-8 rounded-lg border border-border/50">
             <p className="text-lg text-foreground leading-relaxed">
@@ -72,7 +85,7 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
       </section>
 
       {/* Intro Story Section */}
-      <section className="py-2 px-4 bg-gradient-to-b from-primary/5 to-background">
+      <section id="story" className="py-2 px-4 bg-gradient-to-b from-primary/5 to-background">
         <div className="max-w-4xl mx-auto">
           <div className="bg-card/70 backdrop-blur-sm p-8 rounded-lg border border-border/50 mb-12">
             <p className="text-lg text-foreground leading-relaxed">
@@ -89,7 +102,7 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
       </section>
 
       {/* Hero Image Section */}
-      <section className="py-8 px-4">
+      <section id="hero-image" className="py-8 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="relative w-full max-w-xl mx-auto mb-6">
             <img 
@@ -102,7 +115,7 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
       </section>
 
       {/* Note to Charles Section */}
-      <section className="py-4 px-4">
+      <section id="note" className="py-4 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 mb-6">
             <h3 className="text-xl font-semibold text-primary mb-3">Note to Charles:</h3>
@@ -117,7 +130,7 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
       </section>
 
       {/* What's Inside Section */}
-      <section className="py-16 px-4">
+      <section id="content" className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-foreground mb-4">
             What's Inside?
@@ -148,7 +161,7 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
       </section>
 
       {/* Closing Section */}
-      <section className="py-16 px-4 bg-primary/5">
+      <section id="closing" className="py-16 px-4 bg-primary/5">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-lg text-foreground leading-relaxed">
             "Đorđe's Transparency Fight Club isn't just about transparency; it's about building boldly, having fun, and turning research into something real. See you on Superday!"
