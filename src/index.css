@@ -33,11 +33,24 @@ All colors MUST be HSL.
     --destructive: 14 100% 48%;
     --destructive-foreground: 60 14% 93%;
 
+    /* PostHog brand colors */
+    --posthog-orange: 14 100% 48%; /* #F54E00 */
     --posthog-blue: 232 100% 56%; /* #1D4AFF */
-    --posthog-blue-foreground: 60 14% 93%;
-
     --posthog-yellow: 38 100% 43%; /* #DC9300 */
+    --posthog-purple: 262 83% 70%; /* #A855F7 */
     --posthog-gray: 30 3% 75%; /* #BFBFBC */
+
+    /* Enhanced gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--posthog-orange)), hsl(var(--posthog-yellow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--posthog-blue)), hsl(var(--posthog-purple)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+
+    /* Enhanced shadows */
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--posthog-orange) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--posthog-orange) / 0.2);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --border: 60 9% 83%; /* #D0D1C9 Dashed divider */
     --input: 60 9% 85%;
@@ -81,11 +94,21 @@ All colors MUST be HSL.
     --destructive: 14 100% 48%;
     --destructive-foreground: 60 14% 93%;
 
-    --posthog-blue: 232 100% 56%; /* #1D4AFF */
-    --posthog-blue-foreground: 60 14% 93%;
-
+    /* PostHog brand colors - adjusted for dark mode */
+    --posthog-orange: 14 100% 55%; /* Brighter in dark mode */
+    --posthog-blue: 232 100% 65%; /* Brighter in dark mode */
     --posthog-yellow: 38 66% 57%; /* #F1A82C */
+    --posthog-purple: 262 83% 75%; /* Brighter in dark mode */
     --posthog-gray: 30 3% 75%; /* #BFBFBC */
+
+    /* Enhanced gradients for dark mode */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--posthog-orange)), hsl(var(--posthog-yellow)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--posthog-blue)), hsl(var(--posthog-purple)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+
+    /* Enhanced shadows for dark mode */
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--posthog-orange) / 0.4);
+    --shadow-glow: 0 0 40px hsl(var(--posthog-orange) / 0.3);
 
     --border: 0 0% 29%; /* #4B4B4B Dashed divider */
     --input: 0 0% 17%;
@@ -117,12 +140,51 @@ All colors MUST be HSL.
     animation: fast-pulse 0.3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
   
+  /* PostHog-inspired hover effects */
+  .posthog-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  
+  .posthog-glow {
+    @apply shadow-lg hover:shadow-xl;
+    box-shadow: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+  }
+  
+  .posthog-gradient {
+    background: var(--gradient-primary);
+  }
+  
+  .posthog-card {
+    @apply bg-card border border-border rounded-lg p-6 transition-all duration-300;
+    @apply hover:shadow-lg hover:-translate-y-1;
+  }
+  
   @keyframes fast-pulse {
     0%, 100% {
       opacity: 1;
     }
     50% {
       opacity: 0.5;
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% { 
+      transform: translateY(0px); 
+    }
+    50% { 
+      transform: translateY(-10px); 
+    }
+  }
+  
+  @keyframes slide-up {
+    0% { 
+      transform: translateY(20px); 
+      opacity: 0; 
+    }
+    100% { 
+      transform: translateY(0); 
+      opacity: 1; 
     }
   }
 }
