@@ -3,20 +3,23 @@ import { PostHogProductGrid } from "../PostHogProductGrid";
 import { PostHogButton } from "../PostHogButton";
 import { PostHogCard } from "../PostHogCard";
 import { Badge } from "@/components/ui/badge";
-import { usePageAnalytics } from "@/hooks/useAnalytics";
-import { trackButtonClick } from "@/lib/posthog";
+import { posthog } from "@/lib/posthog-client";
+import { useEffect } from "react";
 import { Sparkles, TrendingUp, Users, Zap, Star } from "lucide-react";
 
 export function PostHogDemoPage() {
-  usePageAnalytics('posthog-demo');
+  // Track page view
+  useEffect(() => {
+    posthog.capture('page_view', { page_name: 'posthog-demo' });
+  }, []);
 
   const handlePrimaryAction = () => {
-    trackButtonClick('posthog-demo-get-started', 'get-started');
+    posthog.capture('button_click', { button_name: 'posthog-demo-get-started', location: 'get-started' });
     console.log("Getting started with PostHog-inspired design!");
   };
 
   const handleSecondaryAction = () => {
-    trackButtonClick('posthog-demo-learn-more', 'learn-more');
+    posthog.capture('button_click', { button_name: 'posthog-demo-learn-more', location: 'learn-more' });
     console.log("Learning more about PostHog patterns!");
   };
 

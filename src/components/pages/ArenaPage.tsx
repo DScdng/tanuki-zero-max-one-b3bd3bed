@@ -4,13 +4,15 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import confetti from 'canvas-confetti';
-import { trackHedgehogArenaStarted, trackMaxWins, trackTanukiWins, trackArenaGameStart, trackArenaGameReset, trackArenaCharacterClick, trackArenaHandbookClick } from '@/lib/posthog';
-import { usePageAnalytics } from '@/hooks/useAnalytics';
+import { posthog } from '@/lib/posthog-client';
 import TransparencyMeter from '@/components/TransparencyMeter';
 import FakeCommitHistory from '@/components/FakeCommitHistory';
 
 const ArenaPage = () => {
-  usePageAnalytics('arena');
+  // Track page view
+  useEffect(() => {
+    posthog.capture('page_view', { page_name: 'arena' });
+  }, []);
   
   const [maxTransparency, setMaxTransparency] = useState(0.3);
   const [tanukiTransparency, setTanukiTransparency] = useState(0.3);
@@ -43,7 +45,7 @@ const ArenaPage = () => {
 
   const clickMax = useCallback(() => {
     if (!gameActive) return;
-    trackArenaCharacterClick('max', maxTransparency);
+    posthog.capture('arena_character_click', { character: 'max', current_opacity: maxTransparency });
     const newTransparency = Math.min(maxTransparency + 0.08, 1.0);
     setMaxTransparency(newTransparency);
     
@@ -51,25 +53,25 @@ const ArenaPage = () => {
       setWinner('max');
       setGameActive(false);
       triggerConfetti();
-      trackMaxWins(newTransparency, tanukiTransparency);
+      posthog.capture('max_wins', { max_opacity: newTransparency, tanuki_opacity: tanukiTransparency });
     }
   }, [maxTransparency, gameActive, triggerConfetti, tanukiTransparency]);
 
   const clickTanuki = useCallback(() => {
     if (!gameActive) return;
-    trackArenaCharacterClick('tanuki', tanukiTransparency);
+    posthog.capture('arena_character_click', { character: 'tanuki', current_opacity: tanukiTransparency });
     const newTransparency = Math.min(tanukiTransparency + 0.05, 1.0);
     setTanukiTransparency(newTransparency);
     
     if (newTransparency >= 1.0) {
       setWinner('tanuki');
       setGameActive(false);
-      trackTanukiWins(maxTransparency, newTransparency);
+      posthog.capture('tanuki_wins', { max_opacity: maxTransparency, tanuki_opacity: newTransparency });
     }
   }, [tanukiTransparency, gameActive, maxTransparency]);
 
   const resetGame = useCallback(() => {
-    trackArenaGameReset();
+    posthog.capture('arena_game_reset');
     setMaxTransparency(0.3);
     setTanukiTransparency(0.3);
     setGameActive(false);
@@ -85,7 +87,7 @@ const ArenaPage = () => {
         if (countdown > 1) {
           setCountdown(countdown - 1);
         } else {
-          trackArenaGameStart();
+          posthog.capture('arena_game_start');
           setGameActive(true);
           setGameStarted(true);
         }
@@ -104,7 +106,7 @@ const ArenaPage = () => {
         if (newTransparency >= 1.0) {
           setWinner('tanuki');
           setGameActive(false);
-          trackTanukiWins(maxTransparency, newTransparency);
+          posthog.capture('tanuki_wins', { max_opacity: maxTransparency, tanuki_opacity: newTransparency });
         }
         return newTransparency;
       });
@@ -288,7 +290,7 @@ const ArenaPage = () => {
                       <p className="text-lg mb-4">Max says: Transparency unlocked! Here's PostHog's Handbook.</p>
                       <Button 
                         onClick={() => {
-                          trackArenaHandbookClick('max');
+                          posthog.capture('arena_handbook_click', { winner: 'max' });
                           window.open('https://posthog.com/handbook', '_blank');
                         }}
                         className="mr-2"
@@ -303,7 +305,7 @@ const ArenaPage = () => {
                       <Button 
                         variant="destructive"
                         onClick={() => {
-                          trackArenaHandbookClick('tanuki');
+                          posthog.capture('arena_handbook_click', { winner: 'tanuki' });
                           window.open('https://about.gitlab.com/handbook/', '_blank');
                         }}
                         className="mr-2"

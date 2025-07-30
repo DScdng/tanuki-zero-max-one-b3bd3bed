@@ -9,7 +9,7 @@ import {
   Settings,
   Heart
 } from "lucide-react";
-import { trackNavigationClick } from '@/lib/posthog';
+import { posthog } from '@/lib/posthog-client';
 import hedgehogVsTanukiLogo from '@/assets/hedgehog-vs-tanuki-transparent.png';
 
 import {
@@ -75,10 +75,10 @@ export function AppSidebar({ currentPage, onPageChange }: AppSidebarProps) {
                 <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton 
                     isActive={currentPage === item.id}
-                    onClick={() => {
-                      trackNavigationClick(item.id, currentPage);
-                      onPageChange(item.id);
-                    }}
+            onClick={() => {
+              posthog.capture('navigation_click', { to_page: item.id, from_page: currentPage });
+              onPageChange(item.id);
+            }}
                     className="w-full"
                   >
                     <item.icon className="h-4 w-4" />

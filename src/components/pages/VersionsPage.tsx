@@ -1,10 +1,13 @@
+import { useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { trackVersionLinkClick } from '@/lib/posthog';
-import { usePageAnalytics } from '@/hooks/useAnalytics';
+import { posthog } from '@/lib/posthog-client';
 
 const VersionsPage = () => {
-  usePageAnalytics('versions');
+  // Track page view
+  useEffect(() => {
+    posthog.capture('page_view', { page_name: 'versions' });
+  }, []);
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -41,7 +44,7 @@ const VersionsPage = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-block bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors mr-2 text-sm"
-                onClick={() => trackVersionLinkClick('v0', 'live')}
+                onClick={() => posthog.capture('version_link_click', { version: 'v0', link_type: 'live' })}
               >
                 View Live v0
               </a>
@@ -50,7 +53,7 @@ const VersionsPage = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-block bg-secondary text-secondary-foreground px-4 py-2 rounded-md hover:bg-secondary/80 transition-colors text-sm"
-                onClick={() => trackVersionLinkClick('v0', 'github')}
+                onClick={() => posthog.capture('version_link_click', { version: 'v0', link_type: 'github' })}
               >
                 GitHub Repo
               </a>
@@ -99,7 +102,7 @@ const VersionsPage = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-block bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-colors text-sm"
-                onClick={() => trackVersionLinkClick('v1', 'github')}
+                onClick={() => posthog.capture('version_link_click', { version: 'v1', link_type: 'github' })}
               >
                 View v1 GitHub Repo
               </a>

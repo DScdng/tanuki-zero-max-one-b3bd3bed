@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { trackMaxExplainsClick } from '@/lib/posthog';
-import { usePageAnalytics } from '@/hooks/useAnalytics';
+import { posthog } from '@/lib/posthog-client';
 
 const ZeroToOnePage = () => {
-  usePageAnalytics('zero-to-one');
+  // Track page view
+  useEffect(() => {
+    posthog.capture('page_view', { page_name: 'zero-to-one' });
+  }, []);
   const [currentQuote, setCurrentQuote] = useState('');
   const [showQuote, setShowQuote] = useState(false);
   
@@ -19,7 +21,7 @@ const ZeroToOnePage = () => {
   ];
 
   const handleMaxExplains = () => {
-    trackMaxExplainsClick();
+    posthog.capture('max_explains_click');
     const randomQuote = maxQuotes[Math.floor(Math.random() * maxQuotes.length)];
     setCurrentQuote(randomQuote);
     setShowQuote(true);

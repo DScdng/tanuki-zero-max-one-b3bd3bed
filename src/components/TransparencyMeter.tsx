@@ -1,6 +1,6 @@
 import { Slider } from '@/components/ui/slider';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { trackTransparencySliderMoved } from '@/lib/posthog';
+import { posthog } from '@/lib/posthog-client';
 
 interface TransparencyMeterProps {
   value: number;
@@ -32,7 +32,7 @@ const TransparencyMeter = ({ value, onValueChange }: TransparencyMeterProps) => 
           onValueChange={(newValue) => {
             const newVal = newValue[0];
             onValueChange(newVal);
-            trackTransparencySliderMoved(newVal);
+            posthog.capture('transparency_slider_moved', { slider_value: newVal });
           }}
           max={100}
           step={1}

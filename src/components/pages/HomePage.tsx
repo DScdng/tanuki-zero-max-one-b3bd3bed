@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TransparencyMeter from '../TransparencyMeter';
 import FakeCommitHistory from '../FakeCommitHistory';
 
 import maxVsTanukiHero from '@/assets/max-vs-tanuki-hero.jpg';
-import { usePageAnalytics } from '@/hooks/useAnalytics';
+import { posthog } from '@/lib/posthog-client';
 
 const HomePage = () => {
-  usePageAnalytics('home');
+  // Track page view
+  useEffect(() => {
+    posthog.capture('page_view', { page_name: 'home' });
+  }, []);
   const [transparencyValue, setTransparencyValue] = useState(75);
 
   return (

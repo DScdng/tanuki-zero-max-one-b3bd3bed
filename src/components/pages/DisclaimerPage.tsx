@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { supabase, isSupabaseConfigured, type FeedbackSubmission } from '@/lib/supabase';
 import { toast } from 'sonner';
-import { trackCharlesGradeOld } from '@/lib/posthog';
+import { posthog } from '@/lib/posthog-client';
 
 
 interface DisclaimerPageProps {
@@ -97,7 +97,7 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
   const handleCharlesGrade = (grade: 'passed' | 'not_yet') => {
     localStorage.setItem('charlesGrade', grade);
     setCharlesGrade(grade);
-    trackCharlesGradeOld(grade);
+    posthog.capture('charles_grade_old', { grade });
     toast.success(`Charles' grade has been saved: ${grade === 'passed' ? '👍 Passed!' : '👎 Not Yet!'}`);
   };
 

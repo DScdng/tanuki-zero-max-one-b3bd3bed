@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
-import { trackInteriorDesignModeToggle } from '@/lib/posthog';
-import { usePageAnalytics } from '@/hooks/useAnalytics';
+import { posthog } from '@/lib/posthog-client';
 
 const AboutPage = () => {
-  usePageAnalytics('about');
+  // Track page view
+  useEffect(() => {
+    posthog.capture('page_view', { page_name: 'about' });
+  }, []);
   const [interiorDesignMode, setInteriorDesignMode] = useState(false);
 
   return (
@@ -85,7 +87,7 @@ const AboutPage = () => {
                 checked={interiorDesignMode}
                 onCheckedChange={(checked) => {
                   setInteriorDesignMode(checked);
-                  trackInteriorDesignModeToggle(checked);
+                  posthog.capture('interior_design_mode_toggle', { is_enabled: checked });
                 }}
               />
             </CardTitle>

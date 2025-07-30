@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { trackCommitLogRotated } from '@/lib/posthog';
+import { posthog } from '@/lib/posthog-client';
 
 interface FakeCommitHistoryProps {
   transparencyValue: number;
@@ -87,7 +87,10 @@ const FakeCommitHistory = ({ transparencyValue }: FakeCommitHistoryProps) => {
     const interval = setInterval(() => {
       setCurrentCommit((prev) => {
         const newIndex = (prev + 1) % currentCommits.length;
-        trackCommitLogRotated(currentCommits[newIndex], transparencyValue);
+        posthog.capture('commit_log_rotated', { 
+          commit_message: currentCommits[newIndex], 
+          transparency_level: transparencyValue 
+        });
         return newIndex;
       });
     }, 3000);

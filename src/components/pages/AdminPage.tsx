@@ -1,17 +1,20 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { supabase, isSupabaseConfigured, type FeedbackSubmission } from '@/lib/supabase';
 import { toast } from 'sonner';
-import { usePageAnalytics } from '@/hooks/useAnalytics';
+import { posthog } from '@/lib/posthog-client';
 
 interface AdminPageProps {
   onNavigate: (page: string) => void;
 }
 
 const AdminPage = ({ onNavigate }: AdminPageProps) => {
-  usePageAnalytics('admin');
+  // Track page view
+  useEffect(() => {
+    posthog.capture('page_view', { page_name: 'admin' });
+  }, []);
   const [feedbackList, setFeedbackList] = useState<FeedbackSubmission[]>([]);
   const [loading, setLoading] = useState(true);
 

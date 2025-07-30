@@ -1,9 +1,8 @@
-import { usePageAnalytics } from "@/hooks/useAnalytics";
+import { useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { trackButtonClick } from "@/lib/posthog";
 import { posthog } from "@/lib/posthog-client";
 import { 
   Activity,
@@ -23,21 +22,24 @@ interface PostHogIntegrationPageProps {
 }
 
 export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegrationPageProps) {
-  usePageAnalytics('posthog-integration');
+  // Track page view
+  useEffect(() => {
+    posthog.capture('page_view', { page_name: 'posthog-integration' });
+  }, []);
 
   // Real PostHog feature flag check
   const showBetaFeatures = posthog.isFeatureEnabled('beta-features');
   const experimentVariant = posthog.getFeatureFlag('homepage-experiment');
 
   const handleFeatureFlagDemo = () => {
-    trackButtonClick('feature-flag-test', 'integration-demo');
+    posthog.capture('button_click', { button_name: 'feature-flag-test', location: 'integration-demo' });
     // This will actually check a real feature flag
     const flagValue = posthog.isFeatureEnabled('demo-feature');
     alert(`Real feature flag 'demo-feature' is: ${flagValue ? 'ENABLED' : 'DISABLED'}`);
   };
 
   const handleExperimentDemo = () => {
-    trackButtonClick('experiment-test', 'integration-demo');
+    posthog.capture('button_click', { button_name: 'experiment-test', location: 'integration-demo' });
     // This will get the actual experiment variant
     const variant = posthog.getFeatureFlag('homepage-experiment');
     alert(`You are in experiment variant: ${variant || 'control'}`);
@@ -169,7 +171,7 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
                   Native survey widgets will automatically appear on this page when configured in your PostHog dashboard.
                 </p>
                 <Button 
-                  onClick={() => trackButtonClick('survey-setup-guide', 'integration-demo')}
+                  onClick={() => posthog.capture('button_click', { button_name: 'survey-setup-guide', location: 'integration-demo' })}
                   variant="outline"
                   size="sm"
                 >
@@ -199,7 +201,7 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Button 
-                  onClick={() => trackButtonClick('demo-event-1', 'live-tracking')}
+                  onClick={() => posthog.capture('button_click', { button_name: 'demo-event-1', location: 'live-tracking' })}
                   variant="outline"
                   size="sm"
                   className="w-full"
@@ -207,7 +209,7 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
                   Track Click 1
                 </Button>
                 <Button 
-                  onClick={() => trackButtonClick('demo-event-2', 'live-tracking')}
+                  onClick={() => posthog.capture('button_click', { button_name: 'demo-event-2', location: 'live-tracking' })}
                   variant="outline"
                   size="sm"
                   className="w-full"
@@ -215,7 +217,7 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
                   Track Click 2
                 </Button>
                 <Button 
-                  onClick={() => trackButtonClick('demo-event-3', 'live-tracking')}
+                  onClick={() => posthog.capture('button_click', { button_name: 'demo-event-3', location: 'live-tracking' })}
                   variant="outline"
                   size="sm"
                   className="w-full"
@@ -223,7 +225,7 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
                   Track Click 3
                 </Button>
                 <Button 
-                  onClick={() => trackButtonClick('demo-event-4', 'live-tracking')}
+                  onClick={() => posthog.capture('button_click', { button_name: 'demo-event-4', location: 'live-tracking' })}
                   variant="outline"
                   size="sm"
                   className="w-full"

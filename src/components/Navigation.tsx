@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { trackNavigationClick } from '@/lib/posthog';
+import { posthog } from '@/lib/posthog-client';
 import hedgehogVsTanukiLogo from '@/assets/hedgehog-vs-tanuki-logo.png';
 
 interface NavigationProps {
@@ -48,7 +48,7 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
                   variant={currentPage === item.id ? "default" : "ghost"}
                   size="sm"
                   onClick={() => {
-                    trackNavigationClick(item.id, currentPage);
+                    posthog.capture('navigation_click', { to_page: item.id, from_page: currentPage });
                     onPageChange(item.id);
                   }}
                   className="transition-all duration-200 hover:bg-accent text-xs font-medium px-2 py-1 h-8 rounded-md"
@@ -63,7 +63,7 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
               <select
                 value={currentPage}
                 onChange={(e) => {
-                  trackNavigationClick(e.target.value, currentPage);
+                  posthog.capture('navigation_click', { to_page: e.target.value, from_page: currentPage });
                   onPageChange(e.target.value);
                 }}
                 className="bg-card border border-border rounded-md px-2 py-1 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary h-8"

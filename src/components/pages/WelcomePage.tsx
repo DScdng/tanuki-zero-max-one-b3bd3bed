@@ -1,15 +1,18 @@
+import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import godzillaMaxVictory from '@/assets/godzilla-max-victory.png';
-import { trackStartExperienceClicked } from '@/lib/posthog';
-import { usePageAnalytics } from '@/hooks/useAnalytics';
+import { posthog } from '@/lib/posthog-client';
 
 interface WelcomePageProps {
   onNavigate: (page: string) => void;
 }
 
 const WelcomePage = ({ onNavigate }: WelcomePageProps) => {
-  usePageAnalytics('welcome');
+  // Track page view
+  useEffect(() => {
+    posthog.capture('page_view', { page_name: 'welcome' });
+  }, []);
   const pages = [
     {
       id: 'home',
