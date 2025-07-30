@@ -5,8 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import confetti from 'canvas-confetti';
 import { posthog } from '@/lib/posthog-client';
-import TransparencyMeter from '@/components/TransparencyMeter';
-import FakeCommitHistory from '@/components/FakeCommitHistory';
 
 const ArenaPage = () => {
   // Track page view
@@ -321,25 +319,6 @@ const ArenaPage = () => {
         </Card>
       </section>
 
-      {/* Dynamic Commit History */}
-      <section className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Transparency Meter */}
-          <div className="space-y-4">
-            <TransparencyMeter 
-              value={Math.round((maxTransparency + tanukiTransparency) / 2 * 100)} 
-              onValueChange={() => {}} 
-            />
-          </div>
-          
-          {/* Live Commit History */}
-          <div className="space-y-4">
-            <FakeCommitHistory 
-              transparencyValue={Math.round((maxTransparency + tanukiTransparency) / 2 * 100)} 
-            />
-          </div>
-        </div>
-      </section>
 
       {/* Battle Stats */}
       <section className="max-w-4xl mx-auto">
