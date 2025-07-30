@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,9 +22,24 @@ interface PostHogIntegrationPageProps {
 }
 
 export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegrationPageProps) {
+  // State for dynamic iframe height
+  const [dashboardHeight, setDashboardHeight] = useState(400);
+
   // Track page view
   useEffect(() => {
     posthog.capture('page_view', { page_name: 'posthog-integration' });
+  }, []);
+
+  // Listen for PostHog iframe height messages
+  useEffect(() => {
+    const handleMessage = (e: MessageEvent) => {
+      if (e.data.event === 'posthog:dimensions' && e.data.name === 'PostHogDashboard') {
+        setDashboardHeight(e.data.height);
+      }
+    };
+    
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
   }, []);
 
   // Real PostHog feature flag check
@@ -122,27 +137,28 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
             </CardHeader>
             <CardContent>
               <Alert className="mb-4">
-                <Activity className="w-4 h-4" />
+                <Eye className="w-4 h-4" />
                 <AlertDescription>
-                  <strong>Setup Required:</strong> Create a shareable dashboard in PostHog and embed the iframe here.
+                  <strong>Live PostHog Dashboard:</strong> This is your actual PostHog dashboard embedded with dynamic height adjustment.
                 </AlertDescription>
               </Alert>
               
-              <div className="bg-muted/50 rounded-lg p-8 text-center min-h-[400px] flex items-center justify-center">
-                <div className="space-y-4">
-                  <BarChart3 className="w-16 h-16 text-muted-foreground mx-auto" />
-                  <h3 className="text-lg font-semibold">PostHog Dashboard</h3>
-                  <p className="text-muted-foreground max-w-md">
-                    Real-time analytics dashboard will appear here when you embed your PostHog dashboard iframe.
-                  </p>
-                  <div className="space-y-2 text-sm text-muted-foreground">
-                    <p>1. Go to PostHog → Dashboards</p>
-                    <p>2. Create or select a dashboard</p>
-                    <p>3. Click "Share" → "Embed"</p>
-                    <p>4. Copy iframe code here</p>
-                  </div>
-                </div>
+              <div className="border rounded-lg overflow-hidden bg-background">
+                <iframe
+                  name="PostHogDashboard"
+                  width="100%"
+                  height={dashboardHeight}
+                  frameBorder="0"
+                  allowFullScreen
+                  src="https://eu.posthog.com/embedded/tMmJJpIvPbaI7-VvZEmfLhnzFiHkrQ"
+                  className="w-full"
+                  title="PostHog Analytics Dashboard"
+                />
               </div>
+              
+              <p className="text-sm text-muted-foreground mt-2">
+                Dashboard height automatically adjusts based on content. All data is live from your PostHog instance.
+              </p>
             </CardContent>
           </Card>
         </section>
