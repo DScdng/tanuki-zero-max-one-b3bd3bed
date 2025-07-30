@@ -36,7 +36,7 @@ const PostHogSurvey = ({
       setShowTextInput(true);
     } else {
       setShowTextInput(false);
-      submitSurvey(option);
+      // Don't auto-submit, wait for confirmation
     }
   };
 
@@ -87,6 +87,13 @@ const PostHogSurvey = ({
     }
   };
 
+  const resetSurvey = () => {
+    setSelectedOption(null);
+    setTextFeedback('');
+    setIsSubmitted(false);
+    setShowTextInput(false);
+  };
+
   if (isSubmitted) {
     return (
       <Card className="bg-primary/5 border-primary/20">
@@ -101,6 +108,13 @@ const PostHogSurvey = ({
           <p className="text-sm text-muted-foreground mt-2 italic">
             See? I really do know how to use PostHog features! 😉
           </p>
+          <Button 
+            onClick={resetSurvey}
+            variant="outline"
+            className="mt-4"
+          >
+            Submit Another Response
+          </Button>
         </CardContent>
       </Card>
     );
@@ -120,13 +134,12 @@ const PostHogSurvey = ({
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
-        {!showTextInput ? (
+        {!showTextInput && !selectedOption ? (
           <div className="grid gap-3">
             <Button
               onClick={() => handleOptionSelect('passed')}
               size="lg"
               className="text-lg py-6 bg-green-600 hover:bg-green-700 text-white"
-              disabled={selectedOption !== null}
             >
               👍 "You passed this round!"
             </Button>
@@ -136,7 +149,6 @@ const PostHogSurvey = ({
               size="lg"
               variant="destructive"
               className="text-lg py-6"
-              disabled={selectedOption !== null}
             >
               👎 "Not yet, Max needs work."
             </Button>
@@ -146,10 +158,36 @@ const PostHogSurvey = ({
               size="lg"
               variant="outline"
               className="text-lg py-6 border-primary/30 hover:bg-primary/10"
-              disabled={selectedOption !== null}
             >
               💬 "I want to leave detailed feedback"
             </Button>
+          </div>
+        ) : !showTextInput && selectedOption ? (
+          <div className="space-y-4">
+            <div className="p-4 bg-muted/50 rounded-lg text-center">
+              <p className="text-lg font-medium">
+                You selected: {selectedOption === 'passed' ? '👍 "You passed this round!"' : '👎 "Not yet, Max needs work."'}
+              </p>
+              <p className="text-sm text-muted-foreground mt-2">
+                Confirm your response or change your mind.
+              </p>
+            </div>
+            <div className="flex gap-2">
+              <Button
+                onClick={() => submitSurvey(selectedOption)}
+                size="lg"
+                className="flex-1"
+              >
+                Confirm & Submit
+              </Button>
+              <Button
+                onClick={() => setSelectedOption(null)}
+                variant="outline"
+                size="lg"
+              >
+                Change Response
+              </Button>
+            </div>
           </div>
         ) : (
           <div className="space-y-4">
@@ -179,7 +217,7 @@ const PostHogSurvey = ({
                 }}
                 variant="outline"
               >
-                Back
+                Back to Options
               </Button>
             </div>
           </div>
