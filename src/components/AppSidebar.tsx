@@ -6,7 +6,7 @@ import {
   Gamepad2, 
   BarChart3, 
   FileText, 
-  Settings,
+  Lightbulb,
   Heart
 } from "lucide-react";
 import { posthog } from '@/lib/posthog-client';
@@ -37,9 +37,9 @@ const navItems = [
   { id: 'zero-to-one', label: 'Zero-to-One Playground', icon: Play },
   { id: 'versions', label: 'Version 0 vs Version 1', icon: GitCompare },
   { id: 'arena', label: 'Hedgehog Arena', icon: Gamepad2 },
-  { id: 'posthog-integration', label: 'PostHog Integration', icon: BarChart3 },
   { id: 'disclaimer', label: 'Disclaimer and Feedback', icon: FileText },
-  { id: 'admin', label: 'Admin', icon: Settings },
+  { id: 'aha-moment', label: 'Real 0→1 AHA Moment', icon: Lightbulb },
+  { id: 'posthog-integration', label: 'PostHog Integration', icon: BarChart3 },
 ];
 
 export function AppSidebar({ currentPage, onPageChange }: AppSidebarProps) {

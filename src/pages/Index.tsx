@@ -11,7 +11,7 @@ import VersionsPage from '@/components/pages/VersionsPage';
 import ArenaPage from '@/components/pages/ArenaPage';
 import PostHogIntegrationPage from '@/components/pages/PostHogIntegrationPage';
 import DisclaimerPage from '@/components/pages/DisclaimerPage';
-import AdminPage from '@/components/pages/AdminPage';
+import AhaMomentPage from '@/components/pages/AhaMomentPage';
 
 const Index = () => {
   const [currentPage, setCurrentPage] = useState('welcome');
@@ -40,8 +40,8 @@ const Index = () => {
         return <PostHogIntegrationPage onNavigate={setCurrentPage} />;
       case 'disclaimer':
         return <DisclaimerPage onNavigate={setCurrentPage} />;
-      case 'admin':
-        return <AdminPage onNavigate={setCurrentPage} />;
+      case 'aha-moment':
+        return <AhaMomentPage />;
       default:
         return <WelcomePage onNavigate={setCurrentPage} />;
     }
