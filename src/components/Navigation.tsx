@@ -18,7 +18,7 @@ const Navigation = ({ currentPage, onPageChange }: NavigationProps) => {
     { id: 'versions', label: 'Version 0 vs Version 1' },
     { id: 'arena', label: 'Hedgehog Arena' },
     { id: 'posthog-integration', label: 'PostHog Integration' },
-    { id: 'disclaimer', label: 'Disclaimer, PostHog Survey and Scoring' },
+    { id: 'disclaimer', label: 'Disclaimer and Feedback' },
     { id: 'admin', label: 'Admin' },
   ];
 

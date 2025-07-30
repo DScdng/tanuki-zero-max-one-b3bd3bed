@@ -38,7 +38,7 @@ const navItems = [
   { id: 'versions', label: 'Version 0 vs Version 1', icon: GitCompare },
   { id: 'arena', label: 'Hedgehog Arena', icon: Gamepad2 },
   { id: 'posthog-integration', label: 'PostHog Integration', icon: BarChart3 },
-  { id: 'disclaimer', label: 'Disclaimer, PostHog Survey and Scoring', icon: FileText },
+  { id: 'disclaimer', label: 'Disclaimer and Feedback', icon: FileText },
   { id: 'admin', label: 'Admin', icon: Settings },
 ];
 
