@@ -146,12 +146,12 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
               <div className="border rounded-lg overflow-hidden bg-background">
                 <iframe
                   name="PostHogDashboard"
-                  width="10%"
+                  width="100%"
                   height={dashboardHeight}
                   frameBorder="0"
                   allowFullScreen
                   src="https://eu.posthog.com/embedded/tMmJJpIvPbaI7-VvZEmfLhnzFiHkrQ"
-                  className="w-[10%]"
+                  className="w-full"
                   title="PostHog Analytics Dashboard"
                 />
               </div>
