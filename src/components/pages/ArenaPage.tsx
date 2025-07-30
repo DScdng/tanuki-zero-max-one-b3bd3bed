@@ -2,30 +2,36 @@ import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import maxVsTanukiHero from '@/assets/max-vs-tanuki-hero.jpg';
-import godzillaMaxVictory from '@/assets/godzilla-max-victory.png';
+import { Progress } from '@/components/ui/progress';
 import confetti from 'canvas-confetti';
 import { trackHedgehogArenaStarted, trackMaxWins, trackTanukiWins, trackArenaGameStart, trackArenaGameReset, trackArenaCharacterClick, trackArenaHandbookClick } from '@/lib/posthog';
 import { usePageAnalytics } from '@/hooks/useAnalytics';
+import TransparencyMeter from '@/components/TransparencyMeter';
+import FakeCommitHistory from '@/components/FakeCommitHistory';
 
 const ArenaPage = () => {
   usePageAnalytics('arena');
   
-  const [maxOpacity, setMaxOpacity] = useState(0.3);
-  const [tanukiOpacity, setTanukiOpacity] = useState(0.3);
+  const [maxTransparency, setMaxTransparency] = useState(0.3);
+  const [tanukiTransparency, setTanukiTransparency] = useState(0.3);
   const [gameActive, setGameActive] = useState(false);
   const [winner, setWinner] = useState<string | null>(null);
   const [countdown, setCountdown] = useState(3);
   const [gameStarted, setGameStarted] = useState(false);
+  const [currentStat, setCurrentStat] = useState(0);
 
-  const stats = [
-    { label: "Transparency Level", tanuki: "75%", max: "100%", winner: "max" },
-    { label: "Open Source Commitment", tanuki: "High", max: "Everything", winner: "max" },
-    { label: "Salary Transparency", tanuki: "Bands", max: "Exact Numbers", winner: "max" },
-    { label: "Mascot Coolness", tanuki: "Traditional", max: "Sunglasses", winner: "max" },
-    { label: "Documentation", tanuki: "Good", max: "Obsessive", winner: "max" },
+  const battleStats = [
+    { label: "Open Source Commitment", tanuki: "75%", max: "100%", winner: "max" },
+    { label: "Documentation Quality", tanuki: "Good", max: "Obsessive", winner: "max" },
     { label: "Meme Potential", tanuki: "Solid", max: "Legendary", winner: "max" },
+    { label: "Mascot Swag", tanuki: "Traditional", max: "Sunglasses", winner: "max" },
+    { label: "Community Vibes", tanuki: "Corporate", max: "Family", winner: "max" },
+    { label: "Transparency Score", tanuki: "85%", max: "100%", winner: "max" },
   ];
+
+  // Convert transparency values to percentage for progress bars
+  const maxProgress = ((maxTransparency - 0.3) / 0.7) * 100;
+  const tanukiProgress = ((tanukiTransparency - 0.3) / 0.7) * 100;
 
   const triggerConfetti = useCallback(() => {
     confetti({
@@ -37,39 +43,40 @@ const ArenaPage = () => {
 
   const clickMax = useCallback(() => {
     if (!gameActive) return;
-    trackArenaCharacterClick('max', maxOpacity);
-    const newOpacity = Math.min(maxOpacity + 0.05, 1.0);
-    setMaxOpacity(newOpacity);
+    trackArenaCharacterClick('max', maxTransparency);
+    const newTransparency = Math.min(maxTransparency + 0.08, 1.0);
+    setMaxTransparency(newTransparency);
     
-    if (newOpacity >= 1.0) {
+    if (newTransparency >= 1.0) {
       setWinner('max');
       setGameActive(false);
       triggerConfetti();
-      trackMaxWins(newOpacity, tanukiOpacity);
+      trackMaxWins(newTransparency, tanukiTransparency);
     }
-  }, [maxOpacity, gameActive, triggerConfetti, tanukiOpacity]);
+  }, [maxTransparency, gameActive, triggerConfetti, tanukiTransparency]);
 
   const clickTanuki = useCallback(() => {
     if (!gameActive) return;
-    trackArenaCharacterClick('tanuki', tanukiOpacity);
-    const newOpacity = Math.min(tanukiOpacity + 0.05, 1.0);
-    setTanukiOpacity(newOpacity);
+    trackArenaCharacterClick('tanuki', tanukiTransparency);
+    const newTransparency = Math.min(tanukiTransparency + 0.05, 1.0);
+    setTanukiTransparency(newTransparency);
     
-    if (newOpacity >= 1.0) {
+    if (newTransparency >= 1.0) {
       setWinner('tanuki');
       setGameActive(false);
-      trackTanukiWins(maxOpacity, newOpacity);
+      trackTanukiWins(maxTransparency, newTransparency);
     }
-  }, [tanukiOpacity, gameActive, maxOpacity]);
+  }, [tanukiTransparency, gameActive, maxTransparency]);
 
   const resetGame = useCallback(() => {
     trackArenaGameReset();
-    setMaxOpacity(0.3);
-    setTanukiOpacity(0.3);
+    setMaxTransparency(0.3);
+    setTanukiTransparency(0.3);
     setGameActive(false);
     setGameStarted(false);
     setCountdown(3);
     setWinner(null);
+    setCurrentStat(0);
   }, []);
 
   useEffect(() => {
@@ -92,19 +99,28 @@ const ArenaPage = () => {
     if (!gameActive) return;
     
     const interval = setInterval(() => {
-      setTanukiOpacity(prev => {
-        const newOpacity = Math.min(prev + 0.03, 1.0);
-        if (newOpacity >= 1.0) {
+      setTanukiTransparency(prev => {
+        const newTransparency = Math.min(prev + 0.04, 1.0);
+        if (newTransparency >= 1.0) {
           setWinner('tanuki');
           setGameActive(false);
-          trackTanukiWins(maxOpacity, newOpacity);
+          trackTanukiWins(maxTransparency, newTransparency);
         }
-        return newOpacity;
+        return newTransparency;
       });
-    }, 800);
+    }, 500);
 
     return () => clearInterval(interval);
-  }, [gameActive]);
+  }, [gameActive, maxTransparency]);
+
+  // Rotate battle stats every 2 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentStat(prev => (prev + 1) % battleStats.length);
+    }, 2000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="space-y-8">
@@ -155,67 +171,104 @@ const ArenaPage = () => {
               </div>
             )}
 
-            <div className="flex justify-center items-center gap-16 mb-8">
-              {/* Tanuki */}
-              <div className="text-center flex-1">
-                <div 
-                  className="w-24 h-24 mb-4 transition-opacity duration-300 flex items-center justify-center mx-auto"
-                  style={{ opacity: tanukiOpacity }}
-                >
-                  <img 
-                    src="/lovable-uploads/1da7b2b5-a55a-42c4-bc6d-86345a46a1c1.png" 
-                    alt="GitLab Tanuki" 
-                    className="w-full h-full object-contain"
+            {/* Progress Battle Arena */}
+            <div className="space-y-8">
+              {/* Live Progress Bars */}
+              <div className="space-y-6">
+                {/* Max Progress */}
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                      <div 
+                        className="w-12 h-12 transition-opacity duration-300 flex items-center justify-center"
+                        style={{ opacity: maxTransparency }}
+                      >
+                        <img 
+                          src="/lovable-uploads/896b5bc5-ab2a-4f03-9999-d2b5652cfaff.png" 
+                          alt="PostHog Max hedgehog" 
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <span className="text-lg font-bold text-primary">Max</span>
+                    </div>
+                    <span className="text-lg font-mono text-primary">
+                      {Math.round(maxTransparency * 100)}%
+                    </span>
+                  </div>
+                  <Progress 
+                    value={maxProgress} 
+                    className="h-4 bg-secondary/50"
                   />
                 </div>
-                <p className="text-lg font-semibold">Tanuki</p>
-                <p className="text-sm text-muted-foreground text-center">
-                  "Yeah, GitLab used a scary logo back in time"
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Transparency: {Math.round(tanukiOpacity * 100)}%
-                </p>
+
+                {/* Battle VS Indicator */}
+                <div className="text-center">
+                  <span className="text-2xl font-bold text-muted-foreground">⚔️ VS ⚔️</span>
+                </div>
+
+                {/* Tanuki Progress */}
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                      <div 
+                        className="w-12 h-12 transition-opacity duration-300 flex items-center justify-center"
+                        style={{ opacity: tanukiTransparency }}
+                      >
+                        <img 
+                          src="/lovable-uploads/1da7b2b5-a55a-42c4-bc6d-86345a46a1c1.png" 
+                          alt="GitLab Tanuki" 
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <span className="text-lg font-bold text-destructive">Tanuki</span>
+                    </div>
+                    <span className="text-lg font-mono text-destructive">
+                      {Math.round(tanukiTransparency * 100)}%
+                    </span>
+                  </div>
+                  <Progress 
+                    value={tanukiProgress} 
+                    className="h-4 bg-secondary/50 [&>div]:bg-destructive"
+                  />
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex justify-center gap-8">
+                <Button 
+                  onClick={clickMax}
+                  disabled={!gameActive}
+                  size="lg"
+                  className={`px-8 ${gameActive && !winner ? 'animate-pulse shadow-lg shadow-primary/50' : ''}`}
+                >
+                  🚀 Boost Max!
+                </Button>
                 <Button 
                   onClick={clickTanuki}
                   disabled={!gameActive}
                   variant="destructive"
-                  className={`mt-2 ${gameActive && !winner ? 'animate-pulse' : ''}`}
                   size="lg"
+                  className={`px-8 ${gameActive && !winner ? 'animate-pulse shadow-lg shadow-destructive/50' : ''}`}
                 >
                   😈 Boost Tanuki!
                 </Button>
               </div>
 
-              <div className="text-4xl">⚡</div>
-
-              {/* Max */}
-              <div className="text-center flex-1">
-                <div 
-                  className="w-24 h-24 mb-4 transition-opacity duration-300 flex items-center justify-center mx-auto"
-                  style={{ opacity: maxOpacity }}
-                >
-                  <img 
-                    src="/lovable-uploads/896b5bc5-ab2a-4f03-9999-d2b5652cfaff.png" 
-                    alt="PostHog Max hedgehog" 
-                    className="w-full h-full object-contain"
-                  />
+              {/* Live Battle Stat */}
+              {gameStarted && (
+                <div className="text-center p-4 bg-secondary/20 rounded-lg border">
+                  <div className="text-sm font-semibold text-muted-foreground mb-1">
+                    Live Battle Stat
+                  </div>
+                  <div className="text-lg font-bold">
+                    {battleStats[currentStat].label}
+                  </div>
+                  <div className="flex justify-center gap-4 mt-2">
+                    <span className="text-destructive">Tanuki: {battleStats[currentStat].tanuki}</span>
+                    <span className="text-primary">Max: {battleStats[currentStat].max}</span>
+                  </div>
                 </div>
-                <p className="text-lg font-semibold">Max</p>
-                <p className="text-sm text-muted-foreground">
-                  Not scared away!
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Transparency: {Math.round(maxOpacity * 100)}%
-                </p>
-                <Button 
-                  onClick={clickMax}
-                  disabled={!gameActive}
-                  className={`mt-2 ${gameActive && !winner ? 'fast-pulse bg-primary hover:bg-primary/90' : ''}`}
-                  size="lg"
-                >
-                  🚀 Boost Max!
-                </Button>
-              </div>
+              )}
             </div>
 
             {/* Winner Message - Overlay */}
@@ -266,6 +319,25 @@ const ArenaPage = () => {
         </Card>
       </section>
 
+      {/* Dynamic Commit History */}
+      <section className="max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Transparency Meter */}
+          <div className="space-y-4">
+            <TransparencyMeter 
+              value={Math.round((maxTransparency + tanukiTransparency) / 2 * 100)} 
+              onValueChange={() => {}} 
+            />
+          </div>
+          
+          {/* Live Commit History */}
+          <div className="space-y-4">
+            <FakeCommitHistory 
+              transparencyValue={Math.round((maxTransparency + tanukiTransparency) / 2 * 100)} 
+            />
+          </div>
+        </div>
+      </section>
 
       {/* Battle Stats */}
       <section className="max-w-4xl mx-auto">
@@ -278,7 +350,7 @@ const ArenaPage = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {stats.map((stat, index) => (
+              {battleStats.map((stat, index) => (
                 <div key={index} className="grid grid-cols-4 gap-4 items-center p-3 rounded-md hover:bg-secondary/50 transition-colors">
                   <div className="font-semibold">{stat.label}</div>
                   <div className="text-center">
