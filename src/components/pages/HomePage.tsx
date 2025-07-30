@@ -49,16 +49,6 @@ const HomePage = () => {
         <FakeCommitHistory transparencyValue={transparencyValue} />
       </section>
 
-      {/* Real-time Analytics Note */}
-      <section className="py-4">
-        <div className="bg-gradient-to-r from-[#F54E00]/10 to-[#1D4AFF]/10 p-6 rounded-lg border border-primary/20">
-          <h3 className="text-lg font-semibold mb-2 text-center">📊 Live PostHog Analytics</h3>
-          <p className="text-muted-foreground text-center">
-            Every interaction on this page is tracked in real-time via PostHog. 
-            Check the PostHog Integration page to see native features in action!
-          </p>
-        </div>
-      </section>
 
       {/* Transparency Philosophy */}
       <section className="bg-card p-8 rounded-lg">
