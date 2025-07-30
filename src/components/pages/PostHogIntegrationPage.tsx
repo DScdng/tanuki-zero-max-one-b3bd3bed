@@ -23,7 +23,7 @@ interface PostHogIntegrationPageProps {
 
 export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegrationPageProps) {
   // State for dynamic iframe height
-  const [dashboardHeight, setDashboardHeight] = useState(250);
+  const [dashboardHeight, setDashboardHeight] = useState(40);
 
   // Track page view
   useEffect(() => {
@@ -146,12 +146,12 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
               <div className="border rounded-lg overflow-hidden bg-background">
                 <iframe
                   name="PostHogDashboard"
-                  width="100%"
+                  width="10%"
                   height={dashboardHeight}
                   frameBorder="0"
                   allowFullScreen
                   src="https://eu.posthog.com/embedded/tMmJJpIvPbaI7-VvZEmfLhnzFiHkrQ"
-                  className="w-full"
+                  className="w-[10%]"
                   title="PostHog Analytics Dashboard"
                 />
               </div>
