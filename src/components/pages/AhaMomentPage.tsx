@@ -19,17 +19,20 @@ export default function AhaMomentPage() {
         <CardContent className="prose prose-lg max-w-none">
           <div className="space-y-6 text-lg leading-relaxed">
             <p>
-              When I started working on Max's Transparency Fight Club, my goal was to take my 3rd-round interview at PostHog from 0 to 1 something creative, fun, and undeniably different. I dove straight into 'vibe coding' with Lovable because it felt fast. In just hours, I had a web app running with fake A/B tests, custom surveys, and event tracking. I thought I'd nailed the '1' moment.
+              When I started working on Max's Transparency Fight Club, my goal was simple: turn my 3rd round PostHog interview into something creative, fun, and totally different. I jumped into vibe coding with Lovable because it felt super fast. Within hours, I had a web app with fake A/B tests, custom surveys, and event tracking. I thought I nailed it.
             </p>
 
             <p>
-              But here's the twist; when I looked closer, I realized I wasn't really using PostHog at all. Lovable had basically copy-pasted PostHog features and built its own overengineered versions. I was still at zero, just with fancier HTML.
+              But here's the twist. When I looked closer, I realized I wasn't actually using PostHog at all. Lovable had basically copied PostHog's features and built its own complicated versions. I was still at zero, just with prettier code.
             </p>
 
             <p>
-              So I stopped, stripped out the fake features, and rebuilt the app using PostHog's native power, real feature flags, real surveys, real event tracking, all managed directly in the PostHog dashboard. That's when I understood the difference between building something flashy and building something real.
+              So I stopped everything. I stripped out all the fake features and rebuilt the app using actual PostHog. Real feature flags, real surveys, real event tracking. Everything managed directly in the PostHog dashboard. That's when it clicked. There's a huge difference between building something that looks cool and building something that actually works.
             </p>
 
+            <p className="font-semibold text-primary text-xl">
+              I should have read the PostHog docs way earlier.
+            </p>
           </div>
         </CardContent>
       </Card>
