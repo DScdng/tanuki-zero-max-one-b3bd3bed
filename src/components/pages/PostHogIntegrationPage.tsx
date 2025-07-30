@@ -23,7 +23,7 @@ interface PostHogIntegrationPageProps {
 
 export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegrationPageProps) {
   // State for dynamic iframe height
-  const [dashboardHeight, setDashboardHeight] = useState(400);
+  const [dashboardHeight, setDashboardHeight] = useState(250);
 
   // Track page view
   useEffect(() => {
