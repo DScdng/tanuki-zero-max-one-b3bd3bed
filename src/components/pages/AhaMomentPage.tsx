@@ -23,23 +23,11 @@ export default function AhaMomentPage() {
             </p>
 
             <p>
-              But here's the twist. When I looked closer, I realized I wasn't actually using PostHog at all. Lovable had basically copied PostHog's features and built its own complicated versions. I was still at zero, just with prettier code.
+              But when I looked closer, I realized something was totally wrong. I wasn't actually using PostHog at all. Lovable had rebuilt PostHog features from scratch instead of connecting to the real thing.
             </p>
 
             <p>
-              But here's what I didn't realize:
-            </p>
-
-            <p>
-              Lovable wasn't just building my app — it was rebuilding PostHog features from scratch.
-            </p>
-
-            <p>
-              Instead of showing PostHog's power, I was accidentally building my own analytics platform on top of Supabase (for event storage and feedback), with fake dashboards and fake tracking events.
-            </p>
-
-            <p>
-              The whole point of PostHog — using a single, powerful analytics + feature flag + experiment platform — was lost. I had overcomplicated something that should have been simple.
+              Instead of showing PostHog's power, I was accidentally building my own analytics platform on top of Supabase with fake dashboards and fake tracking events. The whole point of PostHog (a single, powerful analytics + feature flag + experiment platform) was completely lost. I had overcomplicated something that should have been simple.
             </p>
 
             <p>
