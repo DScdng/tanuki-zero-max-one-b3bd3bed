@@ -3,7 +3,6 @@ import { AppSidebar } from '@/components/AppSidebar';
 import { HedgehogToggleButton, HedgehogCharacter } from '@/components/HedgehogToggle';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
-import WelcomePage from '@/components/pages/WelcomePage';
 import HomePage from '@/components/pages/HomePage';
 import AboutPage from '@/components/pages/AboutPage';
 import ZeroToOnePage from '@/components/pages/ZeroToOnePage';
@@ -14,7 +13,7 @@ import DisclaimerPage from '@/components/pages/DisclaimerPage';
 import AhaMomentPage from '@/components/pages/AhaMomentPage';
 
 const Index = () => {
-  const [currentPage, setCurrentPage] = useState('welcome');
+  const [currentPage, setCurrentPage] = useState('home');
   const [hedgehogVisible, setHedgehogVisible] = useState(false);
 
   // Scroll to top when page changes
@@ -24,10 +23,8 @@ const Index = () => {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'welcome':
-        return <WelcomePage onNavigate={setCurrentPage} />;
       case 'home':
-        return <HomePage />;
+        return <HomePage onNavigate={setCurrentPage} />;
       case 'about':
         return <AboutPage />;
       case 'zero-to-one':
@@ -41,7 +38,7 @@ const Index = () => {
       case 'aha-moment':
         return <AhaMomentPage />;
       default:
-        return <WelcomePage onNavigate={setCurrentPage} />;
+        return <HomePage onNavigate={setCurrentPage} />;
     }
   };
 

@@ -5,8 +5,7 @@ import {
   Gamepad2, 
   BarChart3, 
   FileText, 
-  Lightbulb,
-  Heart
+  Lightbulb
 } from "lucide-react";
 import { posthog } from '@/lib/posthog-client';
 import hedgehogVsTanukiLogo from '@/assets/hedgehog-vs-tanuki-transparent.png';
@@ -30,7 +29,6 @@ interface AppSidebarProps {
 }
 
 const navItems = [
-  { id: 'welcome', label: 'Welcome', icon: Heart },
   { id: 'home', label: 'Home', icon: Home },
   { id: 'about', label: 'About Me', icon: User },
   { id: 'zero-to-one', label: 'Zero-to-One Playground', icon: Play },
