@@ -51,10 +51,10 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
         {/* Header */}
         <section className="text-center">
           <Badge className="mb-4 bg-[#F54E00] text-white">
-            Native PostHog Demo
+            WIP PostHog Demo
           </Badge>
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            PostHog Features Demo
+            WIP PostHog Features Demo
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             This page demonstrates actual PostHog native features - not custom implementations. 

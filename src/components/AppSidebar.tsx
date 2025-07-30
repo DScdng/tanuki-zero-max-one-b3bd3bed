@@ -39,7 +39,7 @@ const navItems = [
   { id: 'arena', label: 'Hedgehog Arena', icon: Gamepad2 },
   { id: 'disclaimer', label: 'Disclaimer and Feedback', icon: FileText },
   { id: 'aha-moment', label: 'AHA Moment', icon: Lightbulb },
-  { id: 'posthog-integration', label: 'PostHog Demo', icon: BarChart3 },
+  { id: 'posthog-integration', label: 'WIP PostHog Demo', icon: BarChart3 },
 ];
 
 export function AppSidebar({ currentPage, onPageChange }: AppSidebarProps) {
