@@ -13,7 +13,7 @@ export default function AhaMomentPage() {
       <Card className="border-primary/20 shadow-lg">
         <CardHeader className="text-center pb-6">
           <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Real 0→1 AHA Moment
+            AHA Moment
           </CardTitle>
         </CardHeader>
         <CardContent className="prose prose-lg max-w-none">
@@ -30,9 +30,6 @@ export default function AhaMomentPage() {
               So I stopped, stripped out the fake features, and rebuilt the app using PostHog's native power, real feature flags, real surveys, real event tracking, all managed directly in the PostHog dashboard. That's when I understood the difference between building something flashy and building something real.
             </p>
 
-            <p>
-              I like to think that's the real 0 to1 moment, not the tool I used to code, but realizing that PostHog itself was the thing I needed to showcase, not replicate.
-            </p>
           </div>
         </CardContent>
       </Card>

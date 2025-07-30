@@ -38,7 +38,7 @@ const navItems = [
   { id: 'versions', label: 'Version 0 vs Version 1', icon: GitCompare },
   { id: 'arena', label: 'Hedgehog Arena', icon: Gamepad2 },
   { id: 'disclaimer', label: 'Disclaimer and Feedback', icon: FileText },
-  { id: 'aha-moment', label: 'Real 0→1 AHA Moment', icon: Lightbulb },
+  { id: 'aha-moment', label: 'AHA Moment', icon: Lightbulb },
   { id: 'posthog-integration', label: 'PostHog Integration', icon: BarChart3 },
 ];
 
