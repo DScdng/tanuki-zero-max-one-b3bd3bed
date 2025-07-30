@@ -32,11 +32,11 @@ const PostHogSurvey = ({
 
   const handleOptionSelect = (option: string) => {
     setSelectedOption(option);
-    if (option === 'feedback') {
+    if (option === 'passed' || option === 'not_yet') {
+      // Show optional feedback input for voting options
       setShowTextInput(true);
-    } else {
-      setShowTextInput(false);
-      // Don't auto-submit, wait for confirmation
+    } else if (option === 'feedback') {
+      setShowTextInput(true);
     }
   };
 
@@ -69,8 +69,14 @@ const PostHogSurvey = ({
   };
 
   const handleTextSubmit = () => {
-    if (textFeedback.trim()) {
-      submitSurvey('feedback', textFeedback);
+    if (selectedOption) {
+      submitSurvey(selectedOption, textFeedback.trim() || undefined);
+    }
+  };
+
+  const handleSubmitWithoutText = () => {
+    if (selectedOption) {
+      submitSurvey(selectedOption);
     }
   };
 
@@ -134,7 +140,7 @@ const PostHogSurvey = ({
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
-        {!showTextInput && !selectedOption ? (
+        {!showTextInput ? (
           <div className="grid gap-3">
             <Button
               onClick={() => handleOptionSelect('passed')}
@@ -159,61 +165,55 @@ const PostHogSurvey = ({
               variant="outline"
               className="text-lg py-6 border-primary/30 hover:bg-primary/10"
             >
-              💬 "I want to leave detailed feedback"
+              💬 "I want to leave detailed feedback only"
             </Button>
-          </div>
-        ) : !showTextInput && selectedOption ? (
-          <div className="space-y-4">
-            <div className="p-4 bg-muted/50 rounded-lg text-center">
-              <p className="text-lg font-medium">
-                You selected: {selectedOption === 'passed' ? '👍 "You passed this round!"' : '👎 "Not yet, Max needs work."'}
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                Confirm your response or change your mind.
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <Button
-                onClick={() => submitSurvey(selectedOption)}
-                size="lg"
-                className="flex-1"
-              >
-                Confirm & Submit
-              </Button>
-              <Button
-                onClick={() => setSelectedOption(null)}
-                variant="outline"
-                size="lg"
-              >
-                Change Response
-              </Button>
-            </div>
           </div>
         ) : (
           <div className="space-y-4">
+            {selectedOption !== 'feedback' && (
+              <div className="p-4 bg-muted/50 rounded-lg text-center">
+                <p className="text-lg font-medium">
+                  Your vote: {selectedOption === 'passed' ? '👍 "You passed this round!"' : '👎 "Not yet, Max needs work."'}
+                </p>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Want to add some detailed feedback with your vote?
+                </p>
+              </div>
+            )}
             <div>
               <label className="text-sm font-medium text-muted-foreground">
-                Share your detailed thoughts:
+                {selectedOption === 'feedback' ? 'Share your detailed thoughts:' : 'Additional feedback (optional):'}
               </label>
               <Textarea
                 value={textFeedback}
                 onChange={(e) => setTextFeedback(e.target.value)}
-                placeholder="Tell me what you really think about this transparency showdown..."
+                placeholder={selectedOption === 'feedback' 
+                  ? "Tell me what you really think about this transparency showdown..." 
+                  : "Any additional thoughts or suggestions..."}
                 className="mt-2 min-h-32"
               />
             </div>
             <div className="flex gap-2">
               <Button
                 onClick={handleTextSubmit}
-                disabled={!textFeedback.trim()}
+                disabled={selectedOption === 'feedback' && !textFeedback.trim()}
                 className="flex-1"
               >
-                Submit Feedback
+                {textFeedback.trim() ? 'Submit with Feedback' : 'Submit Vote'}
               </Button>
+              {selectedOption !== 'feedback' && (
+                <Button
+                  onClick={handleSubmitWithoutText}
+                  variant="outline"
+                >
+                  Submit Vote Only
+                </Button>
+              )}
               <Button
                 onClick={() => {
                   setShowTextInput(false);
                   setSelectedOption(null);
+                  setTextFeedback('');
                 }}
                 variant="outline"
               >
