@@ -16,23 +16,13 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
   const pages = [
     {
       id: 'about',
-      title: 'About Me and Charles',
-      description: 'My career path and why I\'m ready to join Team Max.'
-    },
-    {
-      id: 'zero-to-one',
-      title: 'Zero-to-One Playground',
-      description: 'My take on 0→1 thinking, AI, and vibe coding.'
+      title: 'About Me',
+      description: 'My career path, Zero to One insights, and why I\'m ready to join Team Max.'
     },
     {
       id: 'arena',
       title: 'Hedgehog Arena',
       description: 'The ultimate transparency battle: can you beat Tanuki?'
-    },
-    {
-      id: 'disclaimer',
-      title: 'Disclaimer & Countdown',
-      description: 'Legal disclaimers, live countdown timer, and feedback form for Charles.'
     },
     {
       id: 'aha-moment',
@@ -41,8 +31,13 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
     },
     {
       id: 'posthog-integration',
-      title: 'PostHog Demo',
+      title: 'WIP PostHog Demo',
       description: 'Real PostHog analytics integration and features.'
+    },
+    {
+      id: 'disclaimer',
+      title: 'Disclaimer and Feedback',
+      description: 'Legal disclaimers, live countdown timer, and feedback form for Charles.'
     }
   ];
 
