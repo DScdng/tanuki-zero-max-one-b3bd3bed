@@ -37,7 +37,7 @@ const Index = () => {
       case 'arena':
         return <ArenaPage />;
       case 'posthog-integration':
-        return <PostHogIntegrationPage />;
+        return <PostHogIntegrationPage onNavigate={setCurrentPage} />;
       case 'disclaimer':
         return <DisclaimerPage onNavigate={setCurrentPage} />;
       case 'admin':

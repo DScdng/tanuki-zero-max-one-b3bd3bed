@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { supabase, isSupabaseConfigured, type FeedbackSubmission } from '@/lib/supabase';
 import { toast } from 'sonner';
 import { trackCharlesGradeOld } from '@/lib/posthog';
-import PostHogSurvey from '@/components/PostHogSurvey';
+
 
 interface DisclaimerPageProps {
   onNavigate: (page: string) => void;
@@ -201,13 +201,28 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
         </section>
 
 
-        {/* PostHog Survey - Charles' Official Grade Station */}
+        {/* Native PostHog Survey - Set up in PostHog Dashboard */}
         <section>
-          <PostHogSurvey 
-            surveyId="charles-interview-feedback-2025"
-            title="Charles' Official Grade Station"
-            description="This is the official place to grade my transparency showdown! (Don't worry, it's powered by PostHog.)"
-          />
+          <div className="bg-gradient-to-br from-[#F54E00]/5 to-[#1D4AFF]/5 border border-primary/20 rounded-lg p-8 text-center">
+            <h3 className="text-2xl font-bold text-primary mb-4">
+              Charles' Official Grade Station
+            </h3>
+            <p className="text-muted-foreground mb-4">
+              PostHog native survey will appear here automatically when configured in your PostHog dashboard.
+            </p>
+            <div className="text-xs text-muted-foreground opacity-75">
+              📊 Powered by PostHog Native Surveys
+            </div>
+            <div className="mt-4 p-4 bg-muted/50 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                <strong>Setup Instructions:</strong><br/>
+                1. Go to PostHog Dashboard → Surveys<br/>
+                2. Create "Open feedback" survey<br/>
+                3. Target this page with URL targeting<br/>
+                4. Survey will automatically appear here
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* Legacy Grading Buttons (Backup) */}

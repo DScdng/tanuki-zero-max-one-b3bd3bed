@@ -1,106 +1,327 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { usePageAnalytics } from '@/hooks/useAnalytics';
-import LiveStatsWidget from '@/components/LiveStatsWidget';
-import FeatureFlagDemo from '@/components/FeatureFlagDemo';
-import ABTestDemo from '@/components/ABTestDemo';
+import { usePageAnalytics } from "@/hooks/useAnalytics";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { trackButtonClick } from "@/lib/posthog";
+import { posthog } from "@/lib/posthog-client";
+import { 
+  Activity,
+  BarChart3, 
+  Flag, 
+  MessageSquare, 
+  Play, 
+  Settings,
+  TrendingUp,
+  Users,
+  Eye,
+  TestTube
+} from "lucide-react";
 
-const PostHogIntegrationPage = () => {
+interface PostHogIntegrationPageProps {
+  onNavigate: (page: string) => void;
+}
+
+export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegrationPageProps) {
   usePageAnalytics('posthog-integration');
 
+  // Real PostHog feature flag check
+  const showBetaFeatures = posthog.isFeatureEnabled('beta-features');
+  const experimentVariant = posthog.getFeatureFlag('homepage-experiment');
+
+  const handleFeatureFlagDemo = () => {
+    trackButtonClick('feature-flag-test', 'integration-demo');
+    // This will actually check a real feature flag
+    const flagValue = posthog.isFeatureEnabled('demo-feature');
+    alert(`Real feature flag 'demo-feature' is: ${flagValue ? 'ENABLED' : 'DISABLED'}`);
+  };
+
+  const handleExperimentDemo = () => {
+    trackButtonClick('experiment-test', 'integration-demo');
+    // This will get the actual experiment variant
+    const variant = posthog.getFeatureFlag('homepage-experiment');
+    alert(`You are in experiment variant: ${variant || 'control'}`);
+  };
+
   return (
-    <div className="space-y-8">
-      {/* Hero Section */}
-      <section className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-primary">
-          Transparency you can measure — powered by PostHog.
-        </h1>
-        
-        <div className="max-w-3xl mx-auto">
-          <Card className="bg-[#1D4AFF]/10 border-[#1D4AFF]/30">
-            <CardContent className="p-6">
-              <p className="text-lg text-muted-foreground">
-                Every click, slider move, and page view in this app is tracked with PostHog. 
-                Max isn't just transparent; he's observable. During my interview with Charles, 
-                I can pull up real-time data to show how this app is being used — because 
-                transparency isn't just a joke here, it's a feature.
+    <div className="min-h-screen bg-background py-8 px-4">
+      <div className="max-w-6xl mx-auto space-y-8">
+        {/* Header */}
+        <section className="text-center">
+          <Badge className="mb-4 bg-[#F54E00] text-white">
+            Native PostHog Integration
+          </Badge>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Real PostHog Features in Action
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            This page demonstrates actual PostHog native features - not custom implementations. 
+            Everything here connects to real PostHog APIs and dashboard configurations.
+          </p>
+        </section>
+
+        {/* Real Feature Flags */}
+        <section>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Flag className="w-5 h-5 text-[#F54E00]" />
+                Native Feature Flags
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <Alert>
+                <Settings className="w-4 h-4" />
+                <AlertDescription>
+                  <strong>Setup Required:</strong> Create feature flags 'beta-features', 'demo-feature', and 'homepage-experiment' in your PostHog dashboard.
+                </AlertDescription>
+              </Alert>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="p-4 border rounded-lg">
+                  <h4 className="font-semibold mb-2">Beta Features Flag</h4>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    Current status: <strong>{showBetaFeatures ? 'ENABLED' : 'DISABLED'}</strong>
+                  </p>
+                  {showBetaFeatures && (
+                    <Badge variant="secondary">🎉 Beta features are live!</Badge>
+                  )}
+                </div>
+                
+                <div className="p-4 border rounded-lg">
+                  <h4 className="font-semibold mb-2">Experiment Variant</h4>
+                  <p className="text-sm text-muted-foreground mb-3">
+                    You are in: <strong>{experimentVariant || 'control'}</strong>
+                  </p>
+                  <Badge variant="outline">Variant: {experimentVariant || 'control'}</Badge>
+                </div>
+              </div>
+
+              <div className="flex gap-2">
+                <Button onClick={handleFeatureFlagDemo} size="sm">
+                  Test Feature Flag
+                </Button>
+                <Button onClick={handleExperimentDemo} variant="outline" size="sm">
+                  Check Experiment
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Embedded PostHog Dashboard */}
+        <section>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <BarChart3 className="w-5 h-5 text-[#F54E00]" />
+                Native Dashboard Embed
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Alert className="mb-4">
+                <Activity className="w-4 h-4" />
+                <AlertDescription>
+                  <strong>Setup Required:</strong> Create a shareable dashboard in PostHog and embed the iframe here.
+                </AlertDescription>
+              </Alert>
+              
+              <div className="bg-muted/50 rounded-lg p-8 text-center min-h-[400px] flex items-center justify-center">
+                <div className="space-y-4">
+                  <BarChart3 className="w-16 h-16 text-muted-foreground mx-auto" />
+                  <h3 className="text-lg font-semibold">PostHog Dashboard</h3>
+                  <p className="text-muted-foreground max-w-md">
+                    Real-time analytics dashboard will appear here when you embed your PostHog dashboard iframe.
+                  </p>
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <p>1. Go to PostHog → Dashboards</p>
+                    <p>2. Create or select a dashboard</p>
+                    <p>3. Click "Share" → "Embed"</p>
+                    <p>4. Copy iframe code here</p>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Native Survey Integration */}
+        <section>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <MessageSquare className="w-5 h-5 text-[#F54E00]" />
+                Native Surveys
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Alert className="mb-4">
+                <MessageSquare className="w-4 h-4" />
+                <AlertDescription>
+                  <strong>Setup Required:</strong> Create surveys in PostHog dashboard with URL targeting for this page.
+                </AlertDescription>
+              </Alert>
+              
+              <div className="bg-gradient-to-br from-[#F54E00]/5 to-[#1D4AFF]/5 rounded-lg p-6 text-center">
+                <MessageSquare className="w-12 h-12 text-[#F54E00] mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">PostHog Survey Widget</h3>
+                <p className="text-muted-foreground mb-4">
+                  Native survey widgets will automatically appear on this page when configured in your PostHog dashboard.
+                </p>
+                <Button 
+                  onClick={() => trackButtonClick('survey-setup-guide', 'integration-demo')}
+                  variant="outline"
+                  size="sm"
+                >
+                  View Setup Guide
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Real-time Events */}
+        <section>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Activity className="w-5 h-5 text-[#F54E00]" />
+                Live Event Tracking
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Alert className="mb-4">
+                <TrendingUp className="w-4 h-4" />
+                <AlertDescription>
+                  All your interactions on this page are being tracked live in PostHog. Check Events → Live events.
+                </AlertDescription>
+              </Alert>
+              
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <Button 
+                  onClick={() => trackButtonClick('demo-event-1', 'live-tracking')}
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                >
+                  Track Click 1
+                </Button>
+                <Button 
+                  onClick={() => trackButtonClick('demo-event-2', 'live-tracking')}
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                >
+                  Track Click 2
+                </Button>
+                <Button 
+                  onClick={() => trackButtonClick('demo-event-3', 'live-tracking')}
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                >
+                  Track Click 3
+                </Button>
+                <Button 
+                  onClick={() => trackButtonClick('demo-event-4', 'live-tracking')}
+                  variant="outline"
+                  size="sm"
+                  className="w-full"
+                >
+                  Track Click 4
+                </Button>
+              </div>
+              
+              <p className="text-sm text-muted-foreground mt-4">
+                Click any button above and check your PostHog dashboard to see the event appear in real-time!
               </p>
             </CardContent>
           </Card>
-        </div>
-      </section>
+        </section>
 
-      {/* Live Stats */}
-      <section className="max-w-4xl mx-auto">
-        <LiveStatsWidget />
-      </section>
+        {/* Setup Instructions */}
+        <section>
+          <Card className="border-[#F54E00]/20 bg-gradient-to-br from-[#F54E00]/5 to-[#1D4AFF]/5">
+            <CardHeader>
+              <CardTitle className="text-[#F54E00]">PostHog Native Features Setup Guide</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <Flag className="w-4 h-4" />
+                    Feature Flags
+                  </h4>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• Go to PostHog → Feature Flags</li>
+                    <li>• Create 'beta-features' (boolean)</li>
+                    <li>• Create 'demo-feature' (boolean)</li>
+                    <li>• Create 'homepage-experiment' (multivariate)</li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <MessageSquare className="w-4 h-4" />
+                    Surveys
+                  </h4>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• Go to PostHog → Surveys</li>
+                    <li>• Create "Open feedback" survey</li>
+                    <li>• Set URL targeting for this page</li>
+                    <li>• Enable and launch survey</li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <BarChart3 className="w-4 h-4" />
+                    Dashboard Embed
+                  </h4>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• Create dashboard in PostHog</li>
+                    <li>• Add insights and charts</li>
+                    <li>• Share → Embed → Copy iframe</li>
+                    <li>• Paste iframe code in component</li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-2 flex items-center gap-2">
+                    <TestTube className="w-4 h-4" />
+                    A/B Testing
+                  </h4>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    <li>• Go to PostHog → Experiments</li>
+                    <li>• Create new experiment</li>
+                    <li>• Set control and test variants</li>
+                    <li>• Define success metrics</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
 
-      {/* Live Event Tracking */}
-      <section className="max-w-4xl mx-auto">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Live Event Tracking</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg mb-4">
-              PostHog is tracking every interaction in real-time. The numbers above show today's activity.
-            </p>
-            <div className="bg-muted/50 p-4 rounded-lg">
-              <p className="text-sm">
-                <strong>Currently tracking:</strong> page views, scroll depth, navigation clicks, 
-                transparency slider moves, arena clicks, time spent on pages, and more.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      </section>
-
-      {/* Session Replay */}
-      <section className="max-w-4xl mx-auto">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-2xl">Session Replay</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-lg">
-              Every rage click on Tanuki's smug face is recorded, just like real product teams 
-              use Session Replay to debug user behavior.
-            </p>
-            <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg border border-yellow-200">
-              <p className="text-sm">
-                <strong>⚠️ Warning:</strong> Your session is being recorded for transparency reasons. 
-                Charles, when you watch the replay later, you'll see exactly how you interacted with this app!
-              </p>
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Session replay data helps understand user behavior patterns and identify UX issues.
-            </div>
-          </CardContent>
-        </Card>
-      </section>
-
-      {/* Feature Flags */}
-      <section className="max-w-4xl mx-auto">
-        <FeatureFlagDemo />
-      </section>
-
-      {/* A/B Testing */}
-      <section className="max-w-4xl mx-auto">
-        <ABTestDemo />
-      </section>
-
-      {/* Closing */}
-      <section className="max-w-3xl mx-auto text-center">
-        <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/30">
-          <CardContent className="p-8">
-            <p className="text-xl font-semibold text-primary">
-              PostHog is what makes this app my real 0→1 moment. The rest — Git, coding, 
-              AI tools — is still 0. Real 1 is seeing everything in PostHog.
-            </p>
-          </CardContent>
-        </Card>
-      </section>
+        {/* Navigation */}
+        <section className="text-center py-8">
+          <div className="flex gap-4 justify-center flex-wrap">
+            <Button 
+              onClick={() => onNavigate('arena')}
+              variant="outline"
+              size="lg"
+            >
+              🥊 Back to Hedgehog Arena
+            </Button>
+            <Button 
+              onClick={() => onNavigate('disclaimer')}
+              size="lg"
+            >
+              📋 View Disclaimer & Feedback
+            </Button>
+          </div>
+        </section>
+      </div>
     </div>
   );
-};
-
-export default PostHogIntegrationPage;
+}
