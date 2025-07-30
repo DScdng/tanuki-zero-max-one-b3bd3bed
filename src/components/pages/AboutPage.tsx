@@ -116,6 +116,54 @@ const AboutPage = () => {
         </Card>
       </section>
 
+      {/* Zero to One Insights */}
+      <section className="max-w-4xl mx-auto">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-2xl text-primary">Zero to One Insights</CardTitle>
+            <p className="text-muted-foreground">
+              After Charles' quiz ("Tech Bro or Dictator?"), where I scored 2/8, I finally read Zero to One. Here's what I learned.
+            </p>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid gap-6">
+              {/* Contrarian Question */}
+              <div className="border-l-4 border-primary pl-4">
+                <h3 className="text-lg font-semibold text-primary">Contrarian Question</h3>
+                <blockquote className="text-base italic text-muted-foreground my-2">
+                  "What important truth do very few people agree with you on?"
+                </blockquote>
+                <p className="text-foreground font-semibold">
+                  My answer: "PostHog's Max is cooler than GitLab's Tanuki. And yes, I'll fight you on that."
+                </p>
+              </div>
+
+              {/* Vertical vs Horizontal */}
+              <div className="border-l-4 border-accent pl-4">
+                <h3 className="text-lg font-semibold">Vertical vs Horizontal Progress</h3>
+                <p className="text-muted-foreground mb-2">Horizontal = copying. Vertical = doing something new.</p>
+                <ul className="space-y-1 text-sm text-muted-foreground">
+                  <li><strong>GitLab:</strong> "We copied the handbook-first idea and made it cool."</li>
+                  <li><strong>PostHog:</strong> "We strapped sunglasses on Max and went vertical."</li>
+                  <li><strong>Me:</strong> "I went from 0 (hand-coded HTML pain) to 1 (AI-assisted vibe coding)."</li>
+                </ul>
+              </div>
+
+              {/* Max's Philosophy */}
+              <div className="border-l-4 border-posthog-orange pl-4">
+                <h3 className="text-lg font-semibold text-posthog-orange">Max's 0→1 Philosophy</h3>
+                <p className="text-foreground">
+                  <strong>"If GitLab taught me 0, PostHog's AI, culture, and Max's shades took me to 1. 🦔"</strong>
+                </p>
+                <p className="text-muted-foreground text-sm mt-2">
+                  Why spend months building what AI can prototype in hours? The real 0→1 is knowing when to use tools like PostHog.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
       {/* Extra Charles Fun */}
       <section className="max-w-2xl mx-auto">
         <Card>

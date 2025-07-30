@@ -5,7 +5,7 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import HomePage from '@/components/pages/HomePage';
 import AboutPage from '@/components/pages/AboutPage';
-import ZeroToOnePage from '@/components/pages/ZeroToOnePage';
+
 
 import ArenaPage from '@/components/pages/ArenaPage';
 import PostHogIntegrationPage from '@/components/pages/PostHogIntegrationPage';
@@ -27,8 +27,6 @@ const Index = () => {
         return <HomePage onNavigate={setCurrentPage} />;
       case 'about':
         return <AboutPage />;
-      case 'zero-to-one':
-        return <ZeroToOnePage />;
       case 'arena':
         return <ArenaPage />;
       case 'posthog-integration':

@@ -1,7 +1,6 @@
 import { 
   Home, 
   User, 
-  Play, 
   Gamepad2, 
   BarChart3, 
   FileText, 
@@ -31,11 +30,10 @@ interface AppSidebarProps {
 const navItems = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'about', label: 'About Me', icon: User },
-  { id: 'zero-to-one', label: 'Zero-to-One Playground', icon: Play },
   { id: 'arena', label: 'Hedgehog Arena', icon: Gamepad2 },
-  { id: 'disclaimer', label: 'Disclaimer and Feedback', icon: FileText },
   { id: 'aha-moment', label: 'AHA Moment', icon: Lightbulb },
   { id: 'posthog-integration', label: 'WIP PostHog Demo', icon: BarChart3 },
+  { id: 'disclaimer', label: 'Disclaimer and Feedback', icon: FileText },
 ];
 
 export function AppSidebar({ currentPage, onPageChange }: AppSidebarProps) {
