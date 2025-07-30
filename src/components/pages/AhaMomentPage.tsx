@@ -31,7 +31,7 @@ export default function AhaMomentPage() {
             </p>
 
             <p>
-              This app is now both my prep and demo, it shows my journey, my humor, and my ability to learn fast. But more importantly, it's powered by PostHog the right way. I like to think that's the real 0 to1 moment, not the tool I used to code, but realizing that PostHog itself was the thing I needed to showcase, not replicate.
+              I like to think that's the real 0 to1 moment, not the tool I used to code, but realizing that PostHog itself was the thing I needed to showcase, not replicate.
             </p>
           </div>
         </CardContent>
