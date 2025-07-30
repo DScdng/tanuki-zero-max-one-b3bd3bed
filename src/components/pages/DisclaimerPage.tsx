@@ -177,65 +177,6 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
           </Card>
         </section>
 
-        {/* Feedback Section for Charles */}
-        <section>
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl text-center">
-                Charles, leave your thoughts after our chat:
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Name (optional)</Label>
-                  <Input
-                    id="name"
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => handleInputChange('name', e.target.value)}
-                    placeholder="Your name here..."
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="sandwich">Favorite sandwich type</Label>
-                  <Input
-                    id="sandwich"
-                    type="text"
-                    value={formData.sandwich}
-                    onChange={(e) => handleInputChange('sandwich', e.target.value)}
-                    placeholder="Ajvar sandwich? Serbian specialty?"
-                    required
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="feedback">Feedback</Label>
-                  <Textarea
-                    id="feedback"
-                    value={formData.feedback}
-                    onChange={(e) => handleInputChange('feedback', e.target.value)}
-                    placeholder="Your thoughts on the transparency fight club..."
-                    className="min-h-32"
-                    required
-                  />
-                </div>
-
-                <div className="text-center">
-                  <Button 
-                    type="submit" 
-                    size="lg"
-                    disabled={isSubmitting}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground px-8"
-                  >
-                    {isSubmitting ? "Sending..." : "Send Transparency Feedback"}
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-        </section>
 
         {/* The Real Spin Section */}
         <section>
