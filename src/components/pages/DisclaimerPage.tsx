@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { supabase, isSupabaseConfigured, type FeedbackSubmission } from '@/lib/supabase';
 import { toast } from 'sonner';
 import { trackCharlesGradeOld } from '@/lib/posthog';
+import PostHogSurvey from '@/components/PostHogSurvey';
 
 interface DisclaimerPageProps {
   onNavigate: (page: string) => void;
@@ -259,16 +260,25 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
         </section>
 
 
-        {/* Charles Grading Section */}
+        {/* PostHog Survey - Charles' Official Grade Station */}
         <section>
-          <Card className="mt-8">
+          <PostHogSurvey 
+            surveyId="charles-interview-feedback-2025"
+            title="Charles' Official Grade Station"
+            description="This is the official place to grade my transparency showdown! (Don't worry, it's powered by PostHog.)"
+          />
+        </section>
+
+        {/* Legacy Grading Buttons (Backup) */}
+        <section>
+          <Card className="mt-8 bg-secondary/20">
             <CardHeader>
-              <CardTitle className="text-xl font-bold text-center">
-                Grade My Interview
+              <CardTitle className="text-lg font-bold text-center text-muted-foreground">
+                Legacy Grade System (Backup)
               </CardTitle>
               {charlesGrade && (
-                <p className="text-center text-lg font-semibold">
-                  Charles' Last Grade: {charlesGrade === 'passed' ? '👍 You Passed!' : '👎 Not Yet!'}
+                <p className="text-center text-sm font-semibold text-muted-foreground">
+                  Last Grade: {charlesGrade === 'passed' ? '👍 You Passed!' : '👎 Not Yet!'}
                 </p>
               )}
             </CardHeader>
@@ -276,21 +286,23 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
               <div className="flex gap-4 justify-center">
                 <Button
                   onClick={() => handleCharlesGrade('passed')}
-                  size="lg"
-                  className="text-2xl px-8 py-6 bg-green-600 hover:bg-green-700"
+                  size="sm"
+                  variant="outline"
+                  className="text-sm px-4 py-2"
                 >
-                  👍 Passed
+                  👍 Passed (Old System)
                 </Button>
                 <Button
                   onClick={() => handleCharlesGrade('not_yet')}
-                  size="lg"
-                  className="text-2xl px-8 py-6 bg-red-600 hover:bg-red-700"
+                  size="sm"
+                  variant="outline"
+                  className="text-sm px-4 py-2"
                 >
-                  👎 Not Yet
+                  👎 Not Yet (Old System)
                 </Button>
               </div>
               <p className="text-xs text-muted-foreground text-center italic">
-                Don't click if you're not Charles! (This is a vibe-coding feedback loop 😅)
+                This is the old feedback system. Please use the PostHog Survey above for the best experience! 📊
               </p>
             </CardContent>
           </Card>
