@@ -3,66 +3,42 @@ import { PostHogProductGrid } from "../PostHogProductGrid";
 import { PostHogButton } from "../PostHogButton";
 import { PostHogCard } from "../PostHogCard";
 import { Badge } from "@/components/ui/badge";
-import { posthog, useFeatureFlag } from "@/lib/posthog-client";
+import { posthog } from "@/lib/posthog-client";
 import { useEffect } from "react";
-import { Sparkles, TrendingUp, Users, Zap, Star, TestTube } from "lucide-react";
+import { Sparkles, TrendingUp, Users, Zap, Star } from "lucide-react";
 
 export function PostHogDemoPage() {
-  // Feature flag for testing (50% rollout)
-  const showTestFeatures = useFeatureFlag('demo-buttons-test');
-  
   // Track page view
   useEffect(() => {
-    posthog.capture('page_view', { 
-      page_name: 'posthog-demo',
-      feature_flag_enabled: showTestFeatures 
-    });
-  }, [showTestFeatures]);
+    posthog.capture('page_view', { page_name: 'posthog-demo' });
+  }, []);
 
   const handlePrimaryAction = () => {
-    posthog.capture('button_click', { 
-      button_name: 'posthog-demo-get-started', 
-      location: 'get-started',
-      feature_flag_enabled: showTestFeatures
-    });
+    posthog.capture('button_click', { button_name: 'posthog-demo-get-started', location: 'get-started' });
     console.log("Getting started with PostHog-inspired design!");
   };
 
   const handleSecondaryAction = () => {
-    posthog.capture('button_click', { 
-      button_name: 'posthog-demo-learn-more', 
-      location: 'learn-more',
-      feature_flag_enabled: showTestFeatures
-    });
+    posthog.capture('button_click', { button_name: 'posthog-demo-learn-more', location: 'learn-more' });
     console.log("Learning more about PostHog patterns!");
   };
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Feature Flag Demo Banner */}
-      {showTestFeatures && (
-        <div className="bg-gradient-to-r from-posthog-orange to-posthog-red text-white px-4 py-3 text-center text-sm font-medium">
-          <div className="flex items-center justify-center gap-2">
-            <TestTube className="w-4 h-4" />
-            🎯 Feature Flag Test Active - You're seeing the enhanced version (50% rollout)
-          </div>
-        </div>
-      )}
-
       {/* PostHog-inspired Hero Section */}
       <PostHogHero
-        title={showTestFeatures ? "How smart developers build winning products" : "How developers build successful products"}
+        title="How developers build successful products"
         subtitle="The single platform to analyze, test, observe, and deploy new features"
         description="PostHog provides every tool you need to build a successful product including product analytics, feature flags, session replay, A/B testing, and more."
         primaryAction={{
-          text: showTestFeatures ? "Start free trial" : "Get started - free",
+          text: "Get started - free",
           onClick: handlePrimaryAction
         }}
         secondaryAction={{
           text: "Talk to a human",
           onClick: handleSecondaryAction
         }}
-        badge={showTestFeatures ? "🚀 Enhanced: AI-powered insights" : "New: AI-powered insights"}
+        badge="New: AI-powered insights"
       />
 
       {/* Product Grid Section */}
