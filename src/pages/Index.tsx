@@ -13,11 +13,8 @@ import DisclaimerPage from '@/components/pages/DisclaimerPage';
 import AhaMomentPage from '@/components/pages/AhaMomentPage';
 
 const Index = () => {
-  console.log('Index component rendering...');
   const [currentPage, setCurrentPage] = useState('home');
   const [hedgehogVisible, setHedgehogVisible] = useState(false);
-  
-  console.log('Current page:', currentPage);
 
   // Scroll to top when page changes
   useEffect(() => {

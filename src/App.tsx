@@ -10,9 +10,7 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => {
-  console.log('App rendering...');
-  return (
+const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="light" storageKey="ui-theme">
       <TooltipProvider>
@@ -28,7 +26,6 @@ const App = () => {
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
-  );
-};
+);
 
 export default App;
