@@ -14,7 +14,7 @@ if (typeof window !== 'undefined') {
   // You'll only need to call this on the code for when the first time a user visits.
   posthog.onFeatureFlags(function() {
     // feature flags should be available at this point
-    if (posthog.isFeatureEnabled('my-flag')) {
+    if (posthog.isFeatureEnabled('test-feature-flag-button')) {
       // do something
     }
   });
