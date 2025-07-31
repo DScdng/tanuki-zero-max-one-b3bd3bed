@@ -48,9 +48,16 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
 
   const handleFeatureFlagDemo = () => {
     posthog.capture('button_click', { button_name: 'feature-flag-test', location: 'integration-demo' });
-    // This will actually check a real feature flag
-    const flagValue = posthog.isFeatureEnabled('demo-feature');
-    alert(`Real feature flag 'demo-feature' is: ${flagValue ? 'ENABLED' : 'DISABLED'}`);
+    
+    // Check for control variant
+    if (posthog.getFeatureFlag('demo-feature') === 'control') {
+      alert('🔵 Control Experience: You are seeing the original version!');
+    } else if (posthog.getFeatureFlag('demo-feature') === 'test') {
+      alert('🟢 Test Experience: You are seeing the new improved version!');
+    } else {
+      // Default fallback behavior (good practice)
+      alert('⚪ Default Experience: Feature flag not configured or user not in experiment');
+    }
   };
 
   const handleExperimentDemo = () => {
