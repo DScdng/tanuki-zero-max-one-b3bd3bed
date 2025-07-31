@@ -113,7 +113,7 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
           <div className="bg-card/70 backdrop-blur-sm rounded-lg border border-border/50 p-4">
             <div 
               id="posthog-embed-container" 
-              className="relative overflow-hidden rounded-lg transition-all duration-500"
+              className="relative overflow-hidden rounded-lg"
               style={{ width: '100%', height: '300px' }}
             >
               <iframe
@@ -123,25 +123,6 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
                 allowFullScreen
                 title="PostHog Analytics Dashboard - Worldwide Visitors"
               />
-              <button
-                onClick={() => {
-                  const container = document.getElementById('posthog-embed-container');
-                  if (container) {
-                    const isExpanded = container.style.height === '80vh';
-                    container.style.width = isExpanded ? '100%' : '95vw';
-                    container.style.height = isExpanded ? '300px' : '80vh';
-                    container.style.position = isExpanded ? 'relative' : 'fixed';
-                    container.style.top = isExpanded ? 'auto' : '10vh';
-                    container.style.left = isExpanded ? 'auto' : '2.5vw';
-                    container.style.zIndex = isExpanded ? 'auto' : '50';
-                    container.style.backgroundColor = isExpanded ? 'transparent' : 'hsl(var(--background))';
-                    container.style.border = isExpanded ? 'none' : '1px solid hsl(var(--border))';
-                  }
-                }}
-                className="absolute top-2 right-2 bg-primary text-primary-foreground px-3 py-1 rounded text-sm hover:bg-primary/80 transition-colors"
-              >
-                📊 Expand
-              </button>
             </div>
             <p className="text-sm text-muted-foreground mt-3 text-center">
               Live analytics showing the global reach of the Transparency Fight Club
