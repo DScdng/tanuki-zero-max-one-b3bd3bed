@@ -113,23 +113,31 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
               </div>
 
               <div className="flex gap-2">
-                {/* Feature Flag: Show button ONLY if flag is enabled */}
-                {showDemoFeature && (
-                  <Button onClick={handleFeatureFlagDemo} size="sm">
-                    🚩 Test Feature Flag
-                  </Button>
-                )}
+                {/* Feature Flag: Use PostHog's native pattern */}
+                <Button 
+                  onClick={handleFeatureFlagDemo} 
+                  size="sm"
+                  style={{
+                    display: posthog.isFeatureEnabled('demo-feature') ? 'block' : 'none'
+                  }}
+                >
+                  🚩 Test Feature Flag
+                </Button>
                 
-                {/* Experiment: Same button, different colors based on variant */}
+                {/* Experiment: Use PostHog's native variant code */}
                 <Button 
                   onClick={handleExperimentDemo} 
                   variant="outline" 
                   size="sm"
-                  className={
-                    experimentVariant === 'test' 
-                      ? 'bg-green-500 hover:bg-green-600 text-white border-green-500' 
-                      : 'bg-blue-500 hover:bg-blue-600 text-white border-blue-500'
-                  }
+                  className={(() => {
+                    if (posthog.getFeatureFlag('demo-feature') === 'test') {
+                      // PostHog test variant behavior
+                      return 'bg-green-500 hover:bg-green-600 text-white border-green-500';
+                    } else {
+                      // PostHog control variant (default behavior)
+                      return 'bg-blue-500 hover:bg-blue-600 text-white border-blue-500';
+                    }
+                  })()}
                 >
                   🧪 Check Experiment
                 </Button>
