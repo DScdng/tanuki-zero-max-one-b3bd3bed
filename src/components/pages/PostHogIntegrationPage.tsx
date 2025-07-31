@@ -113,34 +113,48 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
               </div>
 
               <div className="flex gap-2">
-                {/* Feature Flag: Use PostHog's native pattern */}
-                <Button 
-                  onClick={handleFeatureFlagDemo} 
-                  size="sm"
-                  style={{
-                    display: posthog.isFeatureEnabled('demo-feature') ? 'block' : 'none'
-                  }}
-                >
+                {/* Feature Flag Demo Button */}
+                <Button onClick={handleFeatureFlagDemo} size="sm">
                   🚩 Test Feature Flag
                 </Button>
                 
-                {/* Experiment: Use PostHog's native variant code */}
-                <Button 
-                  onClick={handleExperimentDemo} 
-                  variant="outline" 
-                  size="sm"
-                  className={(() => {
-                    if (posthog.getFeatureFlag('demo-feature') === 'test') {
-                      // PostHog test variant behavior
-                      return 'bg-green-500 hover:bg-green-600 text-white border-green-500';
-                    } else {
-                      // PostHog control variant (default behavior)
-                      return 'bg-blue-500 hover:bg-blue-600 text-white border-blue-500';
-                    }
-                  })()}
-                >
-                  🧪 Check Experiment
-                </Button>
+                {/* Experiment Demo - This is the button that changes based on variant */}
+                {(() => {
+                  if (posthog.getFeatureFlag('demo-feature') === 'control') {
+                    // Control variant - blue button
+                    return (
+                      <Button 
+                        onClick={handleExperimentDemo} 
+                        size="sm"
+                        className="bg-blue-500 hover:bg-blue-600 text-white"
+                      >
+                        🔵 Control Button
+                      </Button>
+                    );
+                  } else if (posthog.getFeatureFlag('demo-feature') === 'test') {
+                    // Test variant - green button  
+                    return (
+                      <Button 
+                        onClick={handleExperimentDemo} 
+                        size="sm"
+                        className="bg-green-500 hover:bg-green-600 text-white"
+                      >
+                        🟢 Test Button
+                      </Button>
+                    );
+                  } else {
+                    // Default fallback (good practice per PostHog docs)
+                    return (
+                      <Button 
+                        onClick={handleExperimentDemo} 
+                        variant="outline" 
+                        size="sm"
+                      >
+                        🧪 Default Button
+                      </Button>
+                    );
+                  }
+                })()}
               </div>
             </CardContent>
           </Card>
