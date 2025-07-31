@@ -55,6 +55,49 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
         </div>
       </section>
 
+      {/* MAX NEWSFLASH Section */}
+      <section className="px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-gradient-to-r from-primary/20 to-accent/20 backdrop-blur-sm p-8 rounded-lg border border-primary/30 shadow-lg">
+            <div className="text-center mb-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">
+                🦔✨ MAX NEWSFLASH — WE MADE IT TO SUPERHOG DAY! ✨🦔
+              </h2>
+            </div>
+            <div className="space-y-4 text-lg text-foreground leading-relaxed">
+              <p>
+                I just had my interview with Charles Cook… and I PASSED!
+              </p>
+              <p>
+                The Transparency Fight Club continues — me and Max (your favorite AI hedgehog) officially survived the 3rd round and leveled up to the final boss battle: PostHog SuperHog Day 🐷⚔️
+              </p>
+              <p>
+                Meeting Charles was a blast (yes, ajvar sandwiches came up).
+                And now, this whole site is getting a revamp to prepare for the grand finale.
+              </p>
+              <div className="bg-card/70 p-4 rounded-lg mt-6">
+                <p className="font-semibold text-primary mb-2">Stay tuned for:</p>
+                <ul className="space-y-2">
+                  <li>🥋 A redesigned arena for the Max vs. Tanuki showdown</li>
+                  <li>🔬 Real PostHog experiments in action (for real this time)</li>
+                  <li>💡 Final transparency upgrades</li>
+                </ul>
+              </div>
+              <div className="text-center mt-6">
+                <p className="font-bold text-primary">
+                  Let's finish this fight strong.<br/>
+                  PostHog Day → here we come!
+                </p>
+                <p className="mt-2 text-accent">
+                  Max & Djordje<br/>
+                  🦔❤️💥
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Narrative Section */}
       <section className="px-4">
         <div className="max-w-4xl mx-auto">
