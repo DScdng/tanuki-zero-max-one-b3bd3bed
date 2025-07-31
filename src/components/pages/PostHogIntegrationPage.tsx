@@ -48,23 +48,23 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
 
   const handleFeatureFlagDemo = () => {
     posthog.capture('button_click', { button_name: 'feature-flag-test', location: 'integration-demo' });
-    
-    // Check for control variant
-    if (posthog.getFeatureFlag('demo-feature') === 'control') {
-      alert('🔵 Control Experience: You are seeing the original version!');
-    } else if (posthog.getFeatureFlag('demo-feature') === 'test') {
-      alert('🟢 Test Experience: You are seeing the new improved version!');
-    } else {
-      // Default fallback behavior (good practice)
-      alert('⚪ Default Experience: Feature flag not configured or user not in experiment');
-    }
+    // This checks a boolean feature flag (enabled/disabled)
+    const flagValue = posthog.isFeatureEnabled('demo-feature');
+    alert(`🚩 Feature Flag 'demo-feature' is: ${flagValue ? 'ENABLED' : 'DISABLED'}`);
   };
 
   const handleExperimentDemo = () => {
     posthog.capture('button_click', { button_name: 'experiment-test', location: 'integration-demo' });
-    // This will get the actual experiment variant
+    // This checks A/B test experiment variants
     const variant = posthog.getFeatureFlag('homepage-experiment');
-    alert(`You are in experiment variant: ${variant || 'control'}`);
+    
+    if (variant === 'control') {
+      alert('🔵 Experiment: Control Group - You see the original experience');
+    } else if (variant === 'test') {
+      alert('🟢 Experiment: Test Group - You see the new experience');
+    } else {
+      alert('⚪ Experiment: Default - Not enrolled in experiment');
+    }
   };
 
   return (
