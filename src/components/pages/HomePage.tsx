@@ -72,7 +72,7 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
                 The Transparency Fight Club continues — me and Max (your favorite AI hedgehog) officially survived the 3rd round and leveled up to the final boss battle: PostHog SuperHog Day 🐷⚔️
               </p>
               <p>
-                Meeting Charles was a blast (yes, ajvar sandwiches came up).
+                Meeting Charles was a blast.
                 And now, this whole site is getting a revamp to prepare for the grand finale.
               </p>
               <div className="bg-card/70 p-4 rounded-lg mt-6">
