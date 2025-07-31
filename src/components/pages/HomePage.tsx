@@ -98,6 +98,58 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
         </div>
       </section>
 
+      {/* Worldwide Visitors Dashboard Section */}
+      <section className="px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-3">
+              🌍 WE'RE WORLDWIDE, BABY! 🌍
+            </h2>
+            <p className="text-lg text-foreground">
+              Got visitors from all around the world! (Or at least I hope some PostHog team members dropped by 👀)
+            </p>
+          </div>
+          
+          <div className="bg-card/70 backdrop-blur-sm rounded-lg border border-border/50 p-4">
+            <div 
+              id="posthog-embed-container" 
+              className="relative overflow-hidden rounded-lg transition-all duration-500"
+              style={{ width: '100%', height: '300px' }}
+            >
+              <iframe
+                src="https://eu.posthog.com/embedded/tMmJJpIvPbaI7-VvZEmfLhnzFiHkrQ"
+                style={{ width: '100%', height: '100%', border: 'none' }}
+                frameBorder="0"
+                allowFullScreen
+                title="PostHog Analytics Dashboard - Worldwide Visitors"
+              />
+              <button
+                onClick={() => {
+                  const container = document.getElementById('posthog-embed-container');
+                  if (container) {
+                    const isExpanded = container.style.height === '80vh';
+                    container.style.width = isExpanded ? '100%' : '95vw';
+                    container.style.height = isExpanded ? '300px' : '80vh';
+                    container.style.position = isExpanded ? 'relative' : 'fixed';
+                    container.style.top = isExpanded ? 'auto' : '10vh';
+                    container.style.left = isExpanded ? 'auto' : '2.5vw';
+                    container.style.zIndex = isExpanded ? 'auto' : '50';
+                    container.style.backgroundColor = isExpanded ? 'transparent' : 'hsl(var(--background))';
+                    container.style.border = isExpanded ? 'none' : '1px solid hsl(var(--border))';
+                  }
+                }}
+                className="absolute top-2 right-2 bg-primary text-primary-foreground px-3 py-1 rounded text-sm hover:bg-primary/80 transition-colors"
+              >
+                📊 Expand
+              </button>
+            </div>
+            <p className="text-sm text-muted-foreground mt-3 text-center">
+              Live analytics showing the global reach of the Transparency Fight Club
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Narrative Section */}
       <section className="px-4">
         <div className="max-w-4xl mx-auto">
