@@ -20,5 +20,14 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Redirect script for Lovable staging domain -->
+    <script>
+      // Check if we're on the Lovable staging domain and redirect to custom domain
+      if (window.location.hostname === 'transparency-fight-club.lovable.app') {
+        const newUrl = 'https://hiredorde.com' + window.location.pathname + window.location.search + window.location.hash;
+        window.location.replace(newUrl);
+      }
+    </script>
   </body>
 </html>
