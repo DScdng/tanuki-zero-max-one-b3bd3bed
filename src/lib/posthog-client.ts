@@ -9,6 +9,15 @@ if (typeof window !== 'undefined') {
       if (import.meta.env.DEV) posthog.debug();
     },
   });
+
+  // Ensure flags are loaded before usage.
+  // You'll only need to call this on the code for when the first time a user visits.
+  posthog.onFeatureFlags(function() {
+    // feature flags should be available at this point
+    if (posthog.isFeatureEnabled('my-flag')) {
+      // do something
+    }
+  });
 }
 
 export { posthog };
