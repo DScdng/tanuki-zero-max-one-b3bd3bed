@@ -45,26 +45,17 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
   // Real PostHog feature flag check
   const showBetaFeatures = posthog.isFeatureEnabled('beta-features');
   const experimentVariant = posthog.getFeatureFlag('homepage-experiment');
+  const showDemoFeature = posthog.isFeatureEnabled('demo-feature');
 
   const handleFeatureFlagDemo = () => {
     posthog.capture('button_click', { button_name: 'feature-flag-test', location: 'integration-demo' });
-    // This checks a boolean feature flag (enabled/disabled)
-    const flagValue = posthog.isFeatureEnabled('demo-feature');
-    alert(`🚩 Feature Flag 'demo-feature' is: ${flagValue ? 'ENABLED' : 'DISABLED'}`);
+    alert('🚩 This button exists because the feature flag is ENABLED for you!');
   };
 
   const handleExperimentDemo = () => {
     posthog.capture('button_click', { button_name: 'experiment-test', location: 'integration-demo' });
-    // This checks A/B test experiment variants
     const variant = posthog.getFeatureFlag('homepage-experiment');
-    
-    if (variant === 'control') {
-      alert('🔵 Experiment: Control Group - You see the original experience');
-    } else if (variant === 'test') {
-      alert('🟢 Experiment: Test Group - You see the new experience');
-    } else {
-      alert('⚪ Experiment: Default - Not enrolled in experiment');
-    }
+    alert(`🧪 Experiment variant: ${variant || 'control'} - Notice the button color!`);
   };
 
   return (
@@ -122,11 +113,25 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
               </div>
 
               <div className="flex gap-2">
-                <Button onClick={handleFeatureFlagDemo} size="sm">
-                  Test Feature Flag
-                </Button>
-                <Button onClick={handleExperimentDemo} variant="outline" size="sm">
-                  Check Experiment
+                {/* Feature Flag: Show button ONLY if flag is enabled */}
+                {showDemoFeature && (
+                  <Button onClick={handleFeatureFlagDemo} size="sm">
+                    🚩 Test Feature Flag
+                  </Button>
+                )}
+                
+                {/* Experiment: Same button, different colors based on variant */}
+                <Button 
+                  onClick={handleExperimentDemo} 
+                  variant="outline" 
+                  size="sm"
+                  className={
+                    experimentVariant === 'test' 
+                      ? 'bg-green-500 hover:bg-green-600 text-white border-green-500' 
+                      : 'bg-blue-500 hover:bg-blue-600 text-white border-blue-500'
+                  }
+                >
+                  🧪 Check Experiment
                 </Button>
               </div>
             </CardContent>
