@@ -4,13 +4,28 @@ import { PostHogButton } from "../PostHogButton";
 import { PostHogCard } from "../PostHogCard";
 import { Badge } from "@/components/ui/badge";
 import { posthog } from "@/lib/posthog-client";
-import { useEffect } from "react";
-import { Sparkles, TrendingUp, Users, Zap, Star } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Sparkles, TrendingUp, Users, Zap, Star, TestTube, FlaskConical } from "lucide-react";
 
 export function PostHogDemoPage() {
-  // Track page view
+  const [showBetaFeatures, setShowBetaFeatures] = useState(false);
+
+  // Track page view and check feature flags
   useEffect(() => {
     posthog.capture('page_view', { page_name: 'posthog-demo' });
+    
+    // PostHog official way: Check feature flag after ensuring flags are loaded
+    posthog.onFeatureFlags(function() {
+      const isBetaFeaturesEnabled = posthog.isFeatureEnabled('demo-buttons-test');
+      setShowBetaFeatures(isBetaFeaturesEnabled);
+      
+      // Track which variant user is seeing
+      posthog.capture('feature_flag_check', { 
+        flag_name: 'demo-buttons-test',
+        flag_value: isBetaFeaturesEnabled,
+        variant: isBetaFeaturesEnabled ? 'beta_features' : 'experiment_variant'
+      });
+    });
   }, []);
 
   const handlePrimaryAction = () => {
@@ -21,6 +36,24 @@ export function PostHogDemoPage() {
   const handleSecondaryAction = () => {
     posthog.capture('button_click', { button_name: 'posthog-demo-learn-more', location: 'learn-more' });
     console.log("Learning more about PostHog patterns!");
+  };
+
+  // Beta Features group handlers (50% of users)
+  const handleTestFeatureFlag = () => {
+    posthog.capture('beta_feature_test', { 
+      button_name: 'test-feature-flag',
+      user_variant: 'beta_features'
+    });
+    console.log("Testing feature flag functionality!");
+  };
+
+  // Experiment Variant group handlers (50% of users)
+  const handleCheckExperiment = () => {
+    posthog.capture('experiment_test', { 
+      button_name: 'check-experiment',
+      user_variant: 'experiment_variant'
+    });
+    console.log("Checking experiment variant!");
   };
 
   return (
@@ -40,6 +73,67 @@ export function PostHogDemoPage() {
         }}
         badge="New: AI-powered insights"
       />
+
+      {/* Feature Flag Demo Section */}
+      <section className="py-16 px-4 bg-gradient-to-br from-primary/5 to-posthog-blue/5">
+        <div className="container max-w-4xl mx-auto text-center">
+          <Badge variant="outline" className="mb-6 px-4 py-2">
+            <TestTube className="w-4 h-4 mr-2" />
+            PostHog Feature Flag Demo
+          </Badge>
+          
+          <h2 className="text-3xl font-bold mb-4">
+            Feature Flag Testing in Action
+          </h2>
+          <p className="text-lg text-muted-foreground mb-8">
+            You're seeing {showBetaFeatures ? 'Beta Features' : 'Experiment Variant'} version (50% split)
+          </p>
+
+          {/* Conditional content based on feature flag */}
+          {showBetaFeatures ? (
+            // Beta Features Group (50% of users)
+            <div className="bg-card border rounded-lg p-8">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <TestTube className="w-6 h-6 text-primary" />
+                <h3 className="text-xl font-semibold">Beta Features Group</h3>
+              </div>
+              <p className="text-muted-foreground mb-6">
+                You're in the beta features test group! This version shows advanced functionality.
+              </p>
+              <PostHogButton
+                variant="gradient"
+                size="lg"
+                onClick={handleTestFeatureFlag}
+                icon={<TestTube className="w-5 h-5" />}
+                showArrow
+                className="px-8 py-4"
+              >
+                Test Feature Flag
+              </PostHogButton>
+            </div>
+          ) : (
+            // Experiment Variant Group (50% of users)
+            <div className="bg-card border rounded-lg p-8">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <FlaskConical className="w-6 h-6 text-posthog-blue" />
+                <h3 className="text-xl font-semibold">Experiment Variant Group</h3>
+              </div>
+              <p className="text-muted-foreground mb-6">
+                You're in the experiment variant! This version shows alternative functionality.
+              </p>
+              <PostHogButton
+                variant="secondary"
+                size="lg"
+                onClick={handleCheckExperiment}
+                icon={<FlaskConical className="w-5 h-5" />}
+                className="px-8 py-4"
+              >
+                Check Experiment
+              </PostHogButton>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* Product Grid Section */}
       <PostHogProductGrid />
