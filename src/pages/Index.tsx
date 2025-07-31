@@ -3,6 +3,7 @@ import { AppSidebar } from '@/components/AppSidebar';
 import { HedgehogToggleButton, HedgehogCharacter } from '@/components/HedgehogToggle';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import FeatureFlagBanner from '@/components/FeatureFlagBanner';
 import HomePage from '@/components/pages/HomePage';
 import AboutPage from '@/components/pages/AboutPage';
 
@@ -42,6 +43,7 @@ const Index = () => {
 
   return (
     <SidebarProvider>
+      <FeatureFlagBanner />
       <div className="min-h-screen flex w-full bg-background">
         <AppSidebar currentPage={currentPage} onPageChange={setCurrentPage} />
         
