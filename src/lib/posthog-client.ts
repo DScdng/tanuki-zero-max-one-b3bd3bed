@@ -14,8 +14,10 @@ if (typeof window !== 'undefined') {
   // You'll only need to call this on the code for when the first time a user visits.
   posthog.onFeatureFlags(function() {
     // feature flags should be available at this point
-    if (posthog.isFeatureEnabled('demo-feature')) {
-      // do something
+    if (posthog.getFeatureFlag('demo-feature') === 'test') {
+      // Code for users in the 'test' variant
+    } else if (posthog.getFeatureFlag('demo-feature') === 'control') {
+      // Code for users in the 'control' variant
     }
   });
 }
