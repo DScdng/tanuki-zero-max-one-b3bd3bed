@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import hedgehogMeltingMacbook from "@/assets/hedgehog-melting-macbook.webp";
+import postHogLocalhost from "@/assets/posthog-localhost-clean.png";
 
 const PrepPage = () => {
   return (
@@ -57,7 +58,7 @@ const PrepPage = () => {
         <CardContent>
           <div className="flex justify-center">
             <img 
-              src="/lovable-uploads/6d23ff2d-facd-45cc-a7e4-c757243004d7.png" 
+              src={postHogLocalhost} 
               alt="PostHog running locally on localhost:8000" 
               className="max-w-full rounded-lg shadow-lg border"
             />
