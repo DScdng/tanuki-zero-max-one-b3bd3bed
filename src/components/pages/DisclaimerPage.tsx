@@ -7,13 +7,10 @@ import { Label } from '@/components/ui/label';
 import { supabase, isSupabaseConfigured, type FeedbackSubmission } from '@/lib/supabase';
 import { toast } from 'sonner';
 import { posthog } from '@/lib/posthog-client';
+import { Link } from 'react-router-dom';
 
 
-interface DisclaimerPageProps {
-  onNavigate: (page: string) => void;
-}
-
-const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
+const DisclaimerPage = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -266,14 +263,15 @@ const DisclaimerPage = ({ onNavigate }: DisclaimerPageProps) => {
 
         {/* CTA Back to Home */}
         <section className="text-center py-8">
-          <Button 
-            onClick={() => onNavigate('home')}
-            size="lg"
-            variant="outline"
-            className="text-lg px-8 py-6 hover:bg-primary hover:text-primary-foreground transition-colors"
-          >
-            🦔 Take me back to Max and Tanuki
-          </Button>
+          <Link to="/home">
+            <Button 
+              size="lg"
+              variant="outline"
+              className="text-lg px-8 py-6 hover:bg-primary hover:text-primary-foreground transition-colors"
+            >
+              🦔 Take me back to Max and Tanuki
+            </Button>
+          </Link>
         </section>
       </div>
     </div>

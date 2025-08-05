@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { posthog } from "@/lib/posthog-client";
+import { Link } from "react-router-dom";
 import { 
   Activity,
   BarChart3, 
@@ -17,11 +18,7 @@ import {
   TestTube
 } from "lucide-react";
 
-interface PostHogIntegrationPageProps {
-  onNavigate: (page: string) => void;
-}
-
-export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegrationPageProps) {
+export default function PostHogIntegrationPage() {
   // State for dynamic iframe height
   const [dashboardHeight, setDashboardHeight] = useState(40);
 
@@ -358,19 +355,21 @@ export default function PostHogIntegrationPage({ onNavigate }: PostHogIntegratio
         {/* Navigation */}
         <section className="text-center py-8">
           <div className="flex gap-4 justify-center flex-wrap">
-            <Button 
-              onClick={() => onNavigate('arena')}
-              variant="outline"
-              size="lg"
-            >
-              🥊 Back to Hedgehog Arena
-            </Button>
-            <Button 
-              onClick={() => onNavigate('disclaimer')}
-              size="lg"
-            >
-              📋 View Disclaimer & Feedback
-            </Button>
+            <Link to="/arena">
+              <Button 
+                variant="outline"
+                size="lg"
+              >
+                🥊 Back to Hedgehog Arena
+              </Button>
+            </Link>
+            <Link to="/disclaimer">
+              <Button 
+                size="lg"
+              >
+                📋 View Disclaimer & Feedback
+              </Button>
+            </Link>
           </div>
         </section>
       </div>

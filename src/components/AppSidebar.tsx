@@ -8,6 +8,7 @@ import {
   Calendar
 } from "lucide-react";
 import { posthog } from '@/lib/posthog-client';
+import { Link } from 'react-router-dom';
 import hedgehogVsTanukiLogo from '@/assets/hedgehog-vs-tanuki-transparent.png';
 
 import {
@@ -25,20 +26,19 @@ import {
 
 interface AppSidebarProps {
   currentPage: string;
-  onPageChange: (page: string) => void;
 }
 
 const navItems = [
-  { id: 'home', label: 'Home', icon: Home },
-  { id: 'prep', label: 'Superday Prep', icon: Calendar },
-  { id: 'about', label: 'About Me', icon: User },
-  { id: 'arena', label: 'Hedgehog Arena', icon: Gamepad2 },
-  { id: 'aha-moment', label: 'AHA Moment', icon: Lightbulb },
-  { id: 'posthog-integration', label: 'WIP PostHog Demo', icon: BarChart3 },
-  { id: 'disclaimer', label: 'Disclaimer and Feedback', icon: FileText },
+  { id: 'home', label: 'Home', icon: Home, path: '/home' },
+  { id: 'prep', label: 'Superday Prep', icon: Calendar, path: '/superday-prep' },
+  { id: 'about', label: 'About Me', icon: User, path: '/about' },
+  { id: 'arena', label: 'Hedgehog Arena', icon: Gamepad2, path: '/arena' },
+  { id: 'aha-moment', label: 'AHA Moment', icon: Lightbulb, path: '/aha-moment' },
+  { id: 'posthog-integration', label: 'WIP PostHog Demo', icon: BarChart3, path: '/posthog-integration' },
+  { id: 'disclaimer', label: 'Disclaimer and Feedback', icon: FileText, path: '/disclaimer' },
 ];
 
-export function AppSidebar({ currentPage, onPageChange }: AppSidebarProps) {
+export function AppSidebar({ currentPage }: AppSidebarProps) {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
 
@@ -69,16 +69,17 @@ export function AppSidebar({ currentPage, onPageChange }: AppSidebarProps) {
             <SidebarMenu>
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.id}>
-                  <SidebarMenuButton 
-                    isActive={currentPage === item.id}
-            onClick={() => {
-              posthog.capture('navigation_click', { to_page: item.id, from_page: currentPage });
-              onPageChange(item.id);
-            }}
-                    className="w-full"
-                  >
-                    <item.icon className="h-4 w-4" />
-                    {!collapsed && <span>{item.label}</span>}
+                  <SidebarMenuButton asChild isActive={currentPage === item.id}>
+                    <Link 
+                      to={item.path}
+                      onClick={() => {
+                        posthog.capture('navigation_click', { to_page: item.id, from_page: currentPage });
+                      }}
+                      className="w-full"
+                    >
+                      <item.icon className="h-4 w-4" />
+                      {!collapsed && <span>{item.label}</span>}
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

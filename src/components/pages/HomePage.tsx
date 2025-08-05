@@ -3,12 +3,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import godzillaMaxVictory from '@/assets/godzilla-max-victory.png';
 import { posthog } from '@/lib/posthog-client';
+import { Link } from 'react-router-dom';
 
-interface HomePageProps {
-  onNavigate: (page: string) => void;
-}
-
-const HomePage = ({ onNavigate }: HomePageProps) => {
+const HomePage = () => {
   // Track page view
   useEffect(() => {
     posthog.capture('page_view', { page_name: 'home' });
@@ -17,27 +14,32 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
     {
       id: 'about',
       title: 'About Me',
-      description: 'My career path, Zero to One insights, and why I\'m ready to join Team Max.'
+      description: 'My career path, Zero to One insights, and why I\'m ready to join Team Max.',
+      path: '/about'
     },
     {
       id: 'arena',
       title: 'Hedgehog Arena',
-      description: 'The ultimate transparency battle: can you beat Tanuki?'
+      description: 'The ultimate transparency battle: can you beat Tanuki?',
+      path: '/arena'
     },
     {
       id: 'aha-moment',
       title: 'AHA Moment',
-      description: 'The moment everything clicked about PostHog.'
+      description: 'The moment everything clicked about PostHog.',
+      path: '/aha-moment'
     },
     {
       id: 'posthog-integration',
       title: 'WIP PostHog Demo',
-      description: 'Real PostHog analytics integration and features.'
+      description: 'Real PostHog analytics integration and features.',
+      path: '/posthog-integration'
     },
     {
       id: 'disclaimer',
       title: 'Disclaimer and Feedback',
-      description: 'Legal disclaimers, live countdown timer, and feedback form for Charles.'
+      description: 'Legal disclaimers, live countdown timer, and feedback form for Charles.',
+      path: '/disclaimer'
     }
   ];
 
@@ -199,20 +201,20 @@ const HomePage = ({ onNavigate }: HomePageProps) => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {pages.map((page) => (
-              <Card 
-                key={page.id} 
-                className="cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg border-border/50"
-                onClick={() => onNavigate(page.id)}
-              >
-                <CardHeader>
-                  <CardTitle className="text-primary text-xl">{page.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-muted-foreground leading-relaxed">
-                    {page.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+              <Link key={page.id} to={page.path}>
+                <Card 
+                  className="cursor-pointer transition-all duration-200 hover:scale-105 hover:shadow-lg border-border/50 h-full"
+                >
+                  <CardHeader>
+                    <CardTitle className="text-primary text-xl">{page.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-muted-foreground leading-relaxed">
+                      {page.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </Link>
             ))}
           </div>
         </div>
