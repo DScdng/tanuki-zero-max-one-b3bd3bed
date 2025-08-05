@@ -24,20 +24,27 @@ const PrepPage = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <p>
-            Just finished my final prep for the PostHog superday tomorrow, where I am still not sure what the tasks will be. 
-            I cloned the HogFlix demo and connected it to a new project in the PostHog app, and also joined the invitation 
-            to a HogFlix organization sent by the PostHog team.
+            Just wrapped up my final prep for tomorrow's PostHog Superday. I'm still not 100% sure what the task will be, but I'm ready for anything (I think?).
           </p>
           
           <p>
-            I believe I'll do a demo with PostHog and the HogFlix demo, but just in case I've made a setup of the local 
-            dev environment for PostHog itself which took... ermm... a few hours. My old MacBook Pro is melting down 
-            and was loading the app in the browser on its own for 30 minutes haha.
+            I've cloned the HogFlix demo, connected it to a fresh project in the PostHog app, and accepted the invite to the official HogFlix org from the PostHog team. That'll likely be the base for the demo — but just in case, I went full nerd mode and set up the full PostHog dev environment locally.
           </p>
           
           <p>
-            But here we are! I can follow the PostHog developing locally part of the handbook... so far! 
-            Here I'll stop so I can have my MacBook spared for tomorrow's challenges.
+            Let's just say… my ancient MacBook wasn't thrilled. It spent 30+ minutes trying to load PostHog in the browser like it was preparing for liftoff. But hey — it's running now, and I can officially say I've followed the "Developing PostHog locally" handbook to the letter.
+          </p>
+
+          <p>
+            Could I have spent more time actually playing with PostHog's features instead of doing all this? Probably. But the challenge was too tempting.
+          </p>
+
+          <p>
+            Time to give the MacBook some rest before the final boss battle.
+          </p>
+          
+          <p className="font-semibold text-primary">
+            Let's do this. See you tomorrow. 🦔
           </p>
         </CardContent>
       </Card>
