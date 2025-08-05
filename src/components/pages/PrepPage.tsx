@@ -29,11 +29,11 @@ const PrepPage = () => {
           </p>
           
           <p>
-            I've cloned the HogFlix demo, connected it to a fresh project in the PostHog app, and accepted the invite to the official HogFlix org from the PostHog team. That'll likely be the base for the demo — but just in case, I went full nerd mode and set up the full PostHog dev environment locally.
+            I've cloned the HogFlix demo, connected it to a fresh project in the PostHog app, and accepted the invite to the official HogFlix org from the PostHog team. That'll likely be the base for the demo, but just in case, I went full nerd mode and set up the full PostHog dev environment locally.
           </p>
           
           <p>
-            Let's just say… my ancient MacBook wasn't thrilled. It spent 30+ minutes trying to load PostHog in the browser like it was preparing for liftoff. But hey — it's running now, and I can officially say I've followed the "Developing PostHog locally" handbook to the letter.
+            Let's just say, my ancient MacBook wasn't happy. It spent 30+ minutes trying to load PostHog in the browser like it was preparing for liftoff. But hey, it's running now, and I can officially say I've followed the "Developing PostHog locally" handbook to the letter.
           </p>
 
           <p>
