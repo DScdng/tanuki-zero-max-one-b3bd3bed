@@ -4,9 +4,8 @@ import { HedgehogToggleButton, HedgehogCharacter } from '@/components/HedgehogTo
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import HomePage from '@/components/pages/HomePage';
+import PrepPage from '@/components/pages/PrepPage';
 import AboutPage from '@/components/pages/AboutPage';
-
-
 import ArenaPage from '@/components/pages/ArenaPage';
 import PostHogIntegrationPage from '@/components/pages/PostHogIntegrationPage';
 import DisclaimerPage from '@/components/pages/DisclaimerPage';
@@ -25,6 +24,8 @@ const Index = () => {
     switch (currentPage) {
       case 'home':
         return <HomePage onNavigate={setCurrentPage} />;
+      case 'prep':
+        return <PrepPage />;
       case 'about':
         return <AboutPage />;
       case 'arena':
