@@ -63,36 +63,25 @@ const HomePage = () => {
           <div className="bg-gradient-to-r from-primary/20 to-accent/20 backdrop-blur-sm p-8 rounded-lg border border-primary/30 shadow-lg">
             <div className="text-center mb-4">
               <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4">
-                🦔✨ MAX NEWSFLASH — WE MADE IT TO SUPERHOG DAY! ✨🦔
+                🦔✨ SUPERDAY: COMPLETE! ✨🦔
               </h2>
             </div>
             <div className="space-y-4 text-lg text-foreground leading-relaxed">
               <p>
-                I just had my interview with Charles Cook… and I PASSED!
+                We made it through the final boss battle.
               </p>
               <p>
-                The Transparency Fight Club continues — me and Max (your favorite AI hedgehog) officially survived the 3rd round and leveled up to the final boss battle: PostHog SuperHog Day 🐷⚔️
+                SuperHog Day is officially done, and what a day it was. I demoed PostHog, answered customer questions, set up data pipelines, and submitted everything in Slack.
               </p>
               <p>
-                Meeting Charles was a blast.
-                And now, this whole site is getting a revamp to prepare for the grand finale.
+                Even better? I met Leon. Absolute legend. Would love to work with him.
               </p>
-              <div className="bg-card/70 p-4 rounded-lg mt-6">
-                <p className="font-semibold text-primary mb-2">Stay tuned for:</p>
-                <ul className="space-y-2">
-                  <li>🥋 A redesigned arena for the Max vs. Tanuki showdown</li>
-                  <li>🔬 Real PostHog experiments in action (for real this time)</li>
-                  <li>💡 Final transparency upgrades</li>
-                </ul>
-              </div>
+              <p>
+                Excitement level: Over 9000. Now we wait… but the Transparency Fight Club doesn't stop.
+              </p>
               <div className="text-center mt-6">
                 <p className="font-bold text-primary">
-                  Let's finish this fight strong.<br/>
-                  PostHog Day → here we come!
-                </p>
-                <p className="mt-2 text-accent">
-                  Max & Djordje<br/>
-                  🦔❤️💥
+                  While we await word from Team PostHog, come blow off some steam in the Hedgehog Arena, Tanuki's getting cocky again 🦝🔥🦔
                 </p>
               </div>
             </div>
