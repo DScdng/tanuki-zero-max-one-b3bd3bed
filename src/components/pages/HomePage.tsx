@@ -81,7 +81,7 @@ const HomePage = () => {
               </p>
               <div className="text-center mt-6">
                 <p className="font-bold text-primary">
-                  While we await word from Team PostHog, come blow off some steam in the Hedgehog Arena, Tanuki's getting cocky again 🦝🔥🦔
+                  While we await word from Team PostHog, come blow off some steam in the Hedgehog Arena, Tanuki's getting overconfident again 🦝🔥🦔
                 </p>
               </div>
             </div>
