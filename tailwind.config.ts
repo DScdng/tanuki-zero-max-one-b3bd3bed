@@ -52,28 +52,13 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				'posthog-orange': {
-					DEFAULT: 'hsl(var(--posthog-orange))',
-				},
-				'posthog-blue': {
-					DEFAULT: 'hsl(var(--posthog-blue))',
-				},
-				'posthog-yellow': {
-					DEFAULT: 'hsl(var(--posthog-yellow))',
-				},
-				'posthog-purple': {
-					DEFAULT: 'hsl(var(--posthog-purple))',
-				},
 				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+					bg: 'hsl(var(--sidebar-bg))',
+					text: 'hsl(var(--sidebar-text))',
+					'text-muted': 'hsl(var(--sidebar-text-muted))',
 					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
